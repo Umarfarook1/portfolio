@@ -1,0 +1,116 @@
+﻿
+> portfolio@0.1.0 build
+> next build
+
+node.exe : ΓÜá Warning: Next.js inferred your 
+workspace root, but it may not be correct.
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ΓÜá W 
+   arning: Ne...not be correct.:String) [], Remot  
+  eException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ We detected multiple lockfiles and selected the 
+directory of C:\Users\umarf\package-lock.json as 
+the root directory.
+ To silence this warning, set `turbopack.root` in 
+your Next.js config, or consider removing one of 
+the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/co
+nfig/next-config-js/turbopack#root-directory for 
+more information.
+ Detected additional lockfiles: 
+   * C:\Users\umarf\Desktop\Umar-s-portfolio\packag
+e-lock.json
+
+Γû▓ Next.js 16.1.1 (Turbopack)
+
+  Creating an optimized production build ...
+Error: Cannot apply unknown utility class 
+`border-border`. Are you using CSS modules or 
+similar and missing `@reference`? https://tailwindc
+ss.com/docs/functions-and-directives#reference-dire
+ctive
+    [2m[at onInvalidCandidate (C:\Users\umarf\Desk
+top\Umar-s-portfolio\node_modules\tailwindcss\dist\
+lib.js:21:1314)][0m
+    [2m[at Te (C:\Users\umarf\Desktop\Umar-s-portf
+olio\node_modules\tailwindcss\dist\lib.js:16:36652)
+][0m
+    [2m[at C:\Users\umarf\Desktop\Umar-s-portfolio
+\node_modules\tailwindcss\dist\lib.js:21:355][0m
+    [2m[at Rr (C:\Users\umarf\Desktop\Umar-s-portf
+olio\node_modules\tailwindcss\dist\lib.js:3:1718)]
+[0m
+    [2m[at _ (C:\Users\umarf\Desktop\Umar-s-portfo
+lio\node_modules\tailwindcss\dist\lib.js:3:1377)][
+0m
+    [2m[at $e (C:\Users\umarf\Desktop\Umar-s-portf
+olio\node_modules\tailwindcss\dist\lib.js:21:172)]
+[0m
+    [2m[at un (C:\Users\umarf\Desktop\Umar-s-portf
+olio\node_modules\tailwindcss\dist\lib.js:38:294)]
+[0m
+    [2m[at process.processTicksAndRejections 
+(node:internal/process/task_queues:105:5)][0m
+    [2m[at async cn (C:\Users\umarf\Desktop\Umar-s
+-portfolio\node_modules\tailwindcss\dist\lib.js:38:
+631)][0m
+    [2m[at async Xr (C:\Users\umarf\Desktop\Umar-s
+-portfolio\node_modules\@tailwindcss\node\dist\inde
+x.js:10:3417)][0m
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./Desktop/Umar-s-portfolio/src/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: C:\Users\umarf\Desktop
+\Umar-s-portfolio\src\app\globals.css:1:1: Cannot 
+apply unknown utility class `border-border`. Are 
+you using CSS modules or similar and missing 
+`@reference`? https://tailwindcss.com/docs/function
+s-and-directives#reference-directive
+    at Input.error (Desktop/Umar-s-portfolio/node_m
+odules/postcss/lib/input.js:135:16) [C:\Users\umarf
+\Desktop\Umar-s-portfolio\.next\build\chunks\972d2_
+c7646d1c._.js:4651:22]
+    at Root.error (Desktop/Umar-s-portfolio/node_mo
+dules/postcss/lib/node.js:146:32) [C:\Users\umarf\D
+esktop\Umar-s-portfolio\.next\build\chunks\972d2_c7
+646d1c._.js:928:38]
+    [at Object.Once (C:\Users\umarf\Desktop\Umar-s-
+portfolio\node_modules\@tailwindcss\postcss\dist\in
+dex.js:10:6911)]
+    [at process.processTicksAndRejections 
+(node:internal/process/task_queues:105:5)]
+    at async LazyResult.runAsync (Desktop/Umar-s-po
+rtfolio/node_modules/postcss/lib/lazy-result.js:293
+:11) [C:\Users\umarf\Desktop\Umar-s-portfolio\.next
+\build\chunks\972d2_c7646d1c._.js:6206:21]
+    at async transform (turbopack:///[turbopack-nod
+e]/transforms/postcss.ts:70:34) [C:\Users\umarf\Des
+ktop\Umar-s-portfolio\.next\build\chunks\[root-of-t
+he-server]__8b767090._.js:146:36]
+    at async run (turbopack:///[turbopack-node]/ipc
+/evaluate.ts:92:23) [C:\Users\umarf\Desktop\Umar-s-
+portfolio\.next\build\chunks\[root-of-the-server]__
+383faee0._.js:443:31]
+
+Import trace:
+  Client Component Browser:
+    ./Desktop/Umar-s-portfolio/src/app/globals.css 
+[Client Component Browser]
+    ./Desktop/Umar-s-portfolio/src/app/layout.tsx 
+[Server Component]
+
+
+    at async transform (turbopack:///[turbopack-nod
+e]/transforms/postcss.ts:70:34) [C:\Users\umarf\Des
+ktop\Umar-s-portfolio\.next\build\chunks\[root-of-t
+he-server]__8b767090._.js:146:36])
+    at async run (turbopack:///[turbopack-node]/ipc
+/evaluate.ts:92:23) [C:\Users\umarf\Desktop\Umar-s-
+portfolio\.next\build\chunks\[root-of-the-server]__
+383faee0._.js:443:31])
