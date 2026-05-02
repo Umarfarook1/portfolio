@@ -1,100 +1,114 @@
 "use client";
 
+import { Brain, Server, Cloud, Database, Wrench, Code2 } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { Brain, Server, Cloud, Layout, Cpu, Database, Globe, Container } from "lucide-react";
+import { SectionBranch } from "@/components/animations/SectionBranch";
 
 const stack = [
     {
-        category: "ML & AI",
+        category: "LLMs & GenAI",
         icon: Brain,
-        description: "Building intelligent systems",
-        items: ["PyTorch", "TensorFlow", "HuggingFace", "LangChain", "OpenAI API", "Scikit-Learn"],
-        gradient: "from-violet-500/20 to-purple-500/20",
-        textGradient: "text-violet-300",
+        items: [
+            "Claude (Sonnet, Haiku)",
+            "Gemini",
+            "OpenAI",
+            "LangChain",
+            "LangGraph",
+            "Pydantic",
+            "sentence-transformers",
+            "FAISS",
+        ],
+        accent: "text-stone-200 bg-stone-800/60",
     },
     {
         category: "Backend",
         icon: Server,
-        description: "Scalable server-side solutions",
-        items: ["Python", "FastAPI", "Go", "Node.js", "PostgreSQL", "Redis"],
-        gradient: "from-emerald-500/20 to-teal-500/20",
-        textGradient: "text-emerald-300",
+        items: ["Python", "FastAPI", "SQLAlchemy", "Alembic", "Celery", "REST", "SSE"],
+        accent: "text-emerald-300 bg-emerald-950/40",
     },
     {
-        category: "Cloud & Ops",
+        category: "Data",
+        icon: Database,
+        items: ["BigQuery", "PostgreSQL", "pgvector", "Redis", "Pandas", "NumPy"],
+        accent: "text-amber-300 bg-amber-950/40",
+    },
+    {
+        category: "Cloud & Infra",
         icon: Cloud,
-        description: "Deployment and orchestration",
-        items: ["GCP", "Kubernetes", "Docker", "Terraform", "CI/CD", "Prometheus"],
-        gradient: "from-blue-500/20 to-cyan-500/20",
-        textGradient: "text-blue-300",
+        items: [
+            "GCP",
+            "Cloud Run",
+            "Cloud SQL",
+            "GCS",
+            "Memorystore",
+            "AWS (S3, EC2)",
+            "Oracle Cloud",
+        ],
+        accent: "text-sky-300 bg-sky-950/40",
+    },
+    {
+        category: "DevOps & Observability",
+        icon: Wrench,
+        items: ["Docker", "GitHub Actions", "Prometheus", "Sentry", "Git"],
+        accent: "text-yellow-300 bg-yellow-950/40",
     },
     {
         category: "Frontend",
-        icon: Layout,
-        description: "Responsive user interfaces",
-        items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-        gradient: "from-orange-500/20 to-amber-500/20",
-        textGradient: "text-orange-300",
+        icon: Code2,
+        items: ["TypeScript", "Next.js", "React", "Tailwind", "Framer Motion"],
+        accent: "text-rose-300 bg-rose-950/40",
     },
 ];
 
 export function TechStack() {
     return (
-        <section className="container mx-auto px-6 py-24 border-t border-white/5 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
-                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
-            </div>
+        <section
+            className="relative container mx-auto px-6 py-28"
+            id="stack"
+        >
+            <SectionBranch position="bottom-left" scale={0.85} seed={51} />
 
             <FadeIn>
-                <div className="mb-16 text-center">
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                        Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">Toolkit</span>
+                <div className="relative z-[2] mb-16 max-w-2xl">
+                    <p className="mb-2 font-[family-name:var(--font-display)] text-2xl italic text-stone-300/85">
+                        the toolkit
+                    </p>
+                    <h2 className="font-[family-name:var(--font-display)] text-5xl font-bold leading-tight tracking-tight text-stone-100 sm:text-6xl">
+                        What I work with
                     </h2>
-                    <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-                        A comprehensive suite of modern technologies I use to build scalable, intelligent, and performant applications.
+                    <p className="mt-4 text-stone-400">
+                        Tools I use day to day. Not a list of every framework
+                        I&apos;ve heard of.
                     </p>
                 </div>
             </FadeIn>
 
-            <Stagger className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {stack.map((group, index) => (
-                    <StaggerItem key={index} className="h-full">
-                        <Card className="h-full bg-white/5 border-white/10 hover:border-white/20 transition-all duration-300 group overflow-hidden">
-                            {/* Card Header */}
-                            <div className={`p-6 pb-2`}>
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-300 ${group.textGradient}`}>
-                                        <group.icon className="w-5 h-5" />
-                                    </div>
-                                    <h3 className="text-lg font-bold font-mono tracking-wide text-white">
-                                        {group.category}
-                                    </h3>
+            <Stagger className="relative z-[2] grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {stack.map((group) => (
+                    <StaggerItem key={group.category} className="h-full">
+                        <Card className="group h-full border-stone-700/40 bg-stone-950/50 shadow-md transition-colors duration-700 hover:border-stone-400/40">
+                            <div className="mb-4 flex items-center gap-3">
+                                <div
+                                    className={`rounded-xl border border-stone-700/40 p-2 transition-colors duration-700 ${group.accent}`}
+                                >
+                                    <group.icon className="h-5 w-5" />
                                 </div>
-                                <p className="text-sm text-muted-foreground ml-1">
-                                    {group.description}
-                                </p>
+                                <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-stone-100">
+                                    {group.category}
+                                </h3>
                             </div>
-
-                            {/* Tech Items */}
-                            <div className="p-6 pt-4">
-                                <div className="flex flex-wrap gap-2">
-                                    {group.items.map((item) => (
-                                        <span
-                                            key={item}
-                                            className="px-3 py-1.5 text-xs font-medium rounded-md bg-white/5 border border-white/5 text-muted-foreground hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200 cursor-default"
-                                        >
-                                            {item}
-                                        </span>
-                                    ))}
-                                </div>
+                            <div className="flex flex-wrap gap-1.5">
+                                {group.items.map((item) => (
+                                    <span
+                                        key={item}
+                                        className="rounded border border-stone-700 bg-stone-900/80 px-2 py-1 font-mono text-[11px] text-stone-300 transition-colors duration-500 hover:border-amber-300/40 hover:bg-amber-950/30 hover:text-amber-100"
+                                    >
+                                        {item}
+                                    </span>
+                                ))}
                             </div>
-
-                            {/* Hover Gradient Overlay */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${group.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
                         </Card>
                     </StaggerItem>
                 ))}

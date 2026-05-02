@@ -13,11 +13,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant = "primary", size = "default", asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : "button";
         const variants = {
-            primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-            secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+            primary: "bg-stone-100 text-stone-900 hover:bg-white",
+            secondary: "bg-stone-800 text-stone-100 hover:bg-stone-700",
             outline:
-                "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-            ghost: "hover:bg-accent hover:text-accent-foreground",
+                "border border-stone-600 bg-transparent text-stone-100 hover:bg-stone-800/50 hover:text-white",
+            ghost: "text-stone-300 hover:bg-stone-800/50 hover:text-white",
         };
         const sizes = {
             default: "h-10 px-4 py-2",
