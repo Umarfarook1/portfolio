@@ -9,7 +9,7 @@ import { SectionBranch } from "@/components/animations/SectionBranch";
 const lanes = [
     {
         title: "LLM Orchestration",
-        body: "Multi-stage agent flows with routing, intent, retrieval, composition. Streaming responses, structured outputs, fallback chains across Claude, Gemini, OpenAI.",
+        body: "Multi-stage agent flows with routing, intent, retrieval, composition. Streaming responses, structured outputs, fallback chains across multiple LLM providers.",
         icon: Workflow,
     },
     {

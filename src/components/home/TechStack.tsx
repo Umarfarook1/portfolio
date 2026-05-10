@@ -11,7 +11,6 @@ const stack = [
         category: "LLMs & GenAI",
         icon: Brain,
         items: [
-            "Claude (Sonnet, Haiku)",
             "Gemini",
             "OpenAI",
             "LangChain",

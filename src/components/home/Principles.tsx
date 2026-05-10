@@ -27,7 +27,7 @@ const principles = [
     },
     {
         title: "AI-pair-programming with judgment",
-        body: "I use Claude Code, Cursor, and copilots aggressively. Then I reason through every architectural choice myself. Tools speed up typing; judgment doesn't delegate.",
+        body: "I use coding copilots and agentic IDEs aggressively. Then I reason through every architectural choice myself. Tools speed up typing; judgment doesn't delegate.",
     },
 ];
 

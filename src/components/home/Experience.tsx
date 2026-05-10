@@ -18,7 +18,7 @@ const roles: Role[] = [
         title: "AI Engineer",
         org: "HypeOn AI",
         body: "Building production LLM systems for D2C trend prediction. Multi-stage orchestration with routing/retrieval/composition, NL-to-SQL over BigQuery with cost guardrails, RAG pipelines with sentence-transformers, deployment on GCP Cloud Run with full observability.",
-        tags: ["LangChain", "FastAPI", "BigQuery", "Cloud Run", "Claude", "Gemini"],
+        tags: ["LangChain", "FastAPI", "BigQuery", "Cloud Run", "Gemini"],
     },
     {
         when: "Oct 2024 to Sep 2025",
