@@ -3,7 +3,7 @@
  * Centered on origin. Petal points UP (negative Y).
  */
 
-/** Single cherry blossom petal — heart-shaped tip */
+/** Single cherry blossom petal with heart-shaped tip */
 export const PETAL =
     "M0 -10 " +
     "C 4 -9 6 -5 5 -1 " +

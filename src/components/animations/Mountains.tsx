@@ -38,7 +38,7 @@ export function Mountains() {
                 {/* MAIN RANGE: tall, dramatic silhouette with continuous mass */}
                 <path d={buildRidge(MAIN_RIDGE, 600)} fill="url(#mainGrad)" />
 
-                {/* Moonlight ridge highlights — thin lines on the tops of front peaks */}
+                {/* Moonlight ridge highlights: thin lines on the tops of front peaks */}
                 {MAIN_RIDGE.map((p, i) => {
                     if (i === 0) return null;
                     const prev = MAIN_RIDGE[i - 1];
@@ -57,7 +57,7 @@ export function Mountains() {
                     );
                 })}
 
-                {/* Forest base — dark band hugging the bottom (suggests treeline) */}
+                {/* Forest base: dark band hugging the bottom (suggests treeline) */}
                 <rect x="0" y="540" width="1600" height="60" fill="#000000" opacity="0.5" />
             </svg>
         </div>

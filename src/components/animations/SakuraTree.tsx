@@ -13,7 +13,7 @@ export function SakuraTree() {
 }
 
 /* ============================================================
- * TOP-RIGHT BRANCH — main, larger, sweeps in from upper-right
+ * TOP-RIGHT BRANCH: main, larger, sweeps in from upper-right
  * ============================================================ */
 function TopRightBranch() {
     const blossoms = useMemo(() => generateBlossomsRight(), []);
@@ -45,7 +45,7 @@ function TopRightBranch() {
                 </defs>
 
                 <g className="sakura-sway-r">
-                    {/* === MAJOR BRANCHES — gnarled, prominent dark silhouettes === */}
+                    {/* === MAJOR BRANCHES: gnarled, prominent dark silhouettes === */}
 
                     {/* Main thick branch sweeping in from corner */}
                     <path
@@ -114,7 +114,7 @@ function TopRightBranch() {
 }
 
 /* ============================================================
- * TOP-LEFT BRANCH — smaller, drapes from upper-left
+ * TOP-LEFT BRANCH: smaller, drapes from upper-left
  * ============================================================ */
 function TopLeftBranch() {
     const blossoms = useMemo(() => generateBlossomsLeft(), []);

@@ -23,7 +23,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Umarfarook Gurramkonda — AI Engineer",
+  title: "Umarfarook Gurramkonda · AI Engineer",
   description:
     "AI engineer building production LLM systems. Multi-stage agents, retrieval pipelines, NL-to-SQL over warehouses, and the eval harnesses that keep them honest.",
   authors: [{ name: "Umarfarook Gurramkonda" }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Production AI",
   ],
   openGraph: {
-    title: "Umarfarook Gurramkonda — AI Engineer",
+    title: "Umarfarook Gurramkonda · AI Engineer",
     description:
       "Building production LLM systems: agents, RAG, NL-to-SQL, and the evals that keep them honest.",
     type: "website",

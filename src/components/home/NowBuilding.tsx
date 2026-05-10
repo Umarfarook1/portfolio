@@ -25,48 +25,53 @@ interface Project {
 const projects: Project[] = [
     {
         index: "01",
-        title: "BigQuery NL2SQL MCP Server",
-        pitch: "Query BigQuery in natural language from any MCP-compatible client. Schema discovery, cost caps, query explanation, safety guardrails.",
-        why: "MCP is an underserved lane. NL2SQL over warehouses is something I ship at work. First project.",
+        title: "mcp-bigquery-evals",
+        pitch: "An MCP server for BigQuery exploration with cost guardrails and a built-in NL-to-SQL eval harness. Live on PyPI; works with any MCP-compatible client.",
+        why: "Calling card. Sits at the intersection of MCP, evals, and NL-to-SQL: three of the hottest 2026 AI engineering topics.",
         stack: ["Python", "FastMCP", "BigQuery", "Pydantic"],
-        eta: "Shipping in 2 weeks",
-        status: "shipping",
+        eta: "Live",
+        status: "live",
+        repo: "https://github.com/Umarfarook1/mcp-bigquery-evals",
     },
     {
         index: "02",
-        title: "NL2SQL Eval Framework + Public Leaderboard",
-        pitch: "Open benchmark of major LLMs (GPT, Gemini, Llama, and others) on real BigQuery-style schemas. Live leaderboard updated as new models drop.",
-        why: "Evals are the most underserved skill in production AI. A live leaderboard is also a content engine.",
-        stack: ["Python", "DuckDB", "Next.js", "Vercel", "Spider"],
-        eta: "Shipping in 4-5 weeks",
-        status: "shipping",
+        title: "Nano-LLM-from-scratch",
+        pitch: "GPT-2 124M reproduction in clean PyTorch. Modern parts: RoPE, RMSNorm, SwiGLU, KV-cache. Cost receipts in dollars and H100 hours, not vibes.",
+        why: "Closes the from-scratch DL gap. Frontier-lab interviewers want to see you can build, not just call.",
+        stack: ["PyTorch", "FineWeb", "FSDP", "WandB"],
+        eta: "Building (3 to 6 weeks)",
+        status: "building",
+        repo: "https://github.com/Umarfarook1/Nano-LLM-from-scratch",
     },
     {
         index: "03",
-        title: "Voice Mock Interview Coach",
-        pitch: "Real-time full-duplex voice agent that runs mock AI engineer interviews and gives feedback. Latency-tuned for conversational feel.",
-        why: "Voice is visually impressive and rare. Solves a real pain (mine, and every job seeker's).",
-        stack: ["OpenAI Realtime", "WebRTC", "Next.js", "FastAPI"],
-        eta: "Shipping in 7-8 weeks",
-        status: "shipping",
+        title: "Triton-attention-kernels",
+        pitch: "Hand-written Triton kernels for the transformer hot path: fused attention, RMSNorm, SwiGLU, RoPE, benchmarked against torch SDPA on H100 and A100.",
+        why: "Closes the ML-systems / GPU-performance gap. The single skill frontier-lab RE candidates are most often hired for.",
+        stack: ["Triton", "CUDA", "PyTorch", "KernelBench"],
+        eta: "Building (2 to 3 weeks)",
+        status: "building",
+        repo: "https://github.com/Umarfarook1/Triton-attention-kernels",
     },
     {
         index: "04",
-        title: "Personal AI Research Assistant",
-        pitch: "Ingest arxiv, blogs, PDFs into a personal RAG. Weekly digest, semantic search across your library, local-first option via Ollama.",
-        why: "I need it. Tools you actually use end up well-built.",
-        stack: ["Python", "Postgres", "pgvector", "Ollama", "FastAPI"],
-        eta: "Shipping in 10-11 weeks",
-        status: "shipping",
+        title: "Tiny-diffusion",
+        pitch: "DDPM + classifier-free guidance + DDIM, built from the forward process up. Math derived in the README. Trained on CIFAR-10 and CelebA.",
+        why: "Closes the generative + CV gap with one well-scoped project. Diffusion is the most consequential generative paradigm of the decade.",
+        stack: ["PyTorch", "UNet", "clean-fid", "CIFAR-10"],
+        eta: "Building (~2 weeks)",
+        status: "building",
+        repo: "https://github.com/Umarfarook1/Tiny-diffusion",
     },
     {
         index: "05",
-        title: "prod-llm-starter",
-        pitch: "Opinionated production template for LLM apps. FastAPI + LangGraph + Pydantic + Postgres/pgvector + eval harness + cost dashboard + auth + GHA. The thing every AI engineer wishes existed on day one.",
-        why: "Flagship. Utility repos compound. Forces deep understanding of every choice.",
-        stack: ["FastAPI", "LangGraph", "pgvector", "Prometheus", "Docker", "GHA"],
-        eta: "Shipping in 12-13 weeks",
-        status: "shipping",
+        title: "DPO-on-my-LLM",
+        pitch: "Post-training stack on a small open LLM. SFT on demonstrations, DPO on preferences, LLM-judge eval with win-rate and Wilson confidence intervals.",
+        why: "Closes the RLHF gap. Reuses my evals strength. Pairs naturally with Nano-LLM-from-scratch.",
+        stack: ["PyTorch", "TRL", "LoRA", "UltraFeedback"],
+        eta: "Building (~3 weeks)",
+        status: "building",
+        repo: "https://github.com/Umarfarook1/DPO-on-my-LLM",
     },
 ];
 
@@ -102,9 +107,11 @@ export function NowBuilding() {
                         Building in public
                     </h2>
                     <p className="mt-4 text-stone-400">
-                        Five OSS projects across the lanes I care about. Each
-                        ships with evals, a public URL, and a write-up on the
-                        tradeoffs. Live status below.
+                        Five projects across the lanes I care about. The first
+                        ships now (`mcp-bigquery-evals`); the next four are a
+                        from-scratch ML stack: GPT-2 reproduction, Triton kernels,
+                        diffusion, and DPO post-training. Each ships with evals,
+                        a public repo, and a writeup.
                     </p>
                 </div>
             </FadeIn>
@@ -124,7 +131,7 @@ function ProjectCard({ project: p }: { project: Project }) {
     const status = statusStyles[p.status];
 
     return (
-        <Card className="group border-stone-700/40 bg-stone-950/50 shadow-md transition-colors duration-700 hover:border-stone-400/40">
+        <Card className="group border-stone-700/40 bg-stone-950/50 shadow-md backdrop-blur-sm transition-all duration-700 hover:border-stone-400/40 hover:bg-stone-950/65 hover:shadow-xl hover:shadow-stone-950/50">
             <div className="grid gap-6 md:grid-cols-[80px_1fr_auto] md:items-start">
                 <div className="font-[family-name:var(--font-display)] text-5xl italic text-stone-300/30 transition-colors duration-700 group-hover:text-stone-300/70 md:text-6xl">
                     {p.index}

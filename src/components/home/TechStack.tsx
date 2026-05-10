@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, Server, Cloud, Database, Wrench, Code2 } from "lucide-react";
+import { Brain, Server, Cloud, Database, Wrench, Code2, Cpu } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { FadeIn } from "@/components/animations/FadeIn";
@@ -20,6 +20,20 @@ const stack = [
             "FAISS",
         ],
         accent: "text-stone-200 bg-stone-800/60",
+    },
+    {
+        category: "ML Systems",
+        icon: Cpu,
+        items: [
+            "PyTorch",
+            "Triton",
+            "CUDA",
+            "FlashAttention",
+            "TRL",
+            "diffusers",
+            "Hugging Face",
+        ],
+        accent: "text-violet-300 bg-violet-950/40",
     },
     {
         category: "Backend",
@@ -87,7 +101,7 @@ export function TechStack() {
             <Stagger className="relative z-[2] grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {stack.map((group) => (
                     <StaggerItem key={group.category} className="h-full">
-                        <Card className="group h-full border-stone-700/40 bg-stone-950/50 shadow-md transition-colors duration-700 hover:border-stone-400/40">
+                        <Card className="group h-full border-stone-700/40 bg-stone-950/50 shadow-md backdrop-blur-sm transition-all duration-700 hover:border-stone-400/40 hover:bg-stone-950/65 hover:shadow-xl hover:shadow-stone-950/50">
                             <div className="mb-4 flex items-center gap-3">
                                 <div
                                     className={`rounded-xl border border-stone-700/40 p-2 transition-colors duration-700 ${group.accent}`}
