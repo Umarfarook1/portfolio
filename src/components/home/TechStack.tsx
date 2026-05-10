@@ -101,7 +101,7 @@ export function TechStack() {
             <Stagger className="relative z-[2] grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {stack.map((group) => (
                     <StaggerItem key={group.category} className="h-full">
-                        <Card className="group h-full border-stone-700/40 bg-stone-950/50 shadow-md backdrop-blur-sm transition-all duration-700 hover:border-stone-400/40 hover:bg-stone-950/65 hover:shadow-xl hover:shadow-stone-950/50">
+                        <Card className="group h-full bg-stone-950/55 hover:border-stone-400/50 hover:bg-stone-950/70">
                             <div className="mb-4 flex items-center gap-3">
                                 <div
                                     className={`rounded-xl border border-stone-700/40 p-2 transition-colors duration-700 ${group.accent}`}

@@ -131,7 +131,7 @@ function ProjectCard({ project: p }: { project: Project }) {
     const status = statusStyles[p.status];
 
     return (
-        <Card className="group border-stone-700/40 bg-stone-950/50 shadow-md backdrop-blur-sm transition-all duration-700 hover:border-stone-400/40 hover:bg-stone-950/65 hover:shadow-xl hover:shadow-stone-950/50">
+        <Card className="group bg-stone-950/55 hover:border-stone-400/50 hover:bg-stone-950/70">
             <div className="grid gap-6 md:grid-cols-[80px_1fr_auto] md:items-start">
                 <div className="font-[family-name:var(--font-display)] text-5xl italic text-stone-300/30 transition-colors duration-700 group-hover:text-stone-300/70 md:text-6xl">
                     {p.index}

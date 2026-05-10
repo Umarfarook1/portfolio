@@ -62,13 +62,21 @@ export default function RootLayout({
           playfair.variable
         )}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stone-100 focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-stone-900"
+        >
+          Skip to main content
+        </a>
         <MoonlitBackground />
         <ParallaxMoon />
         <Mountains />
         <Lanterns />
         <FallingBlossoms />
         <Navbar />
-        {children}
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
