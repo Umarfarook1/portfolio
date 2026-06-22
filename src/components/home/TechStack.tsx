@@ -1,131 +1,50 @@
-"use client";
-
-import { Brain, Server, Cloud, Database, Wrench, Code2, Cpu } from "lucide-react";
-import { Card } from "@/components/ui/Card";
-import { Stagger, StaggerItem } from "@/components/animations/Stagger";
-import { FadeIn } from "@/components/animations/FadeIn";
-import { SectionBranch } from "@/components/animations/SectionBranch";
+import { Reveal } from "@/components/ui/Reveal";
+import { RegistrationMark } from "@/components/ui/RegistrationMark";
 
 const stack = [
-    {
-        category: "LLMs & GenAI",
-        icon: Brain,
-        items: [
-            "Gemini",
-            "OpenAI",
-            "LangChain",
-            "LangGraph",
-            "Pydantic",
-            "sentence-transformers",
-            "FAISS",
-        ],
-        accent: "text-stone-200 bg-stone-800/60",
-    },
-    {
-        category: "ML Systems",
-        icon: Cpu,
-        items: [
-            "PyTorch",
-            "Triton",
-            "CUDA",
-            "FlashAttention",
-            "TRL",
-            "diffusers",
-            "Hugging Face",
-        ],
-        accent: "text-violet-300 bg-violet-950/40",
-    },
-    {
-        category: "Backend",
-        icon: Server,
-        items: ["Python", "FastAPI", "SQLAlchemy", "Alembic", "Celery", "REST", "SSE"],
-        accent: "text-emerald-300 bg-emerald-950/40",
-    },
-    {
-        category: "Data",
-        icon: Database,
-        items: ["BigQuery", "PostgreSQL", "pgvector", "Redis", "Pandas", "NumPy"],
-        accent: "text-amber-300 bg-amber-950/40",
-    },
-    {
-        category: "Cloud & Infra",
-        icon: Cloud,
-        items: [
-            "GCP",
-            "Cloud Run",
-            "Cloud SQL",
-            "GCS",
-            "Memorystore",
-            "AWS (S3, EC2)",
-            "Oracle Cloud",
-        ],
-        accent: "text-sky-300 bg-sky-950/40",
-    },
-    {
-        category: "DevOps & Observability",
-        icon: Wrench,
-        items: ["Docker", "GitHub Actions", "Prometheus", "Sentry", "Git"],
-        accent: "text-yellow-300 bg-yellow-950/40",
-    },
-    {
-        category: "Frontend",
-        icon: Code2,
-        items: ["TypeScript", "Next.js", "React", "Tailwind", "Framer Motion"],
-        accent: "text-rose-300 bg-rose-950/40",
-    },
+  { label: "AI systems", items: ["PyTorch", "LangGraph", "LangChain", "Gemini", "OpenAI", "Hugging Face"] },
+  { label: "Backend + data", items: ["Python", "FastAPI", "PostgreSQL", "BigQuery", "Redis", "Pydantic"] },
+  { label: "Delivery", items: ["GCP", "AWS", "Docker", "GitHub Actions", "Prometheus", "Sentry"] },
+  { label: "Interface", items: ["TypeScript", "Next.js", "React", "Tailwind CSS", "SSE"] },
 ];
 
 export function TechStack() {
-    return (
-        <section
-            className="relative container mx-auto px-6 py-28"
-            id="stack"
-        >
-            <SectionBranch position="bottom-left" scale={0.85} seed={51} />
+  return (
+    <section id="stack" className="section-shell py-24 sm:py-28">
+      <Reveal className="flex flex-col gap-5 border-b border-border/70 pb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="kicker">Working set</p>
+          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight sm:text-5xl">
+            Tools selected by constraint.
+          </h2>
+        </div>
+        <p className="max-w-md text-sm leading-6 text-muted-foreground">
+          A practical stack for shipping reliable AI products, from experiments to observable services.
+        </p>
+      </Reveal>
 
-            <FadeIn>
-                <div className="relative z-[2] mb-16 max-w-2xl">
-                    <p className="mb-2 font-[family-name:var(--font-display)] text-2xl italic text-stone-300/85">
-                        the toolkit
-                    </p>
-                    <h2 className="font-[family-name:var(--font-display)] text-5xl font-bold leading-tight tracking-tight text-stone-100 sm:text-6xl">
-                        What I work with
-                    </h2>
-                    <p className="mt-4 text-stone-400">
-                        Tools I use day to day. Not a list of every framework
-                        I&apos;ve heard of.
-                    </p>
-                </div>
-            </FadeIn>
-
-            <Stagger className="relative z-[2] grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {stack.map((group) => (
-                    <StaggerItem key={group.category} className="h-full">
-                        <Card className="group h-full bg-stone-950/55 hover:border-stone-400/50 hover:bg-stone-950/70">
-                            <div className="mb-4 flex items-center gap-3">
-                                <div
-                                    className={`rounded-xl border border-stone-700/40 p-2 transition-colors duration-700 ${group.accent}`}
-                                >
-                                    <group.icon className="h-5 w-5" />
-                                </div>
-                                <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-stone-100">
-                                    {group.category}
-                                </h3>
-                            </div>
-                            <div className="flex flex-wrap gap-1.5">
-                                {group.items.map((item) => (
-                                    <span
-                                        key={item}
-                                        className="rounded border border-stone-700 bg-stone-900/80 px-2 py-1 font-mono text-[11px] text-stone-300 transition-colors duration-500 hover:border-amber-300/40 hover:bg-amber-950/30 hover:text-amber-100"
-                                    >
-                                        {item}
-                                    </span>
-                                ))}
-                            </div>
-                        </Card>
-                    </StaggerItem>
-                ))}
-            </Stagger>
-        </section>
-    );
+      <div className="relative mt-2 grid md:grid-cols-2 lg:grid-cols-4">
+        <RegistrationMark className="absolute -top-1 right-0 hidden h-3.5 w-3.5 lg:block" />
+        {stack.map((group, index) => (
+          <Reveal
+            key={group.label}
+            delay={index * 0.06}
+            className="border-b border-border/70 py-7 md:px-6 md:first:pl-0 lg:border-r lg:last:border-r-0"
+          >
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.16em] text-primary">{group.label}</h3>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-border/70 bg-card/40 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
 }

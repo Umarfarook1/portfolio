@@ -1,75 +1,77 @@
-"use client";
+import { Braces, Database, Gauge, Route } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
-import { Workflow, Search, Database, Mic, LineChart } from "lucide-react";
-import { Card } from "@/components/ui/Card";
-import { Stagger, StaggerItem } from "@/components/animations/Stagger";
-import { FadeIn } from "@/components/animations/FadeIn";
-import { SectionBranch } from "@/components/animations/SectionBranch";
-
-const lanes = [
-    {
-        title: "LLM Orchestration",
-        body: "Multi-stage agent flows with routing, intent, retrieval, composition. Streaming responses, structured outputs, fallback chains across multiple LLM providers.",
-        icon: Workflow,
-    },
-    {
-        title: "Retrieval & RAG",
-        body: "Hybrid retrieval (BM25 + vector + reranker), chunking strategies, metadata filtering, multimodal RAG. Tuning that survives real document corpora.",
-        icon: Search,
-    },
-    {
-        title: "Natural Language to SQL",
-        body: "Schema discovery, synonym matching, cost-capped query generation over BigQuery and Postgres. With a real eval harness, not vibes.",
-        icon: Database,
-    },
-    {
-        title: "Voice & Realtime Agents",
-        body: "Full-duplex voice agents on top of streaming speech models. Latency engineering, interruption handling, turn-taking that feels human.",
-        icon: Mic,
-    },
-    {
-        title: "Evals & Observability",
-        body: "Eval harnesses, regression suites, cost dashboards. The unsexy work that separates a prototype from a system you can defend.",
-        icon: LineChart,
-    },
+const capabilities = [
+  {
+    title: "Orchestrate",
+    subtitle: "Agents and workflows",
+    body: "Route intent, retrieve context, call tools, stream progress, and fail over cleanly across model providers.",
+    proof: "Cargo Concierge",
+    icon: Route,
+  },
+  {
+    title: "Ground",
+    subtitle: "Retrieval and data",
+    body: "Hybrid search, reranking, metadata filters, schema discovery, and natural-language access to warehouses.",
+    proof: "RAG Document QA",
+    icon: Database,
+  },
+  {
+    title: "Constrain",
+    subtitle: "Typed boundaries",
+    body: "Structured outputs, validation, policy gates, deterministic business logic, and cost-aware execution.",
+    proof: "mcp-bigquery-evals",
+    icon: Braces,
+  },
+  {
+    title: "Measure",
+    subtitle: "Evals and operations",
+    body: "Golden sets, regression slices, calibrated judges, latency and cost traces, and failure attribution.",
+    proof: "TrustBench",
+    icon: Gauge,
+  },
 ];
 
 export function WhatIBuild() {
-    return (
-        <section
-            className="relative container mx-auto px-6 py-28"
-            id="what-i-build"
-        >
-            <SectionBranch position="top-left" scale={0.9} seed={5} />
+  return (
+    <section id="capabilities" className="section-shell py-24 sm:py-32">
+      <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr]">
+        <Reveal className="lg:sticky lg:top-28 lg:self-start">
+          <p className="kicker">How I build</p>
+          <h2 className="section-title">
+            The whole loop, not <span className="serif plasma-text">one model call.</span>
+          </h2>
+          <p className="mt-6 max-w-lg text-sm leading-7 text-muted-foreground">
+            The valuable work sits around the model: deciding when it earns a place, controlling
+            its inputs and outputs, and proving the result stays useful after launch.
+          </p>
+        </Reveal>
 
-            <FadeIn>
-                <div className="relative z-[2] mb-16 max-w-2xl">
-                    <p className="mb-2 font-[family-name:var(--font-display)] text-2xl italic text-stone-300/85">
-                        what i actually do
-                    </p>
-                    <h2 className="font-[family-name:var(--font-display)] text-5xl font-bold leading-tight tracking-tight text-stone-100 sm:text-6xl">
-                        Five lanes, one focus
-                    </h2>
+        <div className="border-t border-border/70">
+          {capabilities.map((capability, index) => (
+            <Reveal key={capability.title} delay={index * 0.05}>
+              <article className="group grid gap-5 border-b border-border/70 py-7 transition-colors hover:bg-card/40 sm:grid-cols-[64px_1fr_1.15fr] sm:items-start">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card text-primary transition-colors group-hover:border-primary/50 group-hover:text-primary">
+                  <capability.icon className="h-5 w-5" aria-hidden="true" />
                 </div>
-            </FadeIn>
-
-            <Stagger className="relative z-[2] grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {lanes.map((lane) => (
-                    <StaggerItem key={lane.title} className="h-full">
-                        <Card className="group h-full bg-stone-950/55 hover:border-stone-400/50 hover:bg-stone-950/70">
-                            <div className="mb-4 inline-flex rounded-xl border border-stone-700/40 bg-stone-900/60 p-2.5 text-stone-200 transition-colors duration-700 group-hover:text-amber-200">
-                                <lane.icon className="h-5 w-5" />
-                            </div>
-                            <h3 className="mb-2 font-[family-name:var(--font-display)] text-2xl font-normal text-stone-100">
-                                {lane.title}
-                            </h3>
-                            <p className="text-sm leading-relaxed text-stone-400">
-                                {lane.body}
-                            </p>
-                        </Card>
-                    </StaggerItem>
-                ))}
-            </Stagger>
-        </section>
-    );
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+                    Stage 0{index + 1}
+                  </span>
+                  <h3 className="mt-1 text-xl font-semibold text-foreground">{capability.title}</h3>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-primary">{capability.subtitle}</p>
+                </div>
+                <div>
+                  <p className="text-sm leading-6 text-muted-foreground">{capability.body}</p>
+                  <p className="mt-3 font-mono text-[10px] uppercase tracking-wider text-foreground/55">
+                    Proof · {capability.proof}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

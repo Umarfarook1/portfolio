@@ -1,78 +1,71 @@
-"use client";
-
-import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
-import { FadeIn } from "@/components/animations/FadeIn";
+import { Reveal } from "@/components/ui/Reveal";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { RegistrationMark } from "@/components/ui/RegistrationMark";
 
 const links = [
-    {
-        label: "Email",
-        value: "umarfarook0yt@gmail.com",
-        href: "mailto:umarfarook0yt@gmail.com",
-        icon: Mail,
-    },
-    {
-        label: "GitHub",
-        value: "github.com/Umarfarook1",
-        href: "https://github.com/Umarfarook1",
-        icon: Github,
-    },
-    {
-        label: "LinkedIn",
-        value: "linkedin.com/in/umarfarook-gurramkonda",
-        href: "https://linkedin.com/in/umarfarook-gurramkonda",
-        icon: Linkedin,
-    },
+  { label: "GitHub", value: "github.com/Umarfarook1", href: "https://github.com/Umarfarook1", icon: Github },
+  { label: "LinkedIn", value: "umarfarook-gurramkonda", href: "https://linkedin.com/in/umarfarook-gurramkonda", icon: Linkedin },
 ];
 
 export function Contact() {
-    return (
-        <section
-            className="container mx-auto px-6 py-32"
-            id="contact"
-        >
-            <FadeIn>
-                <div className="mx-auto max-w-3xl">
-                    <p className="mb-2 font-[family-name:var(--font-display)] text-2xl italic text-stone-300">
-                        say hello
-                    </p>
-                    <h2 className="font-[family-name:var(--font-display)] text-5xl font-normal leading-tight tracking-tight text-stone-100 sm:text-6xl">
-                        Let&apos;s build something.
-                    </h2>
-                    <p className="mt-6 max-w-2xl text-lg text-stone-400">
-                        I&apos;m open to roles in production AI, especially
-                        teams shipping LLM systems, RAG, agents, or NL
-                        interfaces over data. Remote or San Francisco. Quick
-                        replies.
-                    </p>
+  return (
+    <section id="contact" className="relative overflow-hidden border-t border-border/70 py-28 sm:py-36">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(50% 60% at 50% 0%, rgba(124,92,255,0.22), transparent 70%), radial-gradient(40% 50% at 80% 100%, rgba(255,77,141,0.12), transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
+      <RegistrationMark className="absolute left-5 top-8 hidden sm:block" />
+      <RegistrationMark className="absolute right-5 top-8 hidden sm:block" />
 
-                    <div className="mt-12 grid gap-3">
-                        {links.map((link) => (
-                            <Link
-                                key={link.label}
-                                href={link.href}
-                                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                                className="group flex items-center justify-between gap-4 rounded-lg border border-stone-700 bg-stone-900/60 px-5 py-4 shadow-sm transition-all hover:border-stone-300/50 hover:shadow-md hover:translate-x-1"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="rounded-lg border border-stone-700 bg-stone-900/80 p-2 text-stone-300 transition-colors group-hover:bg-stone-800/60 group-hover:text-stone-100">
-                                        <link.icon className="h-5 w-5" />
-                                    </div>
-                                    <div>
-                                        <div className="font-mono text-xs uppercase tracking-wider text-stone-500">
-                                            {link.label}
-                                        </div>
-                                        <div className="text-base text-stone-100">
-                                            {link.value}
-                                        </div>
-                                    </div>
-                                </div>
-                                <ArrowUpRight className="h-5 w-5 text-stone-600 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-stone-200" />
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </FadeIn>
-        </section>
-    );
+      <div className="section-shell relative z-10 flex flex-col items-center text-center">
+        <Reveal>
+          <p className="kicker justify-center">Open channel</p>
+          <h2 className="display mt-6 text-[clamp(2.6rem,7vw,6rem)]">
+            Building an AI system
+            <br />
+            that <span className="serif plasma-text">has to work?</span>
+          </h2>
+          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
+            I am open to research and ML engineering roles where evaluation, reliability, and product
+            judgment matter as much as model choice. The fastest way to reach me is email.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.12} className="mt-10">
+          <Magnetic strength={0.4}>
+            <Link
+              href="mailto:umarfarook0yt@gmail.com"
+              className="group inline-flex items-center gap-3 rounded-full bg-[linear-gradient(100deg,var(--plasma-iris),var(--plasma-magenta))] px-9 py-5 font-mono text-sm font-semibold uppercase tracking-wider text-white shadow-[0_24px_70px_-16px_rgba(124,92,255,0.85)] transition-transform duration-300 hover:-translate-y-1"
+            >
+              <Mail className="h-5 w-5" aria-hidden="true" />
+              umarfarook0yt@gmail.com
+              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+          </Magnetic>
+        </Reveal>
+
+        <Reveal delay={0.2} className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <link.icon className="h-4 w-4" aria-hidden="true" />
+              {link.value}
+              <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" aria-hidden="true" />
+            </Link>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
 }
