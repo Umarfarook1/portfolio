@@ -16,6 +16,7 @@
   --color-border: hsl(var(--border));
   --color-ring: hsl(var(--ring));
   --font-display: var(--font-display);
+  --font-mono: var(--font-sans);
 }
 
 @layer base {
