@@ -12,13 +12,13 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://umarfarook-ai.vercel.app"),
-  title: "Umarfarook Gurramkonda | AI Systems Engineer",
+  title: "Umarfarook Gurramkonda | Applied AI / ML Engineer",
   description:
     "I build agentic AI systems and the evals that prove they work: multi-agent orchestration, retrieval, and NL-to-SQL, shipped with cost caps and reproducible numbers.",
   authors: [{ name: "Umarfarook Gurramkonda" }],
   keywords: ["AI Engineer", "ML Engineer", "LLM", "RAG", "AI Agents", "Evals", "NL-to-SQL", "Research Engineer"],
   openGraph: {
-    title: "Umarfarook Gurramkonda | AI Systems Engineer",
+    title: "Umarfarook Gurramkonda | Applied AI / ML Engineer",
     description: "Agents that are measured, not just demoed. Production AI held to evidence.",
     type: "website",
     url: "/",

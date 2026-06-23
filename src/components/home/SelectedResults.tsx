@@ -3,9 +3,9 @@ import { RegistrationMark } from "@/components/ui/RegistrationMark";
 
 const metrics = [
   { value: "80%", label: "strict 7-field extraction", source: "Cargo Concierge" },
+  { value: "+33 pts", label: "from the instruction block", source: "Cargo ablation" },
   { value: "~$0.002", label: "cost per agent quote", source: "Cargo Concierge" },
-  { value: "7", label: "eval trust dimensions", source: "TrustBench" },
-  { value: "5,703", label: "FinDER eval triplets", source: "RAG Document QA" },
+  { value: "6", label: "trust dimensions", source: "TrustBench" },
   { value: "100 MB", label: "query cost cap", source: "mcp-bigquery-evals" },
 ];
 

@@ -37,7 +37,7 @@ const projects: (Project & { span: string })[] = [
     type: "Evaluation system",
     description:
       "A production-readiness harness for AI support agents: versioned golden sets, calibrated LLM judges, deterministic policy checks, and regression diagnosis by ticket category.",
-    evidence: ["7 trust dimensions", "Judge calibration", "Root-cause reports"],
+    evidence: ["6 trust dimensions", "Cohen's kappa judge calibration", "McNemar regression tests"],
     stack: ["Python", "Gemini", "Statistical tests", "Next.js"],
     repo: "https://github.com/Umarfarook1/trustbench",
     span: "lg:col-span-1",
@@ -47,7 +47,7 @@ const projects: (Project & { span: string })[] = [
     type: "Retrieval system",
     description:
       "Citation-grounded document Q&A built around retriever evaluation, confidence gates, optional measured reranking, and provider-neutral protocols.",
-    evidence: ["Recall@K + MRR", "5,703 FinDER triplets", "CI quality badge"],
+    evidence: ["Recall@K + MRR harness", "Confidence-gated answers", "Pluggable vector store"],
     stack: ["Python", "Embeddings", "Reranking", "FastAPI"],
     repo: "https://github.com/Umarfarook1/rag-document-qa",
     span: "lg:col-span-1",

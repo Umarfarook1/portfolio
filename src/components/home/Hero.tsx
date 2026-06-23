@@ -20,10 +20,10 @@ export function Hero() {
               <span className="pulse-dot" aria-hidden="true" />
               Open to roles
             </span>
-            <span>AI Engineer · HypeOn AI · Bengaluru</span>
+            <span>ML Engineer · HypeOn AI · Bengaluru</span>
           </div>
 
-          <p className="kicker text-foreground">AI Systems Engineer</p>
+          <p className="kicker text-foreground">Applied AI / ML Engineer</p>
           <h1 className="display mt-4 text-[clamp(2.2rem,4.7vw,4.2rem)]">
             Agents that are{" "}
             <Highlight>measured</Highlight>,
@@ -32,7 +32,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-lg text-[15px] leading-6 text-muted-foreground sm:text-base">
-            I build multi-agent systems, retrieval, and natural-language interfaces over data,
+            I build multi-stage LLM systems, retrieval, and natural-language interfaces over data,
             then ship them with the evaluation harnesses, cost caps, and reproducible numbers
             that make them trustworthy in production.
           </p>

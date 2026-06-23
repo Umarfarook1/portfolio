@@ -3,8 +3,8 @@ import { Highlight } from "@/components/ui/Highlight";
 
 const roles = [
   {
-    when: "2025 → Now",
-    title: "AI Engineer",
+    when: "2024 → Now",
+    title: "ML Engineer",
     org: "HypeOn AI",
     body: "Building production AI for D2C trend intelligence: multi-stage orchestration, RAG, NL-to-SQL over BigQuery with cost guardrails, and observable deployments on GCP.",
     tags: ["LangChain", "FastAPI", "BigQuery", "Cloud Run", "Gemini"],
@@ -18,10 +18,10 @@ const roles = [
   },
   {
     when: "2024",
-    title: "Backend Developer Intern",
+    title: "Software Engineering Intern",
     org: "Synclovis Systems",
-    body: "Built REST services for event management and contributed retrieval and guardrail work to an internal healthcare assistant grounded in clinical documents.",
-    tags: ["Node.js", "Express", "MySQL", "FAISS"],
+    body: "Built FastAPI and Flask services for an LLM healthcare assistant indexing 500+ clinical documents, with a LangChain and FAISS retrieval pipeline, AWS deployment, and guardrails to reduce hallucinations on out-of-scope queries.",
+    tags: ["FastAPI", "LangChain", "FAISS", "AWS"],
   },
 ];
 
@@ -36,8 +36,16 @@ export function Experience() {
           </h2>
           <div className="mt-8 border-l-2 border-accent py-1 pl-5">
             <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Education</p>
-            <p className="mt-2 text-sm font-semibold text-foreground">B.Tech · Computer Science</p>
-            <p className="mt-1 text-xs text-muted-foreground">K.S.R.M College of Engineering · 8.14 / 10</p>
+            <p className="mt-2 text-sm font-semibold text-foreground">B.Tech · Computer Science · 2024</p>
+            <p className="mt-1 text-xs text-muted-foreground">K.S.R.M College of Engineering (JNTU Anantapur) · 8.14 / 10</p>
+          </div>
+          <div className="mt-6 border-l-2 border-foreground/15 py-1 pl-5">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Certifications</p>
+            <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+              <li>Oracle OCI Data Science Professional · 2025</li>
+              <li>Oracle OCI AI Foundations Associate · 2025</li>
+              <li>Azure AI Fundamentals · AWS Cloud Foundations</li>
+            </ul>
           </div>
         </Reveal>
 
