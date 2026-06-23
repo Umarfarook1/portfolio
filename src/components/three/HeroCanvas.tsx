@@ -3,37 +3,36 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
-const LatentField = dynamic(() => import("./LatentField"), {
+const Portrait = dynamic(() => import("./Portrait"), {
   ssr: false,
-  loading: () => <Fallback />,
+  loading: () => <Loading />,
 });
 
-// Faint static scatter for loading / reduced motion. No layout shift, no WebGL.
-function Fallback() {
+function Loading() {
   return (
     <div
       className="h-full w-full"
       style={{
         backgroundColor: "hsl(44 42% 96%)",
         backgroundImage:
-          "radial-gradient(circle at 38% 42%, rgba(58,54,196,0.22), transparent 26%), radial-gradient(circle at 64% 56%, rgba(215,38,96,0.18), transparent 24%), radial-gradient(circle at 52% 30%, rgba(14,143,143,0.16), transparent 22%)",
+          "radial-gradient(circle at 50% 45%, rgba(24,22,15,0.1), transparent 60%)",
       }}
     />
   );
 }
 
-// Responsive density: fewer, larger points on small screens.
+// Responsive sampling: fewer, slightly larger points on small screens.
 function dimsFor(width: number) {
-  if (width < 640) return { count: 1900, size: 0.085 };
-  if (width < 1024) return { count: 3000, size: 0.072 };
-  return { count: 4400, size: 0.06 };
+  if (width < 640) return { sampleW: 78, size: 0.052 };
+  if (width < 1024) return { sampleW: 100, size: 0.04 };
+  return { sampleW: 126, size: 0.032 };
 }
 
 export default function HeroCanvas() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [inView, setInView] = useState(false);
-  const [dims, setDims] = useState({ count: 3000, size: 0.072 });
+  const [dims, setDims] = useState({ sampleW: 100, size: 0.04 });
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -78,11 +77,12 @@ export default function HeroCanvas() {
   return (
     <div ref={rootRef} className="h-full w-full" aria-hidden="true">
       {reducedMotion ? (
-        <Fallback />
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src="/avatar.jpg" alt="" className="h-full w-full object-contain p-6" />
       ) : inView ? (
-        <LatentField count={dims.count} pointSize={dims.size} animate />
+        <Portrait sampleW={dims.sampleW} pointSize={dims.size} animate />
       ) : (
-        <Fallback />
+        <Loading />
       )}
     </div>
   );

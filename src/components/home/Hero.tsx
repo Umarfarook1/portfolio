@@ -70,13 +70,13 @@ export function Hero() {
         <div className="fade-up [animation-delay:140ms]">
           <figure className="plate relative mx-auto aspect-[4/5] w-full max-w-[460px]">
             <figcaption className="flex items-center justify-between border-b border-foreground/15 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-              <span>fig.01 / latent space</span>
+              <span>fig.01 / latent self</span>
               <RegistrationMark className="h-3.5 w-3.5 text-foreground/50" />
             </figcaption>
             <div className="relative h-[calc(100%-2.75rem)]">
               <HeroCanvas />
               <span className="absolute bottom-3 left-4 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">
-                embedding projection · 7 clusters
+                point-cloud portrait · live
               </span>
             </div>
           </figure>

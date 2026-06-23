@@ -54,9 +54,12 @@ export function Navbar() {
         )}
       >
         <Link href="#main" className="flex items-center gap-2.5" aria-label="Back to top">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-foreground font-[family-name:var(--font-display)] text-[13px] font-extrabold text-background">
-            UF
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/avatar.jpg"
+            alt="Umarfarook Gurramkonda"
+            className="h-9 w-9 rounded-full border border-foreground/20 object-cover"
+          />
           <span className="hidden font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground sm:inline">
             Umarfarook G.
           </span>

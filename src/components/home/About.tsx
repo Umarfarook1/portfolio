@@ -16,7 +16,7 @@ export function About() {
                 alt="Umarfarook Gurramkonda"
                 width={112}
                 height={112}
-                className="h-28 w-28 rounded-2xl border border-background/25 object-cover grayscale"
+                className="h-28 w-28 rounded-2xl border border-background/25 object-cover"
               />
               <span className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-wider text-accent-foreground">
                 live
