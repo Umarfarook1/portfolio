@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { CircleArrow } from "@/components/ui/CircleArrow";
 import { ArrowDiagonal } from "@/components/ui/Arrow";
+import { Highlight } from "@/components/ui/Highlight";
 import { ProjectCard, type Project } from "./ProjectCard";
 
 const projects: (Project & { span: string })[] = [
@@ -61,7 +62,7 @@ export function NowBuilding() {
           <div>
             <p className="kicker text-foreground">Selected work</p>
             <h2 className="section-title mt-4">
-              Evidence over <span className="highlight">demos</span>.
+              Evidence over <Highlight>demos</Highlight>.
             </h2>
           </div>
           <div className="flex items-end gap-5">

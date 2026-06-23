@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/ui/Reveal";
+import { Highlight } from "@/components/ui/Highlight";
 
 const roles = [
   {
@@ -31,7 +32,7 @@ export function Experience() {
         <Reveal>
           <p className="kicker text-foreground">Experience</p>
           <h2 className="section-title mt-4">
-            Model behavior to <span className="highlight">production</span> behavior.
+            Model behavior to <Highlight>production</Highlight> behavior.
           </h2>
           <div className="mt-8 border-l-2 border-accent py-1 pl-5">
             <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Education</p>

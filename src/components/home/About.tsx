@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
+import { Highlight } from "@/components/ui/Highlight";
 
 export function About() {
   return (
@@ -31,7 +32,7 @@ export function About() {
           <Reveal delay={0.1}>
             <p className="font-[family-name:var(--font-display)] text-2xl font-extrabold leading-[1.18] tracking-tight text-background sm:text-[2.2rem]">
               The interesting work in AI is not the model call. It is everything around it:
-              deciding when a model <span className="highlight">earns a place</span> in the system,
+              deciding when a model <Highlight>earns a place</Highlight> in the system,
               controlling what goes in and what comes out, and proving the result still holds once
               real traffic hits it.
             </p>

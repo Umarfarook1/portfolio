@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
+import { Highlight } from "@/components/ui/Highlight";
 import { ArrowEast, ArrowDiagonal } from "@/components/ui/Arrow";
 
 const links = [
@@ -21,7 +22,7 @@ export function Contact() {
           <h2 className="display mt-6 text-[clamp(2.6rem,8vw,6.4rem)] text-background">
             An AI system that
             <br />
-            <span className="highlight">has to work?</span>
+            <Highlight>has to work?</Highlight>
           </h2>
           <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-background/70 sm:text-base">
             I am open to research and ML engineering roles where evaluation, reliability, and product

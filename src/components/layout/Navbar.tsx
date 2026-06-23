@@ -47,10 +47,10 @@ export function Navbar() {
       <nav
         aria-label="Primary"
         className={cn(
-          "flex h-14 w-full max-w-[1280px] items-center justify-between gap-4 rounded-full border px-2.5 pl-3 transition-colors duration-500",
+          "flex h-14 w-full max-w-[1280px] items-center justify-between gap-4 rounded-full border px-2.5 pl-3 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-500",
           scrolled
-            ? "border-foreground/15 bg-background/85 shadow-[0_14px_40px_-22px_rgba(24,22,15,0.5)] backdrop-blur-xl"
-            : "border-transparent bg-background/40 backdrop-blur-md",
+            ? "border-foreground/15 bg-background/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_18px_50px_-24px_rgba(24,22,15,0.55)]"
+            : "border-foreground/10 bg-background/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]",
         )}
       >
         <Link href="#main" className="flex items-center gap-2.5" aria-label="Back to top">

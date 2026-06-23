@@ -1,5 +1,6 @@
 import { Braces, Database, Gauge, Route } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
+import { Highlight } from "@/components/ui/Highlight";
 
 const capabilities = [
   {
@@ -39,7 +40,7 @@ export function WhatIBuild() {
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <p className="kicker text-foreground">How I build</p>
           <h2 className="section-title mt-4">
-            The whole loop, not <span className="highlight">one model call</span>.
+            The whole loop, not <Highlight>one model call</Highlight>.
           </h2>
           <p className="mt-6 max-w-lg text-sm leading-7 text-muted-foreground">
             The valuable work sits around the model: deciding when it earns a place, controlling

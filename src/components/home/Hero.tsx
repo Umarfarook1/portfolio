@@ -5,6 +5,7 @@ import { Magnetic } from "@/components/ui/Magnetic";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
 import { ArrowEast, ArrowDiagonal } from "@/components/ui/Arrow";
 import HeroCanvas from "@/components/three/HeroCanvas";
+import { Highlight } from "@/components/ui/Highlight";
 
 export function Hero() {
   return (
@@ -25,7 +26,7 @@ export function Hero() {
           <p className="kicker text-foreground">AI Systems Engineer</p>
           <h1 className="display mt-4 text-[clamp(2.2rem,4.7vw,4.2rem)]">
             Agents that are{" "}
-            <span className="highlight">measured</span>,
+            <Highlight>measured</Highlight>,
             <br />
             not just demoed.
           </h1>

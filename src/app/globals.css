@@ -126,14 +126,27 @@ section[id] {
   letter-spacing: -0.04em;
 }
 
-/* Acid marker highlight for the accent word */
+/* Acid marker highlight that wipes in like a highlighter stroke */
 .highlight {
-  background: hsl(var(--accent));
+  background-image: linear-gradient(hsl(var(--accent)), hsl(var(--accent)));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
   color: hsl(var(--accent-foreground));
   padding: 0 0.12em;
   margin: 0 -0.04em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  transition: background-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.highlight.in {
+  background-size: 100% 100%;
+}
+
+/* Outline (stroked) display text for the marquee */
+.text-outline {
+  -webkit-text-stroke: 1.6px hsl(var(--foreground));
+  color: transparent;
 }
 
 /* ---------- Framed plate (3D figure) ---------- */
@@ -219,7 +232,7 @@ section[id] {
   will-change: transform;
 }
 
-/* ---------- Custom cursor (ink) ---------- */
+/* ---------- Custom cursor (blend, always visible) ---------- */
 .cursor-hidden,
 .cursor-hidden * {
   cursor: none !important;
@@ -228,11 +241,11 @@ section[id] {
   position: fixed;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
   border-radius: 999px;
-  background: hsl(var(--foreground));
+  background: #fff;
   z-index: 9999;
   pointer-events: none;
   mix-blend-mode: difference;
@@ -241,21 +254,22 @@ section[id] {
   position: fixed;
   top: 0;
   left: 0;
-  width: 36px;
-  height: 36px;
-  margin: -18px 0 0 -18px;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
   border-radius: 999px;
-  border: 1.5px solid hsl(var(--foreground) / 0.5);
+  border: 1.7px solid #fff;
   z-index: 9998;
   pointer-events: none;
-  transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  mix-blend-mode: difference;
+  transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1), height 0.28s cubic-bezier(0.22, 1, 0.36, 1), margin 0.28s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.28s ease, border-color 0.28s ease;
 }
 .cursor-ring.is-active {
-  width: 58px;
-  height: 58px;
-  margin: -29px 0 0 -29px;
-  background: hsl(var(--accent) / 0.25);
-  border-color: hsl(var(--foreground));
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  background: #fff;
+  border-color: transparent;
 }
 
 /* ---------- Motion ---------- */
