@@ -29,37 +29,37 @@ export function Experience() {
     <section id="experience" className="section-shell py-24 sm:py-32">
       <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
         <Reveal>
-          <p className="kicker">Experience</p>
-          <h2 className="section-title">
-            From model behavior to <span className="serif plasma-text">production behavior.</span>
+          <p className="kicker text-foreground">Experience</p>
+          <h2 className="section-title mt-4">
+            Model behavior to <span className="highlight">production</span> behavior.
           </h2>
-          <div className="mt-8 rounded-xl border-l-2 border-primary/40 bg-card/40 py-4 pl-5 pr-4">
+          <div className="mt-8 border-l-2 border-accent py-1 pl-5">
             <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Education</p>
-            <p className="mt-2 text-sm font-medium text-foreground">B.Tech · Computer Science</p>
+            <p className="mt-2 text-sm font-semibold text-foreground">B.Tech · Computer Science</p>
             <p className="mt-1 text-xs text-muted-foreground">K.S.R.M College of Engineering · 8.14 / 10</p>
           </div>
         </Reveal>
 
-        <ol className="border-t border-border/70">
+        <ol className="border-t border-foreground/15">
           {roles.map((role, index) => (
             <Reveal key={`${role.org}-${role.title}`} delay={index * 0.06}>
-              <li className="group grid grid-cols-[3rem_1fr] items-start gap-x-6 gap-y-3 border-b border-border/70 py-7 transition-colors hover:bg-card/40 sm:grid-cols-[4.5rem_1fr_8rem]">
-                <span className="font-[family-name:var(--font-display)] text-3xl font-semibold text-foreground/20 transition-colors group-hover:text-primary sm:text-4xl">
+              <li className="group grid grid-cols-[3rem_1fr] items-start gap-x-6 gap-y-3 border-b border-foreground/15 py-7 transition-colors hover:bg-card sm:grid-cols-[5rem_1fr_8rem]">
+                <span className="font-[family-name:var(--font-display)] text-4xl font-extrabold text-foreground/15 transition-colors group-hover:text-foreground sm:text-5xl">
                   0{index + 1}
                 </span>
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground">{role.title}</h3>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{role.org}</p>
+                  <h3 className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-tight text-foreground">{role.title}</h3>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-foreground/55">{role.org}</p>
                   <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">{role.body}</p>
                   <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2">
                     {role.tags.map((tag) => (
-                      <span key={tag} className="font-mono text-[10px] text-foreground/60">
+                      <span key={tag} className="font-mono text-[10px] text-foreground/55">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-                <time className="col-start-2 font-mono text-[10px] uppercase tracking-wider text-primary sm:col-start-3 sm:text-right">
+                <time className="col-start-2 font-mono text-[10px] uppercase tracking-wider text-foreground sm:col-start-3 sm:text-right">
                   {role.when}
                 </time>
               </li>

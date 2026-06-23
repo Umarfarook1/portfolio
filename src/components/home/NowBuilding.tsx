@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
+import { CircleArrow } from "@/components/ui/CircleArrow";
+import { ArrowDiagonal } from "@/components/ui/Arrow";
 import { ProjectCard, type Project } from "./ProjectCard";
 
 const projects: (Project & { span: string })[] = [
@@ -56,17 +57,20 @@ export function NowBuilding() {
   return (
     <section id="work" className="relative py-24 sm:py-32">
       <div className="section-shell">
-        <Reveal className="grid gap-8 lg:grid-cols-[1fr_0.6fr] lg:items-end">
+        <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="kicker">Selected work</p>
-            <h2 className="section-title">
-              Evidence over <span className="serif plasma-text">demos.</span>
+            <p className="kicker text-foreground">Selected work</p>
+            <h2 className="section-title mt-4">
+              Evidence over <span className="highlight">demos</span>.
             </h2>
           </div>
-          <p className="max-w-xl text-sm leading-7 text-muted-foreground lg:pb-3">
-            Systems chosen for what they prove: measured quality, explicit tradeoffs, failure handling,
-            and enough operational detail to inspect the engineering, not just the interface.
-          </p>
+          <div className="flex items-end gap-5">
+            <p className="max-w-sm text-sm leading-7 text-muted-foreground">
+              Systems chosen for what they prove: measured quality, explicit tradeoffs, failure
+              handling, and detail enough to inspect the engineering, not just the interface.
+            </p>
+            <CircleArrow href="https://github.com/Umarfarook1" label="View all repositories on GitHub" external className="hidden sm:grid" />
+          </div>
         </Reveal>
 
         <div className="mt-14 grid gap-4 lg:grid-cols-3">
@@ -81,16 +85,16 @@ export function NowBuilding() {
               href="https://github.com/Umarfarook1"
               target="_blank"
               rel="noreferrer"
-              className="lift group flex h-full min-h-[220px] flex-col justify-between rounded-2xl border border-accent/30 bg-[linear-gradient(140deg,rgba(255,180,84,0.08),transparent)] p-8 transition-colors hover:border-accent/60"
+              className="lift group flex h-full min-h-[220px] flex-col justify-between rounded-2xl border border-foreground bg-accent p-8"
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">More on GitHub</p>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">More on GitHub</p>
               <div>
-                <p className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-foreground">
+                <p className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-tight text-accent-foreground">
                   Browse every repo
                 </p>
-                <span className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors group-hover:text-accent">
+                <span className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-accent-foreground">
                   github.com/Umarfarook1
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
+                  <ArrowDiagonal className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
                 </span>
               </div>
             </Link>

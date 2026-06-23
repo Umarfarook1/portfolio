@@ -3,42 +3,37 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
-// Legal here because this file is itself a client component.
 const LatentField = dynamic(() => import("./LatentField"), {
   ssr: false,
-  loading: () => <PlasmaGlow />,
+  loading: () => <Fallback />,
 });
 
-// Shared subtle placeholder so there is no layout shift while the chunk loads.
-function PlasmaGlow() {
+// Faint static scatter for loading / reduced motion. No layout shift, no WebGL.
+function Fallback() {
   return (
     <div
       className="h-full w-full"
       style={{
-        background:
-          "radial-gradient(60% 60% at 50% 45%, rgba(124,58,237,0.28) 0%, rgba(204,71,120,0.16) 40%, rgba(13,8,135,0.04) 70%, transparent 100%)",
+        backgroundColor: "hsl(44 42% 96%)",
+        backgroundImage:
+          "radial-gradient(circle at 38% 42%, rgba(58,54,196,0.22), transparent 26%), radial-gradient(circle at 64% 56%, rgba(215,38,96,0.18), transparent 24%), radial-gradient(circle at 52% 30%, rgba(14,143,143,0.16), transparent 22%)",
       }}
     />
   );
 }
 
-// Static, WebGL-free evocation of the plasma cloud for reduced-motion users.
-function StaticFallback() {
-  return (
-    <div
-      className="h-full w-full"
-      style={{
-        background:
-          "radial-gradient(55% 55% at 50% 45%, rgba(92,1,166,0.55) 0%, rgba(156,23,158,0.4) 30%, rgba(204,71,120,0.28) 55%, rgba(237,121,83,0.12) 75%, transparent 100%)",
-      }}
-    />
-  );
+// Responsive density: fewer, larger points on small screens.
+function dimsFor(width: number) {
+  if (width < 640) return { count: 1900, size: 0.085 };
+  if (width < 1024) return { count: 3000, size: 0.072 };
+  return { count: 4400, size: 0.06 };
 }
 
 export default function HeroCanvas() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [inView, setInView] = useState(false);
+  const [dims, setDims] = useState({ count: 3000, size: 0.072 });
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -46,6 +41,21 @@ export default function HeroCanvas() {
     const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    let raf = 0;
+    const apply = () => setDims(dimsFor(window.innerWidth));
+    const onResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(apply);
+    };
+    apply();
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -68,11 +78,11 @@ export default function HeroCanvas() {
   return (
     <div ref={rootRef} className="h-full w-full" aria-hidden="true">
       {reducedMotion ? (
-        <StaticFallback />
+        <Fallback />
       ) : inView ? (
-        <LatentField animate={true} />
+        <LatentField count={dims.count} pointSize={dims.size} animate />
       ) : (
-        <PlasmaGlow />
+        <Fallback />
       )}
     </div>
   );

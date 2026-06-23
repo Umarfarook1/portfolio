@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { ArrowEast } from "@/components/ui/Arrow";
 
 const navItems = [
   { name: "Work", href: "#work", id: "work" },
@@ -12,7 +13,7 @@ const navItems = [
 ];
 
 export function Navbar() {
-  const [active, setActive] = useState<string>("");
+  const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -46,17 +47,17 @@ export function Navbar() {
       <nav
         aria-label="Primary"
         className={cn(
-          "flex h-14 w-full max-w-[1240px] items-center justify-between gap-4 rounded-full border px-3 pl-4 backdrop-blur-xl transition-colors duration-500",
+          "flex h-14 w-full max-w-[1280px] items-center justify-between gap-4 rounded-full border px-2.5 pl-3 transition-colors duration-500",
           scrolled
-            ? "border-border/70 bg-background/75 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.85)]"
-            : "border-border/40 bg-background/35",
+            ? "border-foreground/15 bg-background/85 shadow-[0_14px_40px_-22px_rgba(24,22,15,0.5)] backdrop-blur-xl"
+            : "border-transparent bg-background/40 backdrop-blur-md",
         )}
       >
-        <Link href="#main" className="group flex items-center gap-2.5" aria-label="Back to top">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[linear-gradient(135deg,var(--plasma-iris),var(--plasma-magenta))] font-[family-name:var(--font-display)] text-[13px] font-bold text-white shadow-[0_0_22px_-4px_var(--plasma-iris)]">
+        <Link href="#main" className="flex items-center gap-2.5" aria-label="Back to top">
+          <span className="grid h-8 w-8 place-items-center rounded-md bg-foreground font-[family-name:var(--font-display)] text-[13px] font-extrabold text-background">
             UF
           </span>
-          <span className="hidden font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground/90 sm:inline">
+          <span className="hidden font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground sm:inline">
             Umarfarook G.
           </span>
         </Link>
@@ -69,8 +70,8 @@ export function Navbar() {
                 className={cn(
                   "inline-flex h-9 items-center rounded-full px-3.5 font-mono text-[11px] uppercase tracking-wider transition-colors",
                   active === item.id
-                    ? "bg-primary/15 text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                    ? "bg-foreground text-background"
+                    : "text-foreground/55 hover:text-foreground",
                 )}
               >
                 {item.name}
@@ -79,18 +80,13 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
-          <span className="hidden items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground lg:flex">
-            <span className="pulse-dot" aria-hidden="true" />
-            Open to roles
-          </span>
-          <Link
-            href="#contact"
-            className="inline-flex h-9 items-center rounded-full bg-accent px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent-foreground transition-transform duration-300 hover:-translate-y-0.5"
-          >
-            Contact
-          </Link>
-        </div>
+        <Link
+          href="#contact"
+          className="group inline-flex h-10 items-center gap-2 rounded-full bg-accent px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent-foreground transition-transform duration-300 hover:-translate-y-0.5"
+        >
+          Contact
+          <ArrowEast className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+        </Link>
       </nav>
     </header>
   );

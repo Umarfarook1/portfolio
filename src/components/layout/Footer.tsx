@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { ArrowUp } from "lucide-react";
+import { ArrowDiagonal } from "@/components/ui/Arrow";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border/70 bg-background/80">
+    <footer className="border-t border-foreground/15 bg-background">
       <div className="section-shell py-12">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-foreground">
+            <p className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-tight text-foreground">
               Umarfarook Gurramkonda
             </p>
             <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
@@ -16,24 +16,25 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            <Link href="https://github.com/Umarfarook1" target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">
+            <Link href="https://github.com/Umarfarook1" target="_blank" rel="noreferrer" className="transition-colors hover:text-foreground">
               GitHub
             </Link>
-            <Link href="https://linkedin.com/in/umarfarook-gurramkonda" target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">
+            <Link href="https://linkedin.com/in/umarfarook-gurramkonda" target="_blank" rel="noreferrer" className="transition-colors hover:text-foreground">
               LinkedIn
             </Link>
-            <Link href="mailto:umarfarook0yt@gmail.com" className="transition-colors hover:text-primary">
+            <Link href="mailto:umarfarook0yt@gmail.com" className="transition-colors hover:text-foreground">
               Email
             </Link>
-            <Link href="#main" className="inline-flex items-center gap-2 transition-colors hover:text-primary">
-              Top <ArrowUp className="h-3 w-3" aria-hidden="true" />
+            <Link href="#main" className="group inline-flex items-center gap-1.5 transition-colors hover:text-foreground">
+              Top
+              <ArrowDiagonal className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5" />
             </Link>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-border/60 pt-6 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-2 border-t border-foreground/12 pt-6 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Umarfarook Gurramkonda</p>
-          <p>Designed and built in Next.js · Three.js</p>
+          <p>Built with Next.js · Three.js</p>
         </div>
       </div>
     </footer>
