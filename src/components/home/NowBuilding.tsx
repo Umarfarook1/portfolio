@@ -52,6 +52,36 @@ const projects: (Project & { span: string })[] = [
     repo: "https://github.com/Umarfarook1/rag-document-qa",
     span: "lg:col-span-1",
   },
+  {
+    title: "IPL 2008-2024: A Franchise Analytics Case Study",
+    type: "Data analysis",
+    description:
+      "Analysis of 1,095 IPL matches (2008-2024): leakage-free features, PCA team clustering, and honest match-outcome modeling that names the data ceiling instead of hiding it.",
+    evidence: ["1,095 matches across 17 seasons", "Field first wins 53.86% vs 45.38%", "XGBoost AUC 0.547 vs 0.500 baseline"],
+    stack: ["Python", "pandas", "scikit-learn", "XGBoost"],
+    repo: "https://github.com/Umarfarook1/ipl-data-analysis",
+    span: "lg:col-span-1",
+  },
+  {
+    title: "YouTube Shorts Performance Prediction",
+    type: "ML analysis",
+    description:
+      "A rigorous negative result: no pre-publish feature predicts Shorts engagement above chance, and the one 95% model is a leakage trap.",
+    evidence: ["Best honest macro-F1 0.334 vs 0.333", "Permutation test p = 0.955, no signal", "Caught leakage trap inflating to 95%"],
+    stack: ["Python", "scikit-learn", "XGBoost", "SciPy"],
+    repo: "https://github.com/Umarfarook1/youtube-shorts-performance-prediction",
+    span: "lg:col-span-1",
+  },
+  {
+    title: "License Plate Detection and Privacy Blurring",
+    type: "Computer vision",
+    description:
+      "YOLOv8n plate detector (mAP@0.5 0.78) that auto-redacts number plates with a box-scaled Gaussian blur, leaving the scene sharp.",
+    evidence: ["YOLOv8n mAP@0.5 0.782", "Precision 0.834, recall 0.739", "~4.1 ms inference, 3.0M params"],
+    stack: ["Python", "YOLOv8", "PyTorch", "OpenCV"],
+    repo: "https://github.com/Umarfarook1/street-view-plate-blurring",
+    span: "lg:col-span-1",
+  },
 ];
 
 export function NowBuilding() {
