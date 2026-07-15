@@ -13,13 +13,13 @@ export function TechStack() {
     <section id="stack" className="section-shell py-24 sm:py-28">
       <Reveal className="flex flex-col gap-5 border-b border-foreground/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="kicker text-foreground">Working set</p>
-          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Tools selected by constraint.
-          </h2>
+          <p className="kicker text-foreground">
+            <span className="folio">06</span> Working set
+          </p>
+          <h2 className="display mt-4 text-4xl text-foreground sm:text-5xl">Tools I reach for.</h2>
         </div>
         <p className="max-w-md text-sm leading-6 text-muted-foreground">
-          A practical stack for shipping reliable AI products, from experiments to observable services.
+          The stack behind the projects above, from experiment to observable service.
         </p>
       </Reveal>
 
@@ -35,12 +35,9 @@ export function TechStack() {
               <span className="h-2 w-2 bg-accent" aria-hidden="true" />
               {group.label}
             </h3>
-            <ul className="mt-5 flex flex-wrap gap-2">
+            <ul className="mt-5 grid gap-2">
               {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-full border border-foreground/15 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-                >
+                <li key={item} className="text-sm text-muted-foreground">
                   {item}
                 </li>
               ))}

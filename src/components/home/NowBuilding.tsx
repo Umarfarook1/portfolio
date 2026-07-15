@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { CircleArrow } from "@/components/ui/CircleArrow";
 import { ArrowDiagonal } from "@/components/ui/Arrow";
-import { Highlight } from "@/components/ui/Highlight";
 import { ProjectCard, type Project } from "./ProjectCard";
 
 const projects: (Project & { span: string })[] = [
@@ -56,7 +55,7 @@ const projects: (Project & { span: string })[] = [
     title: "IPL 2008-2024: A Franchise Analytics Case Study",
     type: "Data analysis",
     description:
-      "Analysis of 1,095 IPL matches (2008-2024): leakage-free features, PCA team clustering, and honest match-outcome modeling that names the data ceiling instead of hiding it.",
+      "Analysis of 1,095 IPL matches across 17 seasons: leakage-free features, PCA team clustering, and match-outcome modeling that reports the data ceiling it ran into.",
     evidence: ["1,095 matches across 17 seasons", "Field first wins 53.86% vs 45.38%", "XGBoost AUC 0.547 vs 0.500 baseline"],
     stack: ["Python", "pandas", "scikit-learn", "XGBoost"],
     repo: "https://github.com/Umarfarook1/ipl-data-analysis",
@@ -66,7 +65,7 @@ const projects: (Project & { span: string })[] = [
     title: "YouTube Shorts Performance Prediction",
     type: "ML analysis",
     description:
-      "A rigorous negative result: no pre-publish feature predicts Shorts engagement above chance, and the one 95% model is a leakage trap.",
+      "A negative result, published anyway: no pre-publish feature predicts Shorts engagement above chance, and the one model that scored 95% turned out to be a leakage trap.",
     evidence: ["Best honest macro-F1 0.334 vs 0.333", "Permutation test p = 0.955, no signal", "Caught leakage trap inflating to 95%"],
     stack: ["Python", "scikit-learn", "XGBoost", "SciPy"],
     repo: "https://github.com/Umarfarook1/youtube-shorts-performance-prediction",
@@ -76,7 +75,7 @@ const projects: (Project & { span: string })[] = [
     title: "License Plate Detection and Privacy Blurring",
     type: "Computer vision",
     description:
-      "YOLOv8n plate detector (mAP@0.5 0.78) that auto-redacts number plates with a box-scaled Gaussian blur, leaving the scene sharp.",
+      "YOLOv8n plate detector (mAP@0.5 0.78) that auto-redacts number plates with a box-scaled Gaussian blur, leaving the rest of the scene sharp.",
     evidence: ["YOLOv8n mAP@0.5 0.782", "Precision 0.834, recall 0.739", "~4.1 ms inference, 3.0M params"],
     stack: ["Python", "YOLOv8", "PyTorch", "OpenCV"],
     repo: "https://github.com/Umarfarook1/street-view-plate-blurring",
@@ -90,15 +89,15 @@ export function NowBuilding() {
       <div className="section-shell">
         <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="kicker text-foreground">Selected work</p>
-            <h2 className="section-title mt-4">
-              Evidence over <Highlight>demos</Highlight>.
-            </h2>
+            <p className="kicker text-foreground">
+              <span className="folio">02</span> Selected work
+            </p>
+            <h2 className="section-title mt-4">Case files.</h2>
           </div>
           <div className="flex items-end gap-5">
             <p className="max-w-sm text-sm leading-7 text-muted-foreground">
-              Systems chosen for what they prove: measured quality, explicit tradeoffs, failure
-              handling, and detail enough to inspect the engineering, not just the interface.
+              Each project is here because it proves something: a measured quality bar, an explicit
+              tradeoff, or a failure mode handled well. Open the repos and rerun the numbers.
             </p>
             <CircleArrow href="https://github.com/Umarfarook1" label="View all repositories on GitHub" external className="hidden sm:grid" />
           </div>
@@ -116,14 +115,14 @@ export function NowBuilding() {
               href="https://github.com/Umarfarook1"
               target="_blank"
               rel="noreferrer"
-              className="lift group flex h-full min-h-[220px] flex-col justify-between rounded-2xl border border-foreground bg-accent p-8"
+              className="btn-proof group flex h-full min-h-[220px] flex-col justify-between rounded-[6px] border border-foreground bg-foreground p-8 text-background"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">More on GitHub</p>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-background/70">
+                Appendix · More on GitHub
+              </p>
               <div>
-                <p className="font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-tight text-accent-foreground">
-                  Browse every repo
-                </p>
-                <span className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-accent-foreground">
+                <p className="display text-3xl">Browse every repo</p>
+                <span className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-background/80">
                   github.com/Umarfarook1
                   <ArrowDiagonal className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
                 </span>

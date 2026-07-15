@@ -18,7 +18,7 @@ export function CircleArrow({ href, label, className, external }: CircleArrowPro
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
       className={cn(
-        "group relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full border border-foreground bg-foreground text-background transition-colors duration-300",
+        "btn-proof group relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-[2px] border border-foreground bg-foreground text-background transition-colors duration-300",
         className,
       )}
     >

@@ -87,7 +87,10 @@ function usePortrait(src: string, sampleW: number, depth: number): Buffers | nul
             -(y / (h - 1) - 0.5) * planeH,
             (0.5 - lum) * depth,
           );
-          col.push(r / 255, g / 255, b / 255);
+          // Ink stipple: print the portrait in shades of ink, not photo color.
+          // Gamma curve keeps midtones dark enough to read on paper.
+          const shade = 0.08 + Math.pow(lum, 1.4) * 0.5;
+          col.push(shade, shade * 0.98, shade * 0.95);
         }
       }
 

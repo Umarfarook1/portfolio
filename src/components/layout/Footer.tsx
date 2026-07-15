@@ -1,17 +1,16 @@
 import Link from "next/link";
 import { ArrowDiagonal } from "@/components/ui/Arrow";
 
+// Colophon: the closing page of the document.
 export function Footer() {
   return (
     <footer className="border-t border-foreground/15 bg-background">
       <div className="section-shell py-12">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-tight text-foreground">
-              Umarfarook Gurramkonda
-            </p>
+            <p className="display text-2xl text-foreground">Umarfarook Gurramkonda</p>
             <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-              AI Systems Engineer · Bengaluru, India
+              Applied AI / ML Engineer · Bengaluru, India
             </p>
           </div>
 
@@ -34,7 +33,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-foreground/12 pt-6 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Umarfarook Gurramkonda</p>
-          <p>Built with Next.js · Three.js</p>
+          <p>Set in Archivo, Source Serif and Plex Mono · Next.js · Three.js</p>
         </div>
       </div>
     </footer>

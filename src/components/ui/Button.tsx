@@ -3,23 +3,19 @@ import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "solid" | "accent" | "outline" | "ghost";
+  variant?: "solid" | "outline" | "ghost";
   size?: "default" | "sm" | "lg" | "icon";
   asChild?: boolean;
 }
 
-// Custom sweep-fill buttons: an accent or ink panel rises from the bottom on hover.
-// Wrap label text in a <span> at the call site so it sits above the sweep (.btn-sweep > *).
+// Rectangular print buttons. On hover a 3px red proof bar slides in along the
+// bottom edge (.btn-proof), like an editor underlining the action.
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "solid", size = "default", asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     const variants = {
-      solid:
-        "btn-sweep border border-foreground bg-foreground text-background [--sweep:hsl(var(--accent))] hover:text-foreground",
-      accent:
-        "btn-sweep border border-foreground bg-accent text-accent-foreground [--sweep:hsl(var(--foreground))] hover:text-background",
-      outline:
-        "btn-sweep border border-foreground/30 text-foreground [--sweep:hsl(var(--foreground))] hover:border-foreground hover:text-background",
+      solid: "btn-proof border border-foreground bg-foreground text-background",
+      outline: "btn-proof border border-foreground/35 text-foreground hover:border-foreground",
       ghost: "text-foreground/65 hover:text-foreground",
     };
     const sizes = {
@@ -32,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         ref={ref}
         className={cn(
-          "group inline-flex items-center justify-center gap-2.5 rounded-full font-mono text-[11px] font-semibold uppercase tracking-[0.13em] transition-colors duration-300 disabled:pointer-events-none disabled:opacity-50",
+          "group inline-flex items-center justify-center gap-2.5 rounded-[2px] font-mono text-[11px] font-semibold uppercase tracking-[0.13em] transition-colors duration-200 disabled:pointer-events-none disabled:opacity-50",
           variants[variant],
           sizes[size],
           className,

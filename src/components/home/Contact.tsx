@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { Magnetic } from "@/components/ui/Magnetic";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
-import { Highlight } from "@/components/ui/Highlight";
+import { Proof } from "@/components/ui/Proof";
 import { ArrowEast, ArrowDiagonal } from "@/components/ui/Arrow";
 
 const links = [
@@ -18,28 +17,26 @@ export function Contact() {
 
       <div className="section-shell flex flex-col items-center text-center">
         <Reveal>
-          <p className="kicker justify-center text-background">Open channel</p>
-          <h2 className="display mt-6 text-[clamp(2.6rem,8vw,6.4rem)] text-background">
-            An AI system that
-            <br />
-            <Highlight>has to work?</Highlight>
+          <p className="kicker justify-center text-background">
+            <span className="folio">07</span> Contact
+          </p>
+          <h2 className="display mt-6 text-[clamp(2.6rem,7.5vw,6rem)] text-background">
+            <Proof>Write</Proof> to me.
           </h2>
           <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-background/70 sm:text-base">
-            I am open to research and ML engineering roles where evaluation, reliability, and product
-            judgment matter as much as model choice. The fastest way to reach me is email.
+            I read my own inbox and reply fast. If you are hiring for research or ML engineering
+            where evaluation and reliability count, start here.
           </p>
         </Reveal>
 
         <Reveal delay={0.12} className="mt-10">
-          <Magnetic strength={0.4}>
-            <Link
-              href="mailto:umarfarook0yt@gmail.com"
-              className="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-5 font-mono text-sm font-semibold uppercase tracking-wider text-accent-foreground transition-transform duration-300 hover:-translate-y-1 sm:px-10"
-            >
-              umarfarook0yt@gmail.com
-              <ArrowEast className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </Magnetic>
+          <Link
+            href="mailto:umarfarook0yt@gmail.com"
+            className="btn-proof group inline-flex items-center gap-3 rounded-[2px] border border-background bg-background px-8 py-5 font-mono text-sm font-semibold uppercase tracking-wider text-foreground sm:px-10"
+          >
+            umarfarook0yt@gmail.com
+            <ArrowEast className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </Reveal>
 
         <Reveal delay={0.2} className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">

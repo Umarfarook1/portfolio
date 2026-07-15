@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
-import { Highlight } from "@/components/ui/Highlight";
+import { Proof } from "@/components/ui/Proof";
 
 export function About() {
   return (
@@ -17,34 +17,29 @@ export function About() {
                 alt="Umarfarook Gurramkonda"
                 width={112}
                 height={112}
-                className="h-28 w-28 rounded-2xl border border-background/25 object-cover"
+                className="h-28 w-28 rounded-[6px] border border-background/25 object-cover grayscale contrast-110"
               />
-              <span className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-wider text-accent-foreground">
-                live
-              </span>
             </div>
             <div>
-              <p className="kicker text-background">About</p>
+              <p className="kicker text-background">
+                <span className="folio">04</span> About
+              </p>
               <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-background/60">Point of view</p>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="font-[family-name:var(--font-display)] text-2xl font-extrabold leading-[1.18] tracking-tight text-background sm:text-[2.2rem]">
-              The interesting work in AI is not the model call. It is everything around it:
-              deciding when a model <Highlight>earns a place</Highlight> in the system,
-              controlling what goes in and what comes out, and proving the result still holds once
-              real traffic hits it.
+            <p className="display text-2xl leading-[1.16] text-background sm:text-[2.1rem]">
+              Most of my time goes to the layer around the model: deciding when one{" "}
+              <Proof>earns its place</Proof>, shaping what goes in and out, and checking the result
+              still holds under real traffic.
             </p>
             <p className="mt-6 max-w-2xl text-sm leading-7 text-background/70 sm:text-base">
-              I care most about the reliability layer: evaluation, cost discipline, and failure
-              handling, because that is what separates a demo from something a team can depend on.
-              I am looking for research and ML engineering work where that judgment matters as much
-              as model choice.
+              Evaluation, cost discipline, failure handling: the unglamorous work that makes a
+              system dependable. I want research and ML engineering roles where that judgment
+              counts as much as model choice.
             </p>
-            <p className="mt-8 font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-tight text-background">
-              Umarfarook.
-            </p>
+            <p className="mt-8 display text-2xl text-background">Umarfarook.</p>
           </Reveal>
         </div>
       </div>

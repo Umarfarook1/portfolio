@@ -1,51 +1,43 @@
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { Magnetic } from "@/components/ui/Magnetic";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
 import { ArrowEast, ArrowDiagonal } from "@/components/ui/Arrow";
 import HeroCanvas from "@/components/three/HeroCanvas";
-import { Highlight } from "@/components/ui/Highlight";
+import { Proof } from "@/components/ui/Proof";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-12 pt-24 sm:pt-28">
+    <section className="relative overflow-hidden pb-12 pt-28 sm:pt-32">
       <RegistrationMark className="absolute left-5 top-24 hidden text-foreground/40 sm:block" />
       <RegistrationMark className="absolute right-5 top-24 hidden text-foreground/40 sm:block" />
 
       <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="fade-up">
-          <div className="mb-6 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-            <span className="flex items-center gap-2 rounded-full border border-foreground/20 px-3 py-1.5 text-foreground">
-              <span className="pulse-dot" aria-hidden="true" />
-              Open to roles
-            </span>
-            <span>ML Engineer · HypeOn AI · Bengaluru</span>
-          </div>
+          <p className="kicker text-foreground">Applied AI / ML Engineer · HypeOn AI, Bengaluru</p>
 
-          <p className="kicker text-foreground">Applied AI / ML Engineer</p>
-          <h1 className="display mt-4 text-[clamp(2.2rem,4.7vw,4.2rem)]">
-            Agents that are{" "}
-            <Highlight>measured</Highlight>,
+          <h1 className="display mt-5 text-[clamp(2.5rem,5.4vw,4.9rem)]">
+            I <Proof>measure</Proof>
             <br />
-            not just demoed.
+            what I ship.
           </h1>
 
-          <p className="mt-6 max-w-lg text-[15px] leading-6 text-muted-foreground sm:text-base">
-            I build multi-stage LLM systems, retrieval, and natural-language interfaces over data,
-            then ship them with the evaluation harnesses, cost caps, and reproducible numbers
-            that make them trustworthy in production.
+          <p className="mt-6 max-w-lg text-[15px] leading-7 text-muted-foreground sm:text-base">
+            Multi-agent LLM systems, retrieval, and natural-language interfaces over data. Each one
+            ships with an eval harness, a cost cap, and numbers you can rerun yourself.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Magnetic>
-              <Button asChild variant="solid" size="lg">
-                <Link href="#work">
-                  <span>View selected work</span>
-                  <ArrowEast className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </Button>
-            </Magnetic>
+          <p className="status-mark mt-7 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground">
+            Open to research and ML engineering roles
+          </p>
+
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <Button asChild variant="solid" size="lg">
+              <Link href="#work">
+                <span>Selected work</span>
+                <ArrowEast className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="mailto:umarfarook0yt@gmail.com">
                 <span>Email me</span>
@@ -67,11 +59,13 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Framed 3D figure: the latent-space embedding plate */}
+        {/* fig. 01: the photograph reduced to data, which is the job description */}
         <div className="fade-up [animation-delay:140ms]">
           <figure className="plate relative mx-auto aspect-[4/5] w-full max-w-[390px]">
             <figcaption className="flex items-center justify-between border-b border-foreground/15 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-              <span>fig.01 / latent self</span>
+              <span>
+                <span className="text-accent">fig. 01</span> · latent self
+              </span>
               <RegistrationMark className="h-3.5 w-3.5 text-foreground/50" />
             </figcaption>
             <div className="relative h-[calc(100%-2.75rem)]">

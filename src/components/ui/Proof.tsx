@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// Acid marker that wipes in like a highlighter stroke when scrolled into view.
-export function Highlight({ children, className }: { children: ReactNode; className?: string }) {
+// Red editor's underline that draws in once when scrolled into view.
+export function Proof({ children, className }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [on, setOn] = useState(false);
   const reduce = useReducedMotion();
@@ -31,7 +31,7 @@ export function Highlight({ children, className }: { children: ReactNode; classN
   }, [reduce]);
 
   return (
-    <span ref={ref} className={cn("highlight", on && "in", className)}>
+    <span ref={ref} className={cn("proof", on && "in", className)}>
       {children}
     </span>
   );

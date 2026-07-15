@@ -13,9 +13,9 @@ function Loading() {
     <div
       className="h-full w-full"
       style={{
-        backgroundColor: "hsl(44 42% 96%)",
+        backgroundColor: "oklch(0.955 0.005 95)",
         backgroundImage:
-          "radial-gradient(circle at 50% 45%, rgba(24,22,15,0.1), transparent 60%)",
+          "radial-gradient(circle at 50% 45%, rgba(30,29,26,0.1), transparent 60%)",
       }}
     />
   );
@@ -23,9 +23,9 @@ function Loading() {
 
 // Responsive sampling: fewer, slightly larger points on small screens.
 function dimsFor(width: number) {
-  if (width < 640) return { sampleW: 78, size: 0.052 };
-  if (width < 1024) return { sampleW: 100, size: 0.04 };
-  return { sampleW: 126, size: 0.032 };
+  if (width < 640) return { sampleW: 78, size: 0.058 };
+  if (width < 1024) return { sampleW: 100, size: 0.046 };
+  return { sampleW: 126, size: 0.038 };
 }
 
 export default function HeroCanvas() {

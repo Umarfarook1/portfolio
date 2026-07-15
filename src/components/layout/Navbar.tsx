@@ -3,15 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ArrowEast } from "@/components/ui/Arrow";
 
 const navItems = [
   { name: "Work", href: "#work", id: "work" },
-  { name: "Capabilities", href: "#capabilities", id: "capabilities" },
+  { name: "Method", href: "#method", id: "method" },
   { name: "About", href: "#about", id: "about" },
   { name: "Experience", href: "#experience", id: "experience" },
 ];
 
+// Masthead: a flat paper bar with a hairline rule, like the running head of a
+// printed document. Active section gets a red underline, not a filled pill.
 export function Navbar() {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -43,38 +44,34 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-3 z-50 flex justify-center px-4 sm:top-4">
-      <nav
-        aria-label="Primary"
-        className={cn(
-          "flex h-14 w-full max-w-[1280px] items-center justify-between gap-4 rounded-full border px-2.5 pl-3 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-500",
-          scrolled
-            ? "border-foreground/15 bg-background/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_18px_50px_-24px_rgba(24,22,15,0.55)]"
-            : "border-foreground/10 bg-background/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]",
-        )}
-      >
-        <Link href="#main" className="flex items-center gap-2.5" aria-label="Back to top">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/avatar.jpg"
-            alt="Umarfarook Gurramkonda"
-            className="h-9 w-9 rounded-full border border-foreground/20 object-cover"
-          />
-          <span className="hidden font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground sm:inline">
-            Umarfarook G.
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b bg-background transition-[border-color] duration-300",
+        scrolled ? "border-foreground/20" : "border-transparent",
+      )}
+    >
+      <nav aria-label="Primary" className="section-shell flex h-16 items-center justify-between gap-4">
+        <Link
+          href="#main"
+          className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground"
+          aria-label="Back to top"
+        >
+          Umarfarook G.
+          <span className="ml-2 text-accent" aria-hidden="true">
+            §
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
             <li key={item.id}>
               <Link
                 href={item.href}
                 className={cn(
-                  "inline-flex h-9 items-center rounded-full px-3.5 font-mono text-[11px] uppercase tracking-wider transition-colors",
+                  "inline-flex h-10 items-center border-b-2 pt-0.5 font-mono text-[11px] uppercase tracking-wider transition-colors",
                   active === item.id
-                    ? "bg-foreground text-background"
-                    : "text-foreground/55 hover:text-foreground",
+                    ? "border-accent text-foreground"
+                    : "border-transparent text-foreground/55 hover:text-foreground",
                 )}
               >
                 {item.name}
@@ -85,10 +82,9 @@ export function Navbar() {
 
         <Link
           href="#contact"
-          className="group inline-flex h-10 items-center gap-2 rounded-full bg-accent px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-accent-foreground transition-transform duration-300 hover:-translate-y-0.5"
+          className="btn-proof inline-flex h-10 items-center gap-2 rounded-[2px] border border-foreground bg-foreground px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-background"
         >
           Contact
-          <ArrowEast className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
         </Link>
       </nav>
     </header>

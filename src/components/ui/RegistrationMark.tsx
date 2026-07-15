@@ -6,7 +6,7 @@ export function RegistrationMark({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      className={cn("h-4 w-4 text-primary/60", className)}
+      className={cn("h-4 w-4 text-foreground/60", className)}
       fill="none"
       stroke="currentColor"
       strokeWidth="1"
