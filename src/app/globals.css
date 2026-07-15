@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  /* Offprint palette — paper, ink, one vermilion proof-mark red. See DESIGN.md. */
+  /* Offprint palette — two-drum riso: vermilion = STAMP ink, press blue = DRAWING ink.
+     Budget 90% paper / 8% ink / 1.5% vermilion / 0.5% blue. See DESIGN.md. */
   --color-background: oklch(0.972 0.004 95);
   --color-foreground: oklch(0.235 0.008 85);
   --color-card: oklch(0.955 0.005 95);
@@ -10,6 +11,9 @@
   --color-muted-foreground: oklch(0.46 0.008 85);
   --color-accent: oklch(0.54 0.19 29);
   --color-accent-foreground: oklch(0.97 0.01 29);
+  --color-blue: oklch(0.48 0.14 250);
+  --color-blue-plate: oklch(0.554 0.141 245.5);
+  --color-manila: oklch(0.945 0.022 85);
   --color-border: oklch(0.87 0.006 90);
   --color-ring: oklch(0.235 0.008 85);
 
@@ -19,6 +23,18 @@
 }
 
 @layer base {
+  :root {
+    /* Motion tokens — fluid hand (curves) for reveals, stepped machine (steps/linear)
+       for anything the press does. Red draws, ink settles. Zero bounce. */
+    --dur-fast: 140ms;
+    --dur-base: 240ms;
+    --dur-slow: 480ms;
+    --dur-cinematic: 720ms;
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  }
+
   * {
     @apply border-border;
   }
@@ -66,6 +82,9 @@ section[id] {
 .ink-band {
   background: var(--color-foreground);
   color: var(--color-background);
+  /* Dark-ground drum swap: paper-ground vermilion dulls on near-black */
+  --color-accent: oklch(0.64 0.19 30);
+  --color-blue-plate: oklch(0.711 0.114 246.6);
 }
 
 /* ---------- Type ---------- */
@@ -104,7 +123,7 @@ section[id] {
   letter-spacing: -0.025em;
 }
 
-/* Folio: big printed section number */
+/* Folio: printed section number */
 .folio {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -112,22 +131,33 @@ section[id] {
   letter-spacing: 0.18em;
   color: var(--color-accent);
 }
-/* Lighter red on ink bands so folios keep AA contrast */
 .ink-band .folio {
   color: oklch(0.74 0.13 29);
 }
 
-/* Proof-mark: red editor's underline that draws in once */
+/* Proof-mark: red editor's underline, drawn left-to-right on the compositor.
+   Red draws; ink never does. */
 .proof {
-  background-image: linear-gradient(var(--color-accent), var(--color-accent));
-  background-repeat: no-repeat;
-  background-position: left 100%;
-  background-size: 0% 0.09em;
-  padding-bottom: 0.06em;
-  transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
 }
-.proof.in {
-  background-size: 100% 0.09em;
+.proof::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.06em;
+  height: 0.09em;
+  background: var(--color-accent);
+  mix-blend-mode: multiply;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out-quint);
+}
+.proof.in::after {
+  transform: scaleX(1);
+}
+.ink-band .proof::after {
+  mix-blend-mode: normal;
 }
 
 /* ---------- Framed plate (figures) ---------- */
@@ -138,7 +168,21 @@ section[id] {
   overflow: hidden;
 }
 
-/* ---------- Buttons: rectangular, print-flat, red proof bar on hover ---------- */
+/* ---------- Buttons: the stamp press ---------- */
+/* .stamp owns ALL transitions on interactive chrome: color ticks at 120ms flat,
+   transform (the press) at --dur-fast. Never share timings. */
+.stamp {
+  transition:
+    transform var(--dur-fast) var(--ease-out-quart),
+    color 120ms linear,
+    background-color 120ms linear,
+    border-color 120ms linear,
+    text-decoration-color 120ms linear;
+}
+.stamp:active {
+  transform: scale(0.98);
+}
+
 .btn-proof {
   position: relative;
   overflow: hidden;
@@ -154,14 +198,14 @@ section[id] {
   background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--dur-base) var(--ease-out-quart);
 }
 .btn-proof:hover::after,
 .btn-proof:focus-visible::after {
   transform: scaleX(1);
 }
 
-/* Status mark: small red square + mono text, replaces pill badges */
+/* Status mark: small red square + mono text */
 .status-mark::before {
   content: "";
   display: inline-block;
@@ -172,9 +216,57 @@ section[id] {
   vertical-align: 6%;
 }
 
+/* ---------- Case-file hover: sequenced typesetting (under 200ms total) ---------- */
+.casefile {
+  position: relative;
+  transition: background-color 120ms linear, border-color 120ms linear;
+}
+@media (hover: hover) and (pointer: fine) {
+  .casefile:hover {
+    /* /0.06 vermilion wash over the card stock */
+    background-color: color-mix(in oklab, var(--color-card) 94%, var(--color-accent));
+  }
+}
+.casefile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-fast) var(--ease-out-quart);
+}
+@media (hover: hover) and (pointer: fine) {
+  .casefile:hover::before {
+    transform: scaleX(1);
+    transition: transform var(--dur-base) var(--ease-out-quart);
+  }
+}
+
+/* ---------- Calibration strip (colophon): printer's color-control bar ---------- */
+.calib {
+  display: flex;
+  gap: 2px;
+}
+.calib span {
+  width: 1.1rem;
+  height: 0.55rem;
+  opacity: 0;
+}
+.calib.in span {
+  animation: calib-in var(--dur-slow) steps(5) both;
+}
+@keyframes calib-in {
+  from { opacity: 0; }
+  to { opacity: var(--calib-o, 1); }
+}
+
 /* ---------- Motion ---------- */
 .fade-up {
-  animation: fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up 600ms var(--ease-out-quint) both;
 }
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(14px); }
@@ -191,11 +283,26 @@ section[id] {
   outline-color: var(--color-background);
 }
 
+/* Two-tier reduced motion: transforms and draws collapse, opacity crossfades
+   stay at 200ms so comprehension survives. framer side is handled by
+   MotionConfig reducedMotion="user". */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.001ms !important;
+  :root {
+    --dur-fast: 0.001ms;
+    --dur-base: 0.001ms;
+    --dur-slow: 0.001ms;
+    --dur-cinematic: 0.001ms;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-up {
+    animation-duration: 0.001ms;
+  }
+  .calib.in span {
+    animation-duration: 0.001ms;
+  }
+  .stamp:active {
+    transform: none;
   }
 }

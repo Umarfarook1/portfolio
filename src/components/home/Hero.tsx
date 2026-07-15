@@ -3,14 +3,15 @@ import { Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { RegistrationMark } from "@/components/ui/RegistrationMark";
 import { ArrowEast, ArrowDiagonal } from "@/components/ui/Arrow";
+import { PlateReveal } from "@/components/ui/PlateReveal";
 import HeroCanvas from "@/components/three/HeroCanvas";
 import { Proof } from "@/components/ui/Proof";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden pb-12 pt-28 sm:pt-32">
-      <RegistrationMark className="absolute left-5 top-24 hidden text-foreground/40 sm:block" />
-      <RegistrationMark className="absolute right-5 top-24 hidden text-foreground/40 sm:block" />
+      <RegistrationMark animate className="absolute left-5 top-24 hidden h-4 w-4 sm:block" />
+      <RegistrationMark animate className="absolute right-5 top-24 hidden h-4 w-4 sm:block" />
 
       <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="fade-up">
@@ -35,13 +36,13 @@ export function Hero() {
             <Button asChild variant="solid" size="lg">
               <Link href="#work">
                 <span>Selected work</span>
-                <ArrowEast className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowEast className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="mailto:umarfarook0yt@gmail.com">
                 <span>Email me</span>
-                <ArrowDiagonal className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowDiagonal className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </Button>
             <div className="flex items-center gap-1 sm:ml-1">
@@ -59,7 +60,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* fig. 01: the photograph reduced to data, which is the job description */}
+        {/* fig. 01: the photograph reduced to data, which is the job description.
+            The frame is fixed; the plate contents reveal like ink rolling off
+            the press, then drift a few px of parallax. */}
         <div className="fade-up [animation-delay:140ms]">
           <figure className="plate relative mx-auto aspect-[4/5] w-full max-w-[390px]">
             <figcaption className="flex items-center justify-between border-b border-foreground/15 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
@@ -68,12 +71,12 @@ export function Hero() {
               </span>
               <RegistrationMark className="h-3.5 w-3.5 text-foreground/50" />
             </figcaption>
-            <div className="relative h-[calc(100%-2.75rem)]">
+            <PlateReveal className="relative h-[calc(100%-2.75rem)]">
               <HeroCanvas />
-              <span className="absolute bottom-3 left-4 font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">
+              <span className="absolute bottom-3 left-4 font-mono text-[9px] uppercase tracking-[0.16em] text-blue">
                 point-cloud portrait · live
               </span>
-            </div>
+            </PlateReveal>
           </figure>
         </div>
       </div>

@@ -18,13 +18,13 @@ export function CircleArrow({ href, label, className, external }: CircleArrowPro
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
       className={cn(
-        "btn-proof group relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-[2px] border border-foreground bg-foreground text-background transition-colors duration-300",
+        "btn-proof stamp group relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-[2px] border border-foreground bg-foreground text-background",
         className,
       )}
     >
       <span className="relative block h-4 w-4">
-        <ArrowDiagonal className="absolute inset-0 h-4 w-4 transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-6 group-hover:translate-x-6" />
-        <ArrowDiagonal className="absolute inset-0 h-4 w-4 -translate-x-6 translate-y-6 transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+        <ArrowDiagonal className="absolute inset-0 h-4 w-4 transition-transform duration-[240ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-6 group-hover:translate-x-6" />
+        <ArrowDiagonal className="absolute inset-0 h-4 w-4 -translate-x-6 translate-y-6 transition-transform duration-[240ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
       </span>
     </Link>
   );

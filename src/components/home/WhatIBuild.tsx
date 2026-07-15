@@ -49,7 +49,7 @@ export function WhatIBuild() {
                 <span className="folio pt-1.5 text-sm">§{index + 1}</span>
                 <div>
                   <h3 className="display text-2xl text-foreground">{stage.title}</h3>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-foreground/55">{stage.subtitle}</p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-blue">{stage.subtitle}</p>
                 </div>
                 <div>
                   <p className="text-sm leading-6 text-muted-foreground">{stage.body}</p>

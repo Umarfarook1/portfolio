@@ -87,10 +87,15 @@ function usePortrait(src: string, sampleW: number, depth: number): Buffers | nul
             -(y / (h - 1) - 0.5) * planeH,
             (0.5 - lum) * depth,
           );
-          // Ink stipple: print the portrait in shades of ink, not photo color.
-          // Gamma curve keeps midtones dark enough to read on paper.
-          const shade = 0.08 + Math.pow(lum, 1.4) * 0.5;
-          col.push(shade, shade * 0.98, shade * 0.95);
+          // Two-drum stipple: ink shades with every ~12th dot printed in the
+          // press-blue drawing ink, like a cyanotype plate showing through.
+          if (pos.length % 36 === 0) {
+            col.push(0.05, 0.38, 0.65);
+          } else {
+            // Gamma curve keeps midtones dark enough to read on paper.
+            const shade = 0.08 + Math.pow(lum, 1.4) * 0.5;
+            col.push(shade, shade * 0.98, shade * 0.95);
+          }
         }
       }
 

@@ -115,7 +115,7 @@ export function NowBuilding() {
               href="https://github.com/Umarfarook1"
               target="_blank"
               rel="noreferrer"
-              className="btn-proof group flex h-full min-h-[220px] flex-col justify-between rounded-[6px] border border-foreground bg-foreground p-8 text-background"
+              className="btn-proof stamp group flex h-full min-h-[220px] flex-col justify-between rounded-[6px] border border-foreground bg-foreground p-8 text-background"
             >
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-background/70">
                 Appendix · More on GitHub
@@ -124,7 +124,7 @@ export function NowBuilding() {
                 <p className="display text-3xl">Browse every repo</p>
                 <span className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-background/80">
                   github.com/Umarfarook1
-                  <ArrowDiagonal className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  <ArrowDiagonal className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-1 group-hover:translate-x-1" />
                 </span>
               </div>
             </Link>

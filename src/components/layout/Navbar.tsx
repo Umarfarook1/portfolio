@@ -46,7 +46,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b bg-background transition-[border-color] duration-300",
+        "fixed inset-x-0 top-0 z-50 border-b bg-background transition-[border-color] duration-[240ms]",
         scrolled ? "border-foreground/20" : "border-transparent",
       )}
     >
@@ -68,7 +68,7 @@ export function Navbar() {
               <Link
                 href={item.href}
                 className={cn(
-                  "inline-flex h-10 items-center border-b-2 pt-0.5 font-mono text-[11px] uppercase tracking-wider transition-colors",
+                  "inline-flex h-10 items-center border-b-2 pt-0.5 font-mono text-[11px] uppercase tracking-wider transition-colors duration-[120ms]",
                   active === item.id
                     ? "border-accent text-foreground"
                     : "border-transparent text-foreground/55 hover:text-foreground",
@@ -82,7 +82,7 @@ export function Navbar() {
 
         <Link
           href="#contact"
-          className="btn-proof inline-flex h-10 items-center gap-2 rounded-[2px] border border-foreground bg-foreground px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-background"
+          className="btn-proof stamp inline-flex h-10 items-center gap-2 rounded-[2px] border border-foreground bg-foreground px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-background"
         >
           Contact
         </Link>

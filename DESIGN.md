@@ -25,19 +25,35 @@ Single source of truth for the portfolio's design system. If code drifts from th
 - Scale: 1.25 (major third), base 1rem body. Hero display clamps ~3.2–6.4rem.
 - NEVER: Inter, Roboto, system-ui as a rendered face; italic serif heroes; gradient text.
 
-## Color (OKLCH)
+## Color (OKLCH) — two-drum risograph
 
-| token      | value                     | role                              |
-|------------|---------------------------|-----------------------------------|
-| paper      | oklch(0.972 0.004 95)     | background                        |
-| paper-2    | oklch(0.955 0.005 95)     | card/plate fill                   |
-| ink        | oklch(0.235 0.008 85)     | foreground, solid buttons         |
-| ink-60     | oklch(0.48 0.008 85)      | muted text                        |
-| rule       | oklch(0.87 0.006 90)      | hairlines/borders                 |
-| red        | oklch(0.54 0.19 29)       | vermilion proof-marks, accents    |
-| red-ink    | oklch(0.97 0.01 29)       | text on red                       |
+Vermilion is the STAMP drum (approval, proof, action). Press Blue is the DRAWING drum (figures, diagrams, captions — the blueprint register). Budget: 90% paper / 8% ink / 1.5% vermilion / 0.5% blue.
 
-Distribution 60-30-10: paper dominates, ink structures, red only as annotation (markers, underlines, folio numbers, active states). Red is never a fill for large areas. Ink band sections (About, Contact) invert: ink bg, paper text, red survives as the accent.
+| token       | value                     | role                                                |
+|-------------|---------------------------|-----------------------------------------------------|
+| paper       | oklch(0.972 0.004 95)     | background                                          |
+| paper-2     | oklch(0.955 0.005 95)     | card/plate fill                                     |
+| manila      | oklch(0.945 0.022 85)     | ONE bound-in insert per page (Table 01)             |
+| ink         | oklch(0.235 0.008 85)     | foreground, solid buttons                           |
+| ink-60      | oklch(0.46 0.008 85)      | muted text                                          |
+| rule        | oklch(0.87 0.006 90)      | hairlines/borders                                   |
+| red         | oklch(0.54 0.19 29)       | STAMP ink: proof-marks, folios, underlines, buttons |
+| red tints   | red at /6 /12 /15 /25     | hover washes, selected states, tag chips            |
+| red-on-ink  | oklch(0.64 0.19 30)       | vermilion inside inverted ink bands only            |
+| blue        | oklch(0.48 0.14 250)      | DRAWING ink: annotations, figure captions (AA text) |
+| blue-plate  | oklch(0.554 0.141 245.5)  | large strokes only: plate rules, portrait alt dots  |
+
+Hard rules: blue NEVER appears in buttons, folios, underlines, or proof marks; one blue role per viewport; blue always covers less area than red; red+blue overlaps use mix-blend multiply (overprint). No third hue, no gradients, ever. Ink bands (About, Contact) swap to the dark-ground variants via CSS cascade on `.ink-band`.
+
+## Motion — "red draws, ink settles"
+
+Durations: fast 140ms (presses, hover returns, exits) · base 240ms (hover movement) · slow 480ms (proof/rule draws, scroll-triggered only) · cinematic 720ms (once-per-visit: wipes, count-ups). Color ticks: 120ms flat.
+Easings: PRESS `cubic-bezier(0.25,1,0.5,1)` for interactions · REVEAL `cubic-bezier(0.22,1,0.36,1)` for entrances/draws · CARRIAGE RETURN `cubic-bezier(0.83,0,0.17,1)` for on-screen morphs · STEPPED (`steps()`/quantized) for anything mechanical (odometer count-ups, calibration fills).
+Springs: springPress {stiffness 420, damping 41} for taps; springPlate {visualDuration .5, bounce .15} is the ONLY bounce, reserved for the fig. 01 plate.
+
+Principles: only red elements move directionally (left-to-right draws); ink only fades/settles (≤16px travel); reveals fire once (a printed page does not un-print); masthead is color-only 120ms; compositor-only properties (transform/opacity/clip-path); zero bounce house rule; stagger 60ms capped at 6 children; two-tier reduced motion (transforms die, 200ms opacity crossfades survive, via MotionConfig reducedMotion="user").
+
+Signature motions: plate reveal (clip-path ink-roll, plates only) · Table 01 odometer tick + proof underline · ink-band print wipe · registration marks sliding into register · case-file hover as sequenced typesetting (<200ms) · colophon calibration strip stepped fill · stamp press :active scale(0.98).
 
 ## Space, radius, elevation
 

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ArrowDiagonal } from "@/components/ui/Arrow";
+import { Calibration } from "@/components/ui/Calibration";
 
-// Colophon: the closing page of the document.
+// Colophon: the closing page of the document, with the printer's
+// color-control bar exhibiting the three inks honestly.
 export function Footer() {
   return (
     <footer className="border-t border-foreground/15 bg-background">
@@ -12,6 +14,7 @@ export function Footer() {
             <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
               Applied AI / ML Engineer · Bengaluru, India
             </p>
+            <Calibration className="mt-5" />
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
@@ -26,7 +29,7 @@ export function Footer() {
             </Link>
             <Link href="#main" className="group inline-flex items-center gap-1.5 transition-colors hover:text-foreground">
               Top
-              <ArrowDiagonal className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5" />
+              <ArrowDiagonal className="h-3 w-3 transition-transform duration-200 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-0.5" />
             </Link>
           </div>
         </div>
