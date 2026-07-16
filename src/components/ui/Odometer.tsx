@@ -1,66 +1,51 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { animate, motion, useInView, useMotionValue, useTransform } from "framer-motion";
 
-// Table 01 odometer: values tick up ONCE on first scroll-into-view, quantized
-// like a mechanical counter (stepped, linear time — the machine prints, it
-// does not tween). tabular-nums guarantees zero layout shift.
-// Parses "80%", "+33 pts", "~$0.002", "6", "100 MB" into prefix/number/suffix.
-const NUM_RE = /^([^0-9]*)([0-9]+(?:\.[0-9]+)?)(.*)$/;
-const DURATION_MS = 700;
-
-export function Odometer({ value, underline = false }: { value: string; underline?: boolean }) {
+// Metric digits roll up, overshoot, and settle like SGD converging — the one
+// visible overshoot in the system, reserved for stats. Parses values like
+// "80%", "+33 pts", "~$0.002", "0.782" and animates the numeric part.
+export function Odometer({ value, className }: { value: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(value);
+  const inView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
   const [done, setDone] = useState(false);
 
+  const match = value.match(/-?\d+(?:\.\d+)?/);
+  const target = match ? parseFloat(match[0]) : null;
+  const decimals = match?.[0].includes(".") ? match[0].split(".")[1].length : 0;
+  const prefix = match ? value.slice(0, match.index) : value;
+  const suffix = match ? value.slice((match.index ?? 0) + match[0].length) : "";
+
+  const mv = useMotionValue(0);
+  const text = useTransform(mv, (v) => v.toFixed(decimals));
+
   useEffect(() => {
-    if (!inView) return;
-    const m = value.match(NUM_RE);
-    if (!m || reduce) {
-      setDone(true);
-      return;
-    }
-    const [, prefix, num, suffix] = m;
-    const target = parseFloat(num);
-    const decimals = num.includes(".") ? num.split(".")[1].length : 0;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / DURATION_MS, 1);
-      // Linear time, quantized value: the odometer clicks through discrete
-      // digit states instead of gliding.
-      const stepped = Math.round(target * p * 10 ** decimals) / 10 ** decimals;
-      setDisplay(`${prefix}${stepped.toFixed(decimals)}${suffix}`);
-      if (p < 1) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        setDisplay(value);
-        setDone(true);
-      }
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, value, reduce]);
+    if (!inView || target === null) return;
+    const controls = animate(mv, target, {
+      type: "spring",
+      stiffness: 170,
+      damping: 14,
+      mass: 1,
+      onComplete: () => setDone(true),
+    });
+    return controls.stop;
+  }, [inView, target, mv]);
+
+  if (target === null) {
+    return (
+      <span ref={ref} className={className}>
+        {value}
+      </span>
+    );
+  }
 
   return (
-    <span ref={ref} className="relative inline-block tabular-nums">
-      {display}
-      {underline ? (
-        <span
-          aria-hidden="true"
-          className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left bg-accent transition-transform"
-          style={{
-            transform: done ? "scaleX(1)" : "scaleX(0)",
-            transitionDuration: "var(--dur-slow)",
-            transitionTimingFunction: "var(--ease-out-quint)",
-            transitionDelay: "120ms",
-          }}
-        />
-      ) : null}
+    <span ref={ref} className={`tabular ${className ?? ""}`}>
+      {prefix}
+      {/* Snap to the exact figure once settled so the claim is precise. */}
+      {done ? <span>{match![0]}</span> : <motion.span>{text}</motion.span>}
+      {suffix}
     </span>
   );
 }

@@ -1,51 +1,51 @@
-import { Reveal } from "@/components/ui/Reveal";
-import { RegistrationMark } from "@/components/ui/RegistrationMark";
-import { Proof } from "@/components/ui/Proof";
-import { PrintWipe } from "@/components/ui/PrintWipe";
+import { Rise } from "@/components/ui/Rise";
+import { TokenStream } from "@/components/ui/TokenStream";
 
+// Short bone band. Restraint here makes the dark sections read louder.
 export function About() {
   return (
-    <section id="about">
-      <PrintWipe className="ink-band relative py-24 sm:py-32">
-        <RegistrationMark className="absolute left-5 top-6 hidden text-background/40 sm:block" />
-        <RegistrationMark className="absolute right-5 top-6 hidden text-background/40 sm:block" />
-        <div className="section-shell">
-          <div className="grid gap-12 lg:grid-cols-[0.4fr_1fr] lg:gap-16">
-            <Reveal className="flex items-start gap-5" delay={0.12}>
-              <div className="relative shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/avatar.jpg"
-                  alt="Umarfarook Gurramkonda"
-                  width={112}
-                  height={112}
-                  className="h-28 w-28 rounded-[6px] border border-background/25 object-cover grayscale contrast-110"
-                />
-              </div>
-              <div>
-                <p className="kicker text-background">
-                  <span className="folio">04</span> About
-                </p>
-                <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-background/60">Point of view</p>
-              </div>
-            </Reveal>
+    <section id="about" className="on-bone relative py-28 sm:py-36">
+      <div className="shell">
+        <div className="flex items-baseline justify-between border-b border-boneink/15 pb-5">
+          <p className="mono-label text-bonelo">06 / about</p>
+          <p className="mono-label hidden text-bonelo/70 sm:block">point of view</p>
+        </div>
 
-            <Reveal delay={0.24}>
-              <p className="display text-2xl leading-[1.16] text-background sm:text-[2.1rem]">
-                Most of my time goes to the layer around the model: deciding when one{" "}
-                <Proof>earns its place</Proof>, shaping what goes in and out, and checking the result
-                still holds under real traffic.
+        <div className="mt-12 grid gap-12 lg:grid-cols-[11rem_1fr]">
+          <Rise>
+            <figure>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/avatar.jpg"
+                alt="Umarfarook Gurramkonda"
+                width={176}
+                height={176}
+                className="h-44 w-44 rounded-[2px] object-cover contrast-105"
+              />
+              <figcaption className="mono-label mt-3 text-bonelo/70">
+                fig. 06 · the source image
+              </figcaption>
+            </figure>
+          </Rise>
+
+          <div>
+            <TokenStream
+              text="Most of my time goes to the layer around the model."
+              wonkWord="around"
+              className="display max-w-3xl text-[clamp(1.8rem,3.8vw,3rem)] text-boneink"
+            />
+            <Rise delay={0.25}>
+              <p className="mt-8 max-w-2xl text-[17px] leading-8 text-bonelo">
+                Deciding when a model earns its place, shaping what goes in and out, and checking
+                the result still holds under real traffic. Evaluation, cost discipline, failure
+                handling: the unglamorous work that makes a system dependable. I want research and
+                ML engineering roles where that judgment counts as much as model choice.
               </p>
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-background/70 sm:text-base">
-                Evaluation, cost discipline, failure handling: the unglamorous work that makes a
-                system dependable. I want research and ML engineering roles where that judgment
-                counts as much as model choice.
-              </p>
-              <p className="mt-8 display text-2xl text-background">Umarfarook.</p>
-            </Reveal>
+              <p className="display mt-10 text-2xl text-boneink">Umarfarook.</p>
+            </Rise>
           </div>
         </div>
-      </PrintWipe>
+      </div>
     </section>
   );
 }

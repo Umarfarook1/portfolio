@@ -1,89 +1,122 @@
+"use client";
+
+import { useRef } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Github, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { RegistrationMark } from "@/components/ui/RegistrationMark";
-import { ArrowEast, ArrowDiagonal } from "@/components/ui/Arrow";
-import { PlateReveal } from "@/components/ui/PlateReveal";
-import HeroCanvas from "@/components/three/HeroCanvas";
-import { Proof } from "@/components/ui/Proof";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { TokenStream } from "@/components/ui/TokenStream";
+import { easeExpoOut } from "@/lib/motion";
+
+const PortraitField = dynamic(() => import("@/components/three/PortraitField"), { ssr: false });
+
+// The convergence curve the denoise actually follows (expo-out), plotted as
+// the hero's loss sparkline. Real telemetry: it charts the animation itself.
+const SPARK = (() => {
+  const pts: string[] = [];
+  for (let x = 0; x <= 120; x += 4) {
+    const y = 33 - 27 * Math.exp((-4.2 * x) / 120);
+    pts.push(`${x},${(36 - y).toFixed(2)}`);
+  }
+  return pts.join(" ");
+})();
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollRef = useRef(0);
+  const stepRef = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    scrollRef.current = v;
+  });
+
   return (
-    <section className="relative overflow-hidden pb-12 pt-28 sm:pt-32">
-      <RegistrationMark animate className="absolute left-5 top-24 hidden h-4 w-4 sm:block" />
-      <RegistrationMark animate className="absolute right-5 top-24 hidden h-4 w-4 sm:block" />
-
-      <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="fade-up">
-          <p className="kicker text-foreground">Applied AI / ML Engineer · HypeOn AI, Bengaluru</p>
-
-          <h1 className="display mt-5 text-[clamp(2.5rem,5.4vw,4.9rem)]">
-            I <Proof>measure</Proof>
-            <br />
-            what I ship.
-          </h1>
-
-          <p className="mt-6 max-w-lg text-[15px] leading-7 text-muted-foreground sm:text-base">
-            Multi-agent LLM systems, retrieval, and natural-language interfaces over data. Each one
-            ships with an eval harness, a cost cap, and numbers you can rerun yourself.
-          </p>
-
-          <p className="status-mark mt-7 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground">
-            Open to research and ML engineering roles
-          </p>
-
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <Button asChild variant="solid" size="lg">
-              <Link href="#work">
-                <span>Selected work</span>
-                <ArrowEast className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="mailto:umarfarook0yt@gmail.com">
-                <span>Email me</span>
-                <ArrowDiagonal className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </Link>
-            </Button>
-            <div className="flex items-center gap-1 sm:ml-1">
-              <Button asChild size="icon" variant="ghost">
-                <Link href="https://github.com/Umarfarook1" target="_blank" rel="noreferrer" aria-label="GitHub profile">
-                  <Github className="h-5 w-5" aria-hidden="true" />
-                </Link>
-              </Button>
-              <Button asChild size="icon" variant="ghost">
-                <Link href="https://linkedin.com/in/umarfarook-gurramkonda" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
-                  <Linkedin className="h-5 w-5" aria-hidden="true" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* fig. 01: the photograph reduced to data, which is the job description.
-            The frame is fixed; the plate contents reveal like ink rolling off
-            the press, then drift a few px of parallax. */}
-        <div className="fade-up [animation-delay:140ms]">
-          <figure className="plate relative mx-auto aspect-[4/5] w-full max-w-[390px]">
-            <figcaption className="flex items-center justify-between border-b border-foreground/15 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-              <span>
-                <span className="text-accent">fig. 01</span> · latent self
-              </span>
-              <RegistrationMark className="h-3.5 w-3.5 text-foreground/50" />
-            </figcaption>
-            <PlateReveal className="relative h-[calc(100%-2.75rem)]">
-              <HeroCanvas />
-              <span className="absolute bottom-3 left-4 font-mono text-[9px] uppercase tracking-[0.16em] text-blue">
-                point-cloud portrait · live
-              </span>
-            </PlateReveal>
-          </figure>
-        </div>
+    <section ref={sectionRef} className="relative h-[100svh] min-h-[640px] overflow-hidden">
+      {/* The diffusion self-portrait: full-bleed, one canvas, one draw call. */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <PortraitField scrollRef={scrollRef} stepRef={stepRef} />
       </div>
 
-      <div className="section-shell mt-8 flex items-center gap-3">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Scroll</span>
-        <span className="h-px w-12 bg-foreground/30" aria-hidden="true" />
+      <div className="shell relative z-10 flex h-full flex-col justify-end pb-14 sm:pb-16">
+        <motion.p
+          className="mono-label text-lo"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          Umarfarook Gurramkonda · applied AI/ML · HypeOn AI, Bengaluru
+        </motion.p>
+
+        <TokenStream
+          as="h1"
+          text="I measure what I ship."
+          wonkWord="measure"
+          delay={0.9}
+          className="display mt-5 max-w-[8.5em] text-[clamp(3.2rem,9.5vw,8.75rem)] text-hi"
+        />
+
+        <motion.p
+          className="mt-6 max-w-xl text-[17px] leading-relaxed text-lo"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: easeExpoOut, delay: 1.5 }}
+        >
+          Multi-agent LLM systems, retrieval, and natural-language interfaces over data. Every
+          system ships with an eval harness, a cost cap, and numbers you can rerun yourself.
+        </motion.p>
+
+        <motion.div
+          className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: easeExpoOut, delay: 1.7 }}
+        >
+          <Link
+            href="mailto:umarfarook0yt@gmail.com"
+            className="runcmd caret inline-block rounded-[2px] px-5 py-3.5 text-sm"
+          >
+            $ mail umarfarook0yt@gmail.com
+          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href="https://github.com/Umarfarook1"
+              target="_blank"
+              rel="noreferrer"
+              className="navlink mono-label"
+            >
+              GitHub ↗
+            </Link>
+            <Link
+              href="https://linkedin.com/in/umarfarook-gurramkonda"
+              target="_blank"
+              rel="noreferrer"
+              className="navlink mono-label"
+            >
+              LinkedIn ↗
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Live telemetry: the counter counts the denoise itself. */}
+      <div className="pointer-events-none absolute bottom-14 right-6 z-10 hidden text-right lg:block xl:right-10">
+        <svg width="120" height="36" viewBox="0 0 120 36" fill="none" aria-hidden="true">
+          <motion.polyline
+            points={SPARK}
+            stroke="var(--color-ember)"
+            strokeWidth="1.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2.2, ease: easeExpoOut }}
+          />
+        </svg>
+        <p className="mono-label mt-2 text-lo">
+          <span ref={(el) => void (stepRef.current = el)}>step 0000/1000</span>
+        </p>
+        <p className="mono-label mt-1 text-lo/60">fig. 01 · self-portrait, denoised live</p>
       </div>
     </section>
   );

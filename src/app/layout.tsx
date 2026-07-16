@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+import { Fraunces, Schibsted_Grotesk, Fragment_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/ui/MotionProvider";
 
-const archivo = Archivo({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-archivo",
-  axes: ["wdth"],
+  variable: "--font-fraunces",
+  axes: ["opsz", "SOFT", "WONK"],
 });
-const sourceSerif = Source_Serif_4({
+const schibsted = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-source-serif",
+  variable: "--font-schibsted",
 });
-const plexMono = IBM_Plex_Mono({
+const fragment = Fragment_Mono({
   subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-plex-mono",
+  weight: "400",
+  variable: "--font-fragment",
 });
 
 export const metadata: Metadata = {
@@ -39,11 +39,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn(archivo.variable, sourceSerif.variable, plexMono.variable)}>
+    // Font variables live on <html>: Tailwind v4 @theme resolves var() at :root.
+    <html lang="en" className={cn(fraunces.variable, schibsted.variable, fragment.variable)}>
       <body className="min-h-screen">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-foreground focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-background"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-solar focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-void"
         >
           Skip to main content
         </a>

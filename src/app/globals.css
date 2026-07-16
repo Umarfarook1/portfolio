@@ -1,308 +1,172 @@
 @import "tailwindcss";
 
 @theme {
-  /* Offprint palette — two-drum riso: vermilion = STAMP ink, press blue = DRAWING ink.
-     Budget 90% paper / 8% ink / 1.5% vermilion / 0.5% blue. See DESIGN.md. */
-  --color-background: oklch(0.972 0.004 95);
-  --color-foreground: oklch(0.235 0.008 85);
-  --color-card: oklch(0.955 0.005 95);
-  --color-card-foreground: oklch(0.235 0.008 85);
-  --color-muted: oklch(0.93 0.005 95);
-  --color-muted-foreground: oklch(0.46 0.008 85);
-  --color-accent: oklch(0.54 0.19 29);
-  --color-accent-foreground: oklch(0.97 0.01 29);
-  --color-blue: oklch(0.48 0.14 250);
-  --color-blue-plate: oklch(0.554 0.141 245.5);
-  --color-manila: oklch(0.945 0.022 85);
-  --color-border: oklch(0.87 0.006 90);
-  --color-ring: oklch(0.235 0.008 85);
+  /* GRADIENT DESCENT — every color is a coordinate on one inferno ramp
+     ending in warm plum-black. See DESIGN.md. */
+  --color-void: oklch(0.14 0.025 300);
+  --color-panel: oklch(0.18 0.03 310);
+  --color-line: oklch(0.3 0.025 320);
+  --color-crimson: oklch(0.55 0.24 20);
+  --color-ember: oklch(0.75 0.18 55);
+  --color-solar: oklch(0.9 0.15 95);
+  --color-hi: oklch(0.94 0.012 90);
+  --color-lo: oklch(0.65 0.03 60);
+  --color-bone: oklch(0.96 0.01 95);
+  --color-boneink: oklch(0.22 0.02 300);
+  --color-bonelo: oklch(0.45 0.02 310);
 
-  --font-display: var(--font-archivo);
-  --font-serif: var(--font-source-serif);
-  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-schibsted);
+  --font-mono: var(--font-fragment);
 }
 
 @layer base {
   :root {
-    /* Motion tokens — fluid hand (curves) for reveals, stepped machine (steps/linear)
-       for anything the press does. Red draws, ink settles. Zero bounce. */
-    --dur-fast: 140ms;
-    --dur-base: 240ms;
-    --dur-slow: 480ms;
-    --dur-cinematic: 720ms;
-    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
-  }
-
-  * {
-    @apply border-border;
+    /* Motion — convergence: an attack, an overshoot, a settle. */
+    --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--color-line) var(--color-void);
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-serif), Georgia, serif;
-  }
-
-  /* Fine paper grain (dark specks, multiply) for a printed feel */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.04;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background: var(--color-void);
+    color: var(--color-hi);
+    font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: var(--color-accent);
-    color: var(--color-accent-foreground);
+    background: var(--color-crimson);
+    color: var(--color-hi);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-solar);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-bone *:focus-visible {
+    outline-color: var(--color-crimson);
   }
 }
 
 /* ---------- Layout ---------- */
-.section-shell {
-  width: min(1280px, calc(100% - 2.5rem));
+.shell {
+  width: min(1360px, calc(100% - 3rem));
   margin-inline: auto;
-  position: relative;
-  z-index: 2;
 }
 
 section[id] {
-  scroll-margin-top: 6.5rem;
+  scroll-margin-top: 5rem;
 }
 
-.ink-band {
-  background: var(--color-foreground);
-  color: var(--color-background);
-  /* Dark-ground drum swap: paper-ground vermilion dulls on near-black */
-  --color-accent: oklch(0.64 0.19 30);
-  --color-blue-plate: oklch(0.711 0.114 246.6);
+/* Bone bands: the inverted-ramp world. */
+.on-bone {
+  background: var(--color-bone);
+  color: var(--color-boneink);
 }
 
 /* ---------- Type ---------- */
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: currentColor;
-}
-.kicker::before {
-  content: "";
-  width: 0.5rem;
-  height: 0.5rem;
-  background: var(--color-accent);
-}
-
 .display {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 118%;
-  letter-spacing: -0.02em;
-  line-height: 0.94;
+  /* opsz maxed for the ink-trap character; SOFT 0 keeps it sharp. */
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-weight: 560;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
 }
 
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 118%;
-  font-size: clamp(2.4rem, 6vw, 4.8rem);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
+/* WONK: exactly one word per headline gets the wonky alternates. */
+.wonk {
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 1;
 }
 
-/* Folio: printed section number */
-.folio {
+.mono-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--color-accent);
-}
-.ink-band .folio {
-  color: oklch(0.74 0.13 29);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* Proof-mark: red editor's underline, drawn left-to-right on the compositor.
-   Red draws; ink never does. */
-.proof {
-  position: relative;
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
-.proof::after {
+
+/* ---------- Furniture ---------- */
+/* Blinking block caret for the run-command CTA. Steps, not fade: it is an
+   instrument, not an ornament. */
+.caret::after {
   content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.06em;
-  height: 0.09em;
-  background: var(--color-accent);
-  mix-blend-mode: multiply;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-slow) var(--ease-out-quint);
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 0.18em;
+  vertical-align: text-bottom;
+  background: var(--color-solar);
+  animation: caret-blink 1.1s steps(2, jump-none) infinite;
 }
-.proof.in::after {
-  transform: scaleX(1);
-}
-.ink-band .proof::after {
-  mix-blend-mode: normal;
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
-/* ---------- Framed plate (figures) ---------- */
-.plate {
-  border: 1px solid var(--color-foreground);
-  background: var(--color-card);
-  border-radius: 6px;
-  overflow: hidden;
+/* Run-command CTA: hairline box, solar text, presses like a key. */
+.runcmd {
+  border: 1px solid var(--color-line);
+  color: var(--color-solar);
+  font-family: var(--font-mono);
+  transition: border-color 150ms linear, background-color 150ms linear,
+    transform 160ms var(--ease-expo-out);
 }
-
-/* ---------- Buttons: the stamp press ---------- */
-/* .stamp owns ALL transitions on interactive chrome: color ticks at 120ms flat,
-   transform (the press) at --dur-fast. Never share timings. */
-.stamp {
-  transition:
-    transform var(--dur-fast) var(--ease-out-quart),
-    color 120ms linear,
-    background-color 120ms linear,
-    border-color 120ms linear,
-    text-decoration-color 120ms linear;
+.runcmd:hover {
+  border-color: var(--color-ember);
+  background: color-mix(in oklab, var(--color-solar) 6%, transparent);
 }
-.stamp:active {
+.runcmd:active {
   transform: scale(0.98);
 }
 
-.btn-proof {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-.btn-proof::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-base) var(--ease-out-quart);
-}
-.btn-proof:hover::after,
-.btn-proof:focus-visible::after {
-  transform: scaleX(1);
-}
-
-/* Status mark: small red square + mono text */
-.status-mark::before {
-  content: "";
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.6rem;
-  background: var(--color-accent);
-  vertical-align: 6%;
-}
-
-/* ---------- Case-file hover: sequenced typesetting (under 200ms total) ---------- */
-.casefile {
-  position: relative;
-  transition: background-color 120ms linear, border-color 120ms linear;
+/* Project rows: type until touched, then heat. */
+.row-heat {
+  transition: color 180ms linear, padding-left 250ms var(--ease-expo-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .casefile:hover {
-    /* /0.06 vermilion wash over the card stock */
-    background-color: color-mix(in oklab, var(--color-card) 94%, var(--color-accent));
-  }
-}
-.casefile::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-fast) var(--ease-out-quart);
-}
-@media (hover: hover) and (pointer: fine) {
-  .casefile:hover::before {
-    transform: scaleX(1);
-    transition: transform var(--dur-base) var(--ease-out-quart);
+  .row-heat:hover {
+    color: var(--color-solar);
+    padding-left: 1.25rem;
   }
 }
 
-/* ---------- Calibration strip (colophon): printer's color-control bar ---------- */
-.calib {
-  display: flex;
-  gap: 2px;
+/* Nav links */
+.navlink {
+  color: var(--color-lo);
+  transition: color 150ms linear;
 }
-.calib span {
-  width: 1.1rem;
-  height: 0.55rem;
-  opacity: 0;
-}
-.calib.in span {
-  animation: calib-in var(--dur-slow) steps(5) both;
-}
-@keyframes calib-in {
-  from { opacity: 0; }
-  to { opacity: var(--calib-o, 1); }
+.navlink:hover,
+.navlink[data-active="true"] {
+  color: var(--color-hi);
 }
 
-/* ---------- Motion ---------- */
-.fade-up {
-  animation: fade-up 600ms var(--ease-out-quint) both;
-}
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Hairline utility on dark */
+.hairline {
+  border-color: var(--color-line);
 }
 
-/* ---------- Accessibility ---------- */
-*:focus-visible {
-  outline: 2px solid var(--color-ring);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-.ink-band *:focus-visible {
-  outline-color: var(--color-background);
-}
-
-/* Two-tier reduced motion: transforms and draws collapse, opacity crossfades
-   stay at 200ms so comprehension survives. framer side is handled by
-   MotionConfig reducedMotion="user". */
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --dur-fast: 0.001ms;
-    --dur-base: 0.001ms;
-    --dur-slow: 0.001ms;
-    --dur-cinematic: 0.001ms;
+  .caret::after {
+    animation: none;
+  }
+  .row-heat,
+  .runcmd {
+    transition-duration: 0.001ms;
   }
   html {
     scroll-behavior: auto;
-  }
-  .fade-up {
-    animation-duration: 0.001ms;
-  }
-  .calib.in span {
-    animation-duration: 0.001ms;
-  }
-  .stamp:active {
-    transform: none;
   }
 }

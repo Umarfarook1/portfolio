@@ -1,22 +1,23 @@
-// Motion tokens — mirrors the CSS custom properties in globals.css.
-// Red draws, ink settles. Fluid hand (curves), stepped machine (quantized).
-// Zero bounce everywhere except springPlate (the fig. 01 plate).
+// GRADIENT DESCENT motion tokens — convergence: an attack, an overshoot, a settle.
+// See DESIGN.md. Scroll-scrubbed scenes are linear and interruptible; the SGD
+// settle spring is the ONE visible overshoot, reserved for stats and checkpoints.
+
+export const easeExpoOut = [0.16, 1, 0.3, 1] as const;
+export const easeExpoInOut = [0.87, 0, 0.13, 1] as const;
+
+// SGD settle: one visible overshoot decaying to rest.
+export const springSettle = { type: "spring", stiffness: 170, damping: 14, mass: 1 } as const;
+
+// Cursor-follow preview panel lag.
+export const springFollow = { stiffness: 300, damping: 30, mass: 0.5 } as const;
 
 export const dur = {
-  fast: 0.14,
-  base: 0.24,
-  slow: 0.48,
-  cinematic: 0.72,
+  micro: 0.2,
+  text: 0.8,
+  cluster: 1.0,
+  wipe: 0.9,
+  denoise: 2.2,
 } as const;
 
-export const easeOutQuart = [0.25, 1, 0.5, 1] as const;
-export const easeOutQuint = [0.22, 1, 0.36, 1] as const;
-export const easeInOutQuint = [0.83, 0, 0.17, 1] as const;
-
-export const springPress = { type: "spring", stiffness: 420, damping: 41, mass: 1 } as const;
-export const springPlate = { type: "spring", visualDuration: 0.5, bounce: 0.15 } as const;
-
-export const STAGGER_STEP = 0.06; // 60ms, capped at 6 children
-export const BEAT = 0.12; // 120ms between typesetting beats
-
-export const staggerDelay = (index: number) => Math.min(index, 5) * STAGGER_STEP;
+// Word-cluster stagger for token-stream reveals (seconds).
+export const tokenStagger = 0.04;

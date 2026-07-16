@@ -2,23 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Clock } from "@/components/ui/Clock";
 
 const navItems = [
-  { name: "Work", href: "#work", id: "work" },
-  { name: "Method", href: "#method", id: "method" },
-  { name: "About", href: "#about", id: "about" },
-  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "evidence", href: "#evidence", id: "evidence" },
+  { name: "work", href: "#work", id: "work" },
+  { name: "method", href: "#method", id: "method" },
+  { name: "checkpoints", href: "#experience", id: "experience" },
 ];
 
-// Masthead: a flat paper bar with a hairline rule, like the running head of a
-// printed document. Active section gets a red underline, not a filled pill.
+// Minimal mono chrome over the void; the right edge carries a thin ember
+// progress rule — the page as a run, scrubbed 1:1.
 export function Navbar() {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
-    const ids = [...navItems.map((i) => i.id), "stack", "contact"];
+    const ids = [...navItems.map((i) => i.id), "about", "stack", "contact"];
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el));
@@ -34,7 +37,7 @@ export function Navbar() {
     );
     sections.forEach((s) => observer.observe(s));
 
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 32);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -44,49 +47,44 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b bg-background transition-[border-color] duration-[240ms]",
-        scrolled ? "border-foreground/20" : "border-transparent",
-      )}
-    >
-      <nav aria-label="Primary" className="section-shell flex h-16 items-center justify-between gap-4">
-        <Link
-          href="#main"
-          className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground"
-          aria-label="Back to top"
-        >
-          Umarfarook G.
-          <span className="ml-2 text-accent" aria-hidden="true">
-            §
-          </span>
-        </Link>
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200",
+          scrolled ? "border-line bg-void/90" : "border-transparent bg-transparent",
+        )}
+      >
+        <nav aria-label="Primary" className="shell flex h-14 items-center justify-between gap-4">
+          <Link href="#main" className="mono-label text-hi" aria-label="Back to top">
+            umarfarook.g
+          </Link>
 
-        <ul className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <Link
-                href={item.href}
-                className={cn(
-                  "inline-flex h-10 items-center border-b-2 pt-0.5 font-mono text-[11px] uppercase tracking-wider transition-colors duration-[120ms]",
-                  active === item.id
-                    ? "border-accent text-foreground"
-                    : "border-transparent text-foreground/55 hover:text-foreground",
-                )}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul className="hidden items-center gap-7 md:flex">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <Link href={item.href} className="navlink mono-label" data-active={active === item.id}>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <Link
-          href="#contact"
-          className="btn-proof stamp inline-flex h-10 items-center gap-2 rounded-[2px] border border-foreground bg-foreground px-4 font-mono text-[11px] font-semibold uppercase tracking-wider text-background"
-        >
-          Contact
-        </Link>
-      </nav>
-    </header>
+          <div className="flex items-center gap-6">
+            <Clock className="mono-label hidden text-lo sm:inline" />
+            <Link href="#contact" className="mono-label text-solar transition-opacity hover:opacity-80">
+              contact ↗
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      {/* Run progress: a hairline that heats as the page completes. */}
+      <div className="pointer-events-none fixed bottom-0 right-0 top-0 z-50 hidden w-px bg-line/50 lg:block" aria-hidden="true">
+        <motion.div
+          className="h-full w-full origin-top"
+          style={{ scaleY: scrollYProgress, background: "var(--color-ember)" }}
+        />
+      </div>
+    </>
   );
 }
