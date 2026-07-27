@@ -16,7 +16,8 @@ type Mode =
   | "flatline"
   | "boxes"
   | "arena"
-  | "denoise";
+  | "denoise"
+  | "causal";
 
 // Two production systems open the list. They carry no repo because the code is
 // the employer's; the row renders as plain type instead of a link, and no
@@ -89,6 +90,14 @@ const projects: {
     year: "jul 2026",
     repo: "https://github.com/Umarfarook1/Tiny-diffusion",
     mode: "denoise",
+  },
+  {
+    title: "Nano-LLM-from-scratch",
+    type: "language model · from scratch",
+    metric: "257 offline tests · val 4.94 → 2.90 on CPU",
+    year: "jul 2026",
+    repo: "https://github.com/Umarfarook1/Nano-LLM-from-scratch",
+    mode: "causal",
   },
   {
     title: "License Plate Privacy Blurring",
@@ -381,6 +390,47 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
     ctx.fillText("1,500 steps on CPU · blobs, not digits", pad, h - 14);
   }
 
+  if (mode === "causal") {
+    // The causal mask, filled in one query row at a time, which is what
+    // autoregressive decoding does. Cells below the diagonal only. The row
+    // being decoded burns bright; rows already decoded stay lit but dim,
+    // because their keys and values are the cache and are not recomputed.
+    const n = 11;
+    const pad = 18;
+    const s = Math.min((w - pad * 2) / n, (h - 58) / n);
+    const x0 = pad;
+    const y0 = 20;
+    const cursor = (t * 1.5) % (n + 3);
+
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c <= r; c++) {
+        const done = cursor - r;
+        if (done < 0) continue;
+        const fresh = done < 1;
+        // A fresh row computes every column; a cached row is shown as held.
+        const v = fresh ? Math.max(0, Math.min(1, (done * n - c) * 0.6)) : 1;
+        if (v <= 0) continue;
+        ctx.fillStyle = fresh ? C.solar : c === r ? C.ember : C.dim;
+        ctx.globalAlpha = fresh ? 0.35 + 0.6 * v : 0.42;
+        ctx.fillRect(x0 + c * s, y0 + r * s, s - 1.5, s - 1.5);
+      }
+    }
+
+    // The diagonal, marking where each query attends to its own position.
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = C.ember;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.lineTo(x0 + n * s, y0 + n * s);
+    ctx.stroke();
+
+    ctx.fillStyle = C.lo;
+    ctx.fillText("causal mask · keys and values cached, not recomputed", pad, h - 30);
+    ctx.fillStyle = C.solar;
+    ctx.fillText("1.98x faster decode, median of 5 runs", pad, h - 14);
+  }
+
   if (mode === "arena") {
     // The mechanic, drawn: the sim clock advances at the player's own speed,
     // so the chasers only close while the player moves.
@@ -485,7 +535,7 @@ export function Work() {
         </div>
 
         <TokenStream
-          text="Nine repos and two I cannot show you."
+          text="Ten repos and two I cannot show you."
           wonkWord="cannot"
           className="display mt-10 max-w-3xl text-[clamp(2rem,4.5vw,3.6rem)] text-hi"
         />
