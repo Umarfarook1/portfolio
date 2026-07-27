@@ -13,14 +13,14 @@ const stages = [
   {
     id: "01",
     name: "orchestrate",
-    body: "I route each request through intent, retrieval and composition stages, and stream progress while they run. One quote costs five to six model calls. p50 is 3.5 seconds.",
+    body: "I route each request through extraction, rate lookup, ranking and drafting, and stream progress while they run. One quote fans out to six model calls: extraction, up to three rationales, a recommendation and the draft email. Extraction averages 2,680 ms in the 15-item ablation. The end-to-end quote is not timed.",
     proof: "Cargo Concierge",
     href: "https://github.com/Umarfarook1/Cargo-Concierge",
   },
   {
     id: "02",
     name: "ground",
-    body: "I put the vector store behind a Protocol so the backend is a one-file swap, and I measure the rerank instead of assuming it. Below a confidence floor the answer comes back as “I don’t know” plus the closest passage. Citations are required or the answer is rejected.",
+    body: "I put the vector store behind a Protocol so the backend is a one-file swap, and the retrieval metrics (Recall@K, MRR, nDCG@10) are a component with a CLI rather than a script run once. The harness has not been pointed at a benchmark yet. Below a confidence floor the answer comes back as “I don’t know” plus the closest passage. Citations are required or the answer is rejected.",
     proof: "RAG Document QA · v0.0.1",
     href: "https://github.com/Umarfarook1/rag-document-qa",
   },
@@ -34,7 +34,7 @@ const stages = [
   {
     id: "04",
     name: "measure",
-    body: "I score every answer on eight metrics, five judged and three deterministic, then calibrate the judge against human labels with Cohen’s kappa. When a slice regresses I run McNemar’s test before I call it real. 82 tests run offline with no API key.",
+    body: "I score every answer on eight metrics, five judged and three deterministic. When a slice regresses I run McNemar’s exact test before I call it real. The Cohen’s kappa function for judge-versus-human calibration is written and tested, but I have not labelled a set to run it against. 82 tests run offline with no API key.",
     proof: "TrustBench",
     href: "https://github.com/Umarfarook1/trustbench",
   },

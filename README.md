@@ -31,8 +31,9 @@ canvas previews · `03 / method` four stages, each linking its repo ·
 `04 / checkpoints` work history · `05 / working set` tools ·
 `06 / about` · `07 / contact`
 
-Every number on the page comes from a public repo README or from the resume, and
-each is checkable at its source. Nothing is rounded up for effect.
+Every number on the page traces to a file committed in the public repo the row
+names, and each is checkable at its source. Where a project has not produced a
+number yet, the page says so instead of borrowing one.
 
 ## Local development
 

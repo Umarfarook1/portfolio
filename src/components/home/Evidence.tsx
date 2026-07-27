@@ -22,7 +22,7 @@ const headline = [
   },
   {
     value: "2,680 ms",
-    caption: "mean extraction latency · Gemini Flash, full instruction block",
+    caption: "mean extraction latency · Gemini Flash, full instructions",
     source: "fig. 1.3 · Cargo Concierge ablation",
     align: "self-start sm:ml-[12%]",
     size: "text-[clamp(3.2rem,8vw,7rem)]",
@@ -32,7 +32,7 @@ const headline = [
 const secondary = [
   {
     value: "+33 pts",
-    caption: "from the instruction block alone · 15-item ablation",
+    caption: "accuracy the rules block is worth · 15-item ablation",
     source: "Cargo ablation",
   },
   { value: "82", caption: "offline tests, no API key needed", source: "TrustBench" },

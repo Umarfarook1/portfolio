@@ -51,7 +51,7 @@ const projects: {
   {
     title: "Cargo Concierge",
     type: "agentic product",
-    metric: "14/15 field extraction · +33 pts from the instruction block",
+    metric: "14/15 on 6 fields · 33 pts from the rules block",
     year: "may 2026",
     repo: "https://github.com/Umarfarook1/Cargo-Concierge",
     also: { label: "demo", href: "https://cargo-concierge.vercel.app" },
@@ -77,7 +77,7 @@ const projects: {
   {
     title: "RAG Document QA",
     type: "retrieval system · v0.0.1",
-    metric: "FinDER golden set · 5,703 triplets",
+    metric: "126 offline tests · retriever eval not yet run",
     year: "may 2026",
     repo: "https://github.com/Umarfarook1/rag-document-qa",
     mode: "cite",
@@ -107,13 +107,14 @@ const projects: {
     type: "browser game · playable",
     metric: "120 Hz fixed-step sim · zero sprite assets",
     year: "jul 2026",
-    repo: "https://tempo-vert-nine.vercel.app",
+    repo: "https://github.com/Umarfarook1/tempo",
+    also: { label: "play", href: "https://tempo-vert-nine.vercel.app" },
     mode: "arena",
   },
   {
     title: "IPL Franchise Analytics",
     type: "data analysis",
-    metric: "ROC-AUC 0.547 · ~0.6 data ceiling",
+    metric: "ROC-AUC 0.547 · best of 7 models",
     year: "jun 2026",
     repo: "https://github.com/Umarfarook1/ipl-data-analysis",
     also: {
