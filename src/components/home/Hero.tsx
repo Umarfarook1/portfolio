@@ -47,7 +47,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          Umarfarook Gurramkonda · applied AI/ML · HypeOn AI, Bengaluru
+          Umarfarook Gurramkonda · founding ML engineer · HypeOn AI, Bengaluru
         </motion.p>
 
         <TokenStream
@@ -64,8 +64,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: easeExpoOut, delay: 1.5 }}
         >
-          Multi-agent LLM systems, retrieval, and natural-language interfaces over data. Every
-          system ships with an eval harness, a cost cap, and numbers you can rerun yourself.
+          I build multi-agent LLM systems and natural-language interfaces over data. I ship each
+          one behind an eval harness and a hard cost cap, and the repos are public. Rerun any
+          number on this page.
         </motion.p>
 
         <motion.div
@@ -98,6 +99,11 @@ export function Hero() {
               LinkedIn ↗
             </Link>
           </div>
+          {/* Availability above the fold. Same claim as the Contact line and
+              the Footer label; edit all three together. */}
+          <p className="mono-label text-ember">
+            available now · 15-day notice · remote or contract · I work US, EU or AU hours
+          </p>
         </motion.div>
       </div>
 
@@ -116,7 +122,7 @@ export function Hero() {
         <p className="mono-label mt-2 text-lo">
           <span ref={(el) => void (stepRef.current = el)}>step 0000/1000</span>
         </p>
-        <p className="mono-label mt-1 text-lo/60">fig. 01 · self-portrait, denoised live</p>
+        <p className="mono-label mt-1 text-lo/60">fig. 0.1 · self-portrait, denoised live</p>
       </div>
     </section>
   );

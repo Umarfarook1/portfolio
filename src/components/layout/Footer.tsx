@@ -9,7 +9,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <p className="mono-label text-lo">© {new Date().getFullYear()} Umarfarook Gurramkonda</p>
           <Clock className="mono-label text-lo/60" />
-          <p className="mono-label text-lo/60">open to research + ML roles</p>
+          <p className="mono-label text-lo/60">open to applied ML roles · remote or contract</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -26,6 +26,14 @@ export function Footer() {
           </Link>
           <Link href="mailto:umarfarook0yt@gmail.com" className="navlink mono-label">
             Email
+          </Link>
+          <Link
+            href="/Umarfarook_Gurramkonda_ML_Engineer.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="navlink mono-label"
+          >
+            Resume
           </Link>
           <p className="mono-label text-lo/40">Fraunces · Schibsted · Fragment Mono</p>
         </div>

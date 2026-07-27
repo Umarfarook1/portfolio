@@ -24,8 +24,23 @@ export function Contact() {
             $ mail umarfarook0yt@gmail.com
           </Link>
           <p className="mt-6 max-w-md text-[15px] leading-7 text-lo">
-            I read my own inbox and reply fast. Research and ML engineering roles where evaluation
-            and reliability count.
+            I read my own inbox. I reply inside a day, most days.
+          </p>
+          {/* The four questions a foreign hiring manager asks, answered at the
+              conversion point. Mirrored in the Hero status line and the Footer. */}
+          <p className="mono-label mt-5 max-w-xl text-ember">
+            available now · 15-day notice · remote or contract · I work US, EU or AU hours from
+            Bengaluru
+          </p>
+          <p className="mono-label mt-5">
+            <Link
+              href="/Umarfarook_Gurramkonda_ML_Engineer.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="navlink"
+            >
+              Resume ↗
+            </Link>
           </p>
         </Rise>
       </div>

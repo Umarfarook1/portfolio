@@ -7,70 +7,114 @@ import { Rise } from "@/components/ui/Rise";
 import { TokenStream } from "@/components/ui/TokenStream";
 import { springFollow } from "@/lib/motion";
 
-type Mode = "tokens" | "table" | "heatmap" | "cite" | "scatter" | "flatline" | "boxes";
+type Mode = "tokens" | "table" | "heatmap" | "cite" | "scatter" | "flatline" | "boxes" | "arena";
 
+// Two production systems open the list. They carry no repo because the code is
+// the employer's; the row renders as plain type instead of a link, and no
+// production number is claimed that cannot be checked. Years are first-commit
+// dates from git, not release dates.
 const projects: {
   title: string;
   type: string;
   metric: string;
   year: string;
-  repo: string;
+  repo: string | null;
+  // Optional second door: the fastest path to actually running the thing.
+  also?: { label: string; href: string };
   mode: Mode;
 }[] = [
+  {
+    title: "Conversational Research Agent",
+    type: "production · closed source",
+    metric: "5 sub-agents · SSE streaming",
+    year: "2025 → now",
+    repo: null,
+    mode: "tokens",
+  },
+  {
+    title: "NL-to-SQL over BigQuery",
+    type: "production · closed source",
+    metric: "schema introspection · dry-run cost guardrails",
+    year: "2025 → now",
+    repo: null,
+    mode: "table",
+  },
   {
     title: "Cargo Concierge",
     type: "agentic product",
     metric: "80% strict extraction · ~$0.002/quote",
-    year: "2025",
+    year: "may 2026",
     repo: "https://github.com/Umarfarook1/Cargo-Concierge",
+    also: { label: "demo", href: "https://cargo-concierge.vercel.app" },
     mode: "tokens",
   },
   {
     title: "mcp-bigquery-evals",
     type: "open-source infra · PyPI",
     metric: "100 MB cost cap · 7 MCP tools",
-    year: "2025",
+    year: "may 2026",
     repo: "https://github.com/Umarfarook1/mcp-bigquery-evals",
+    also: { label: "pypi", href: "https://pypi.org/project/mcp-bigquery-evals/" },
     mode: "table",
   },
   {
     title: "TrustBench",
     type: "evaluation system",
-    metric: "6 trust dimensions · calibrated judges",
-    year: "2025",
+    metric: "82 offline tests · 8 scored metrics",
+    year: "jun 2026",
     repo: "https://github.com/Umarfarook1/trustbench",
     mode: "heatmap",
   },
   {
     title: "RAG Document QA",
-    type: "retrieval system",
-    metric: "Recall@K + MRR harness",
-    year: "2025",
+    type: "retrieval system · v0.0.1",
+    metric: "FinDER golden set · 5,703 triplets",
+    year: "may 2026",
     repo: "https://github.com/Umarfarook1/rag-document-qa",
     mode: "cite",
   },
   {
     title: "License Plate Privacy Blurring",
     type: "computer vision",
-    metric: "mAP@0.5 0.782 · ~4.1 ms",
-    year: "2026",
+    metric: "mAP@0.5 0.782 · recall 0.739",
+    year: "jun 2026",
     repo: "https://github.com/Umarfarook1/street-view-plate-blurring",
+    also: {
+      label: "notebook",
+      href: "https://nbviewer.org/github/Umarfarook1/street-view-plate-blurring/blob/main/notebook.ipynb",
+    },
     mode: "boxes",
+  },
+  {
+    title: "TEMPO",
+    type: "browser game · playable",
+    metric: "120 Hz fixed-step sim · zero sprite assets",
+    year: "jul 2026",
+    repo: "https://tempo-vert-nine.vercel.app",
+    mode: "arena",
   },
   {
     title: "IPL Franchise Analytics",
     type: "data analysis",
-    metric: "1,095 matches · 17 seasons",
-    year: "2026",
+    metric: "ROC-AUC 0.547 · ~0.6 data ceiling",
+    year: "jun 2026",
     repo: "https://github.com/Umarfarook1/ipl-data-analysis",
+    also: {
+      label: "notebook",
+      href: "https://nbviewer.org/github/Umarfarook1/ipl-data-analysis/blob/main/notebook.ipynb",
+    },
     mode: "scatter",
   },
   {
     title: "Shorts Performance Prediction",
     type: "ML analysis · negative result",
     metric: "p = 0.955 · no signal, published anyway",
-    year: "2026",
+    year: "jun 2026",
     repo: "https://github.com/Umarfarook1/youtube-shorts-performance-prediction",
+    also: {
+      label: "notebook",
+      href: "https://nbviewer.org/github/Umarfarook1/youtube-shorts-performance-prediction/blob/main/notebook.ipynb",
+    },
     mode: "flatline",
   },
 ];
@@ -121,11 +165,17 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
       }
     }
     ctx.fillStyle = C.lo;
-    ctx.fillText("streaming pipeline stages · live", 18, h - 14);
+    ctx.fillText("streaming pipeline stages", 18, h - 14);
   }
 
   if (mode === "table") {
-    const q = ["SELECT brand, SUM(spend)", "FROM ads.meta_daily", "WHERE country = 'SE'", "GROUP BY 1 ORDER BY 2 DESC"];
+    // A public dataset: nothing here implies an employer's internal schema.
+    const q = [
+      "SELECT name, SUM(number)",
+      "FROM bigquery-public-data.usa_names",
+      "WHERE state = 'CA'",
+      "GROUP BY 1 ORDER BY 2 DESC",
+    ];
     q.forEach((line, i) => {
       ctx.fillStyle = C.lo;
       ctx.fillText(line, 18, 28 + i * 16);
@@ -139,8 +189,7 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
     ctx.fillRect(18, 118, (w - 96) * fill, 8);
     ctx.fillStyle = C.crimson;
     ctx.fillRect(capX - 12, 112, 2, 20);
-    ctx.fillStyle = C.lo;
-    ctx.fillText(`dry-run ${(fill * 160).toFixed(0)} MB`, 18, 148);
+    // The cap is the only labelled figure here: it is the real one.
     ctx.fillStyle = C.crimson;
     ctx.fillText("cap 100 MB", capX - 12, 148);
     ctx.fillStyle = C.solar;
@@ -149,7 +198,8 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
 
   if (mode === "heatmap") {
     const cols = 12;
-    const rows = 6;
+    // 3 deterministic + 5 judged = the 8 scoring functions in the repo.
+    const rows = 8;
     const cw = (w - 36) / cols;
     const ch = (h - 60) / rows;
     for (let r = 0; r < rows; r++) {
@@ -166,7 +216,7 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
     }
     ctx.globalAlpha = 1;
     ctx.fillStyle = C.lo;
-    ctx.fillText("6 trust dimensions × ticket slices", 18, h - 14);
+    ctx.fillText("8 scored metrics × ticket slices", 18, h - 14);
   }
 
   if (mode === "cite") {
@@ -230,7 +280,7 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
     }
     ctx.stroke();
     ctx.fillStyle = C.lo;
-    ctx.fillText("macro-F1 0.334 vs 0.333 baseline", 18, h - 30);
+    ctx.fillText("macro-F1 0.334 · stratified dummy 0.343", 18, h - 30);
     ctx.fillStyle = C.solar;
     ctx.fillText("p = 0.955 · no signal · published anyway", 18, h - 14);
   }
@@ -243,25 +293,60 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
       ctx.fillStyle = C.dim;
       ctx.fillRect(x, y, 2, 2);
     }
+    // No confidence labels: there is no per-detection score to quote here.
     const boxes = [
-      [0.22, 0.55, 74, 26, 0.91],
-      [0.6, 0.34, 62, 22, 0.84],
+      [0.22, 0.55, 74, 26],
+      [0.6, 0.34, 62, 22],
     ] as const;
-    boxes.forEach(([fx, fy, bw, bh, conf], i) => {
+    boxes.forEach(([fx, fy, bw, bh], i) => {
       const x = ((fx * w + t * 14) % w) - 10;
       const y = fy * h + Math.sin(t + i * 2) * 4;
       ctx.strokeStyle = C.ember;
       ctx.strokeRect(x, y, bw, bh);
-      ctx.fillStyle = C.ember;
-      ctx.fillRect(x, y - 12, 44, 12);
-      ctx.fillStyle = C.bg;
-      ctx.fillText(`${conf}`, x + 4, y - 3);
       // The point: the plate gets blurred.
       ctx.fillStyle = C.dim;
       ctx.fillRect(x + 2, y + 2, bw - 4, bh - 4);
     });
     ctx.fillStyle = C.lo;
     ctx.fillText("detect → box-scaled blur · YOLOv8n", 18, h - 14);
+  }
+
+  if (mode === "arena") {
+    // The mechanic, drawn: the sim clock advances at the player's own speed,
+    // so the chasers only close while the player moves.
+    const speed = Math.sin(t * 0.9) * 0.5 + 0.5;
+    ctx.strokeStyle = C.dim;
+    for (let gx = 18; gx <= w - 18; gx += 38) {
+      ctx.beginPath();
+      ctx.moveTo(gx, 20);
+      ctx.lineTo(gx, h - 36);
+      ctx.stroke();
+    }
+    for (let gy = 20; gy <= h - 36; gy += 34) {
+      ctx.beginPath();
+      ctx.moveTo(18, gy);
+      ctx.lineTo(w - 18, gy);
+      ctx.stroke();
+    }
+    for (let i = 0; i < 5; i++) {
+      const phase = t * speed * 0.7 + i * 1.25;
+      const cx = 18 + (w - 36) * (0.5 + 0.4 * Math.cos(phase));
+      const cy = 24 + (h - 74) * (0.5 + 0.4 * Math.sin(phase * 1.3));
+      ctx.fillStyle = i % 2 ? C.crimson : C.ember;
+      ctx.globalAlpha = 0.9;
+      ctx.fillRect(cx - 4, cy - 4, 8, 8);
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = C.solar;
+    const px = 18 + (w - 36) * (0.5 + 0.32 * Math.sin(t * 0.9));
+    const py = h * 0.46 + 26 * Math.sin(t * 0.55);
+    ctx.fillRect(px - 5, py - 5, 10, 10);
+    ctx.fillStyle = C.dim;
+    ctx.fillRect(18, h - 30, w - 36, 4);
+    ctx.fillStyle = C.solar;
+    ctx.fillRect(18, h - 30, (w - 36) * speed, 4);
+    ctx.fillStyle = C.lo;
+    ctx.fillText("time scales with your speed · 120 Hz sim", 18, h - 14);
   }
 }
 
@@ -326,38 +411,72 @@ export function Work() {
       <div className="shell">
         <div className="flex items-baseline justify-between border-b border-line pb-5">
           <p className="mono-label text-lo">02 / work</p>
-          <p className="mono-label hidden text-lo/60 sm:block">hover a row · open the repo</p>
+          <p className="mono-label hidden text-lo/60 sm:block">hover a row · the linked ones open</p>
         </div>
 
         <TokenStream
-          text="Case studies with harnesses."
-          wonkWord="harnesses."
+          text="Eight repos and two I cannot show you."
+          wonkWord="cannot"
           className="display mt-10 max-w-3xl text-[clamp(2rem,4.5vw,3.6rem)] text-hi"
         />
 
         <ol className="mt-14">
-          {projects.map((p, i) => (
-            <Rise key={p.title} delay={Math.min(i * 0.04, 0.2)}>
-              <li className="border-b border-line first:border-t">
-                <Link
-                  href={p.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="row-heat group grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 py-6 text-hi sm:grid-cols-[3.5rem_1fr_auto] sm:py-7"
-                  onMouseEnter={() => setHovered(p.mode)}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  <span className="mono-label tabular text-lo/60">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="display text-[clamp(1.7rem,4vw,3.2rem)] leading-tight">{p.title}</span>
-                  <span className="col-start-2 flex flex-wrap items-baseline gap-x-5 sm:col-start-3 sm:text-right">
-                    <span className="mono-label text-lo">{p.type}</span>
-                    <span className="mono-label text-ember">{p.metric}</span>
-                    <span className="mono-label text-lo/60">{p.year} ↗</span>
-                  </span>
-                </Link>
-              </li>
-            </Rise>
-          ))}
+          {projects.map((p, i) => {
+            const rowClass =
+              "row-heat group grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 py-6 text-hi sm:grid-cols-[3.5rem_1fr_auto] sm:py-7";
+            const cells = (
+              <>
+                <span className="mono-label tabular text-lo/60">{String(i + 1).padStart(2, "0")}</span>
+                <span className="display text-[clamp(1.7rem,4vw,3.2rem)] leading-tight">{p.title}</span>
+                <span className="col-start-2 flex flex-wrap items-baseline gap-x-5 sm:col-start-3 sm:text-right">
+                  <span className="mono-label text-lo">{p.type}</span>
+                  <span className="mono-label text-ember">{p.metric}</span>
+                  {/* No arrow on the closed-source rows: there is nothing to open. */}
+                  <span className="mono-label text-lo/60">{p.repo ? `${p.year} ↗` : p.year}</span>
+                </span>
+              </>
+            );
+            return (
+              <Rise key={p.title} delay={Math.min(i * 0.04, 0.2)}>
+                <li className="border-b border-line first:border-t">
+                  {p.repo ? (
+                    <Link
+                      href={p.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={rowClass}
+                      onMouseEnter={() => setHovered(p.mode)}
+                      onMouseLeave={() => setHovered(null)}
+                    >
+                      {cells}
+                    </Link>
+                  ) : (
+                    <div
+                      className={rowClass}
+                      onMouseEnter={() => setHovered(p.mode)}
+                      onMouseLeave={() => setHovered(null)}
+                    >
+                      {cells}
+                    </div>
+                  )}
+                  {/* Second door, a sibling of the row anchor rather than nested
+                      inside it: the shortest path to running the thing. */}
+                  {p.also && (
+                    <p className="-mt-3 pb-5 pl-10 sm:pl-[4.5rem]">
+                      <Link
+                        href={p.also.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="navlink mono-label"
+                      >
+                        {p.also.label} ↗
+                      </Link>
+                    </p>
+                  )}
+                </li>
+              </Rise>
+            );
+          })}
         </ol>
 
         <Rise className="mt-10">

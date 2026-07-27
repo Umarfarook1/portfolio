@@ -25,15 +25,31 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://umarfarook-ai.vercel.app"),
   title: "Umarfarook Gurramkonda · Applied AI / ML Engineer",
   description:
-    "I build multi-agent LLM systems, retrieval, and NL-to-SQL interfaces, and ship them with eval harnesses, cost caps, and reproducible numbers.",
+    "I build multi-agent LLM systems and NL-to-SQL interfaces. I ship each one behind an eval harness and a 100 MB query cost cap.",
   authors: [{ name: "Umarfarook Gurramkonda" }],
-  keywords: ["AI Engineer", "ML Engineer", "LLM", "RAG", "AI Agents", "Evals", "NL-to-SQL", "Research Engineer"],
+  keywords: [
+    "AI Engineer",
+    "ML Engineer",
+    "LLM",
+    "RAG",
+    "AI Agents",
+    "Evals",
+    "NL-to-SQL",
+    "Remote",
+    "Contract",
+  ],
   openGraph: {
     title: "Umarfarook Gurramkonda · Applied AI / ML Engineer",
     description:
-      "Multi-agent systems, retrieval, and NL-to-SQL, shipped with eval harnesses and reproducible numbers.",
+      "Multi-agent LLM systems and NL-to-SQL over BigQuery, with the eval numbers published.",
     type: "website",
     url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Umarfarook Gurramkonda · Applied AI / ML Engineer",
+    description:
+      "Multi-agent LLM systems and NL-to-SQL over BigQuery, with the eval numbers published.",
   },
 };
 

@@ -10,25 +10,25 @@ import { springSettle } from "@/lib/motion";
 // nodes that ignite through the ramp as they enter the viewport.
 const checkpoints = [
   {
-    when: "2024 → now",
-    title: "ML Engineer",
+    when: "Oct 2025 → now",
+    title: "Founding ML Engineer",
     org: "HypeOn AI",
-    body: "Production AI for D2C trend intelligence: multi-stage orchestration, RAG, NL-to-SQL over BigQuery with cost guardrails, observable deployments on GCP.",
-    tags: "LangChain · FastAPI · BigQuery · Cloud Run · Gemini",
+    body: "I own the LLM orchestration service: routing, intent and composition sub-agents streaming over SSE, plus NL-to-SQL over BigQuery that dry-runs every query before it costs anything. Claude Haiku is primary, Gemini is the fallback.",
+    tags: "LangChain · FastAPI · BigQuery · Cloud Run · Claude · Gemini",
   },
   {
-    when: "2024 → 2025",
+    when: "Oct 2024 → Sep 2025",
     title: "Freelance ML / AI Engineer",
     org: "Independent",
-    body: "AI-assisted inventory system for a retail client: invoice extraction, demand forecasting, real-time stock alerts, operational dashboard.",
+    body: "I built an inventory system for a retail client. I extracted invoices with an LLM and forecast stock levels with scikit-learn, then put both behind one dashboard.",
     tags: "Python · scikit-learn · OpenAI · SQL",
   },
   {
-    when: "2024",
-    title: "Software Engineering Intern",
+    when: "Jun → Sep 2024",
+    title: "Backend Developer Intern",
     org: "Synclovis Systems",
-    body: "FastAPI and Flask services for an LLM healthcare assistant over 500+ clinical documents, LangChain + FAISS retrieval, AWS deployment, guardrails that cut hallucinations on out-of-scope queries.",
-    tags: "FastAPI · LangChain · FAISS · AWS",
+    body: "I built REST services in Node, Express and MySQL for an event-management app. I also added LangChain and FAISS retrieval to an internal LLM health assistant, with guardrails that refuse out-of-scope questions.",
+    tags: "Node · Express · MySQL · LangChain · FAISS",
   },
 ];
 
@@ -58,8 +58,8 @@ export function Checkpoints() {
         </div>
 
         <TokenStream
-          text="Checkpoints on the run."
-          wonkWord="run."
+          text="Three roles since 2024."
+          wonkWord="Three"
           className="display mt-10 max-w-3xl text-[clamp(2rem,4.5vw,3.6rem)] text-hi"
         />
 

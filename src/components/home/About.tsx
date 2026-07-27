@@ -8,7 +8,7 @@ export function About() {
       <div className="shell">
         <div className="flex items-baseline justify-between border-b border-boneink/15 pb-5">
           <p className="mono-label text-bonelo">06 / about</p>
-          <p className="mono-label hidden text-bonelo/70 sm:block">point of view</p>
+          <p className="mono-label hidden text-bonelo/70 sm:block">what I spend the day on</p>
         </div>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[11rem_1fr]">
@@ -23,7 +23,7 @@ export function About() {
                 className="h-44 w-44 rounded-[2px] object-cover contrast-105"
               />
               <figcaption className="mono-label mt-3 text-bonelo/70">
-                fig. 06 · the source image
+                fig. 6.1 · the source image
               </figcaption>
             </figure>
           </Rise>
@@ -36,10 +36,10 @@ export function About() {
             />
             <Rise delay={0.25}>
               <p className="mt-8 max-w-2xl text-[17px] leading-8 text-bonelo">
-                Deciding when a model earns its place, shaping what goes in and out, and checking
-                the result still holds under real traffic. Evaluation, cost discipline, failure
-                handling: the unglamorous work that makes a system dependable. I want research and
-                ML engineering roles where that judgment counts as much as model choice.
+                I decide when a model earns its place, then check the output still holds under
+                real traffic. Most of the work is evaluation and cost discipline. Neither is fun.
+                I want applied ML and LLM engineering roles at early-stage companies, where that
+                judgment counts as much as model choice.
               </p>
               <p className="display mt-10 text-2xl text-boneink">Umarfarook.</p>
             </Rise>

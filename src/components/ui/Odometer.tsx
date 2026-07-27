@@ -42,10 +42,15 @@ export function Odometer({ value, className }: { value: string; className?: stri
 
   return (
     <span ref={ref} className={`tabular ${className ?? ""}`}>
-      {prefix}
-      {/* Snap to the exact figure once settled so the claim is precise. */}
-      {done ? <span>{match![0]}</span> : <motion.span>{text}</motion.span>}
-      {suffix}
+      {/* The literal figure ships in the DOM so text extractors, ATS parsers
+          and screen readers read the claim, never the animation's zero. */}
+      <span className="sr-only">{value}</span>
+      <span aria-hidden="true">
+        {prefix}
+        {/* Snap to the exact figure once settled so the claim is precise. */}
+        {done ? <span>{match![0]}</span> : <motion.span>{text}</motion.span>}
+        {suffix}
+      </span>
     </span>
   );
 }
