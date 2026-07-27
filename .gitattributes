@@ -1,0 +1,8 @@
+* text=auto
+
+# Git classified the resume PDF as text and warned it would rewrite the line
+# endings on the next checkout, which corrupts the file on Windows clones.
+*.pdf binary
+*.jpg binary
+*.png binary
+*.ico binary
