@@ -7,7 +7,16 @@ import { Rise } from "@/components/ui/Rise";
 import { TokenStream } from "@/components/ui/TokenStream";
 import { springFollow } from "@/lib/motion";
 
-type Mode = "tokens" | "table" | "heatmap" | "cite" | "scatter" | "flatline" | "boxes" | "arena";
+type Mode =
+  | "tokens"
+  | "table"
+  | "heatmap"
+  | "cite"
+  | "scatter"
+  | "flatline"
+  | "boxes"
+  | "arena"
+  | "denoise";
 
 // Two production systems open the list. They carry no repo because the code is
 // the employer's; the row renders as plain type instead of a link, and no
@@ -72,6 +81,14 @@ const projects: {
     year: "may 2026",
     repo: "https://github.com/Umarfarook1/rag-document-qa",
     mode: "cite",
+  },
+  {
+    title: "Tiny-diffusion",
+    type: "generative model · from scratch",
+    metric: "111 offline tests · smoke FID 338.7, samples not yet digits",
+    year: "jul 2026",
+    repo: "https://github.com/Umarfarook1/Tiny-diffusion",
+    mode: "denoise",
   },
   {
     title: "License Plate Privacy Blurring",
@@ -311,6 +328,58 @@ function drawFrame(ctx: CanvasRenderingContext2D, mode: Mode, t: number, w: numb
     ctx.fillText("detect → box-scaled blur · YOLOv8n", 18, h - 14);
   }
 
+  if (mode === "denoise") {
+    // The reverse process on a 4x8 tile grid: each tile starts as noise and
+    // resolves as the sweep passes it. It resolves into a BLOB, never a digit,
+    // because a 1,500-step CPU run does not produce digits and drawing one
+    // here would be a screenshot of a result that does not exist.
+    const cols = 8;
+    const rows = 4;
+    const pad = 18;
+    const cw = (w - pad * 2) / cols;
+    const ch = (h - 54) / rows;
+    const sweep = (t * 0.32) % 1.55;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const idx = r * cols + c;
+        const x0 = pad + c * cw;
+        const y0 = 20 + r * ch;
+        // Tiles resolve left to right with a slight per-row stagger.
+        const lead = (c / cols) * 0.55 + rnd(idx) * 0.12;
+        const done = Math.max(0, Math.min(1, (sweep - lead) * 2.2));
+
+        const cell = Math.max(2, Math.floor(cw / 9));
+        const nx = Math.floor(cw / cell);
+        const ny = Math.floor(ch / cell);
+        // Each tile resolves to its OWN blob (offset centre, own radius) and
+        // keeps grain, because identical clean shapes would read as a UI
+        // glitch and the real samples are noisy.
+        const ox = (rnd(idx * 3) - 0.5) * 0.34;
+        const oy = (rnd(idx * 5) - 0.5) * 0.34;
+        const rad = 1.7 + rnd(idx * 7) * 1.5;
+        for (let py = 0; py < ny; py++) {
+          for (let px = 0; px < nx; px++) {
+            const n = rnd(idx * 977 + py * 31 + px);
+            const dx = px / nx - 0.5 - ox;
+            const dy = py / ny - 0.5 - oy;
+            const blob = 1 - Math.min(1, Math.hypot(dx, dy) * rad);
+            const v = n * (1 - done) + (blob * 0.82 + n * 0.32) * done;
+            if (v < 0.42) continue;
+            ctx.fillStyle = v > 0.82 ? C.solar : v > 0.6 ? C.ember : C.dim;
+            ctx.globalAlpha = Math.min(1, 0.35 + 0.5 * v);
+            ctx.fillRect(x0 + px * cell, y0 + py * cell, cell - 0.5, cell - 0.5);
+          }
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = C.lo;
+    ctx.fillText("reverse process · DDIM 50 steps · CFG", pad, h - 30);
+    ctx.fillStyle = C.solar;
+    ctx.fillText("1,500 steps on CPU · blobs, not digits", pad, h - 14);
+  }
+
   if (mode === "arena") {
     // The mechanic, drawn: the sim clock advances at the player's own speed,
     // so the chasers only close while the player moves.
@@ -415,7 +484,7 @@ export function Work() {
         </div>
 
         <TokenStream
-          text="Eight repos and two I cannot show you."
+          text="Nine repos and two I cannot show you."
           wonkWord="cannot"
           className="display mt-10 max-w-3xl text-[clamp(2rem,4.5vw,3.6rem)] text-hi"
         />
