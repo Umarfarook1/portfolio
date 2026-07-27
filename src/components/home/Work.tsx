@@ -42,7 +42,7 @@ const projects: {
   {
     title: "Cargo Concierge",
     type: "agentic product",
-    metric: "80% strict extraction · ~$0.002/quote",
+    metric: "14/15 field extraction · +33 pts from the instruction block",
     year: "may 2026",
     repo: "https://github.com/Umarfarook1/Cargo-Concierge",
     also: { label: "demo", href: "https://cargo-concierge.vercel.app" },

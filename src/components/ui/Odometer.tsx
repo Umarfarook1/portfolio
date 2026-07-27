@@ -5,7 +5,7 @@ import { animate, motion, useInView, useMotionValue, useTransform } from "framer
 
 // Metric digits roll up, overshoot, and settle like SGD converging — the one
 // visible overshoot in the system, reserved for stats. Parses values like
-// "80%", "+33 pts", "~$0.002", "0.782" and animates the numeric part.
+// "14/15", "+33 pts", "2,680 ms", "0.782" and animates the numeric part.
 export function Odometer({ value, className }: { value: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });

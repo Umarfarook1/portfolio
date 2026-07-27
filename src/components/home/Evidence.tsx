@@ -7,9 +7,9 @@ import { TokenStream } from "@/components/ui/TokenStream";
 // uniform stat-banner row.
 const headline = [
   {
-    value: "80%",
-    caption: "strict 7-field extraction from raw quote emails · n = 30",
-    source: "fig. 1.1 · Cargo Concierge",
+    value: "14/15",
+    caption: "exact-match field extraction from raw quote emails · 6 fields, n = 15",
+    source: "fig. 1.1 · Cargo Concierge ablation",
     align: "self-start",
     size: "text-[clamp(4.8rem,13vw,11.5rem)]",
   },
@@ -21,9 +21,9 @@ const headline = [
     size: "text-[clamp(3.8rem,10vw,8.5rem)]",
   },
   {
-    value: "~$0.002",
-    caption: "cost per agent quote, end to end",
-    source: "fig. 1.3 · Cargo Concierge",
+    value: "2,680 ms",
+    caption: "mean extraction latency · Gemini Flash, full instruction block",
+    source: "fig. 1.3 · Cargo Concierge ablation",
     align: "self-start sm:ml-[12%]",
     size: "text-[clamp(3.2rem,8vw,7rem)]",
   },
