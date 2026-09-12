@@ -2,21 +2,25 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Clock } from "@/components/ui/Clock";
 
+// Root-relative so these still resolve from a route other than "/" (e.g.
+// /services): Next.js Link navigates home first, then scrolls to the hash.
 const navItems = [
-  { name: "evidence", href: "#evidence", id: "evidence" },
-  { name: "work", href: "#work", id: "work" },
-  { name: "method", href: "#method", id: "method" },
-  { name: "checkpoints", href: "#experience", id: "experience" },
+  { name: "evidence", href: "/#evidence", id: "evidence" },
+  { name: "work", href: "/#work", id: "work" },
+  { name: "method", href: "/#method", id: "method" },
+  { name: "checkpoints", href: "/#experience", id: "experience" },
   { name: "services", href: "/services", id: "services" },
 ];
 
 // Minimal mono chrome over the void; the right edge carries a thin ember
 // progress rule — the page as a run, scrubbed 1:1.
 export function Navbar() {
+  const pathname = usePathname();
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -56,14 +60,18 @@ export function Navbar() {
         )}
       >
         <nav aria-label="Primary" className="shell flex h-14 items-center justify-between gap-4">
-          <Link href="#main" className="mono-label text-hi" aria-label="Back to top">
+          <Link href="/" className="mono-label text-hi" aria-label="Home">
             umarfarook.g
           </Link>
 
           <ul className="hidden items-center gap-7 md:flex">
             {navItems.map((item) => (
               <li key={item.id}>
-                <Link href={item.href} className="navlink mono-label" data-active={active === item.id}>
+                <Link
+                  href={item.href}
+                  className="navlink mono-label"
+                  data-active={item.id === "services" ? pathname === "/services" : active === item.id}
+                >
                   {item.name}
                 </Link>
               </li>
@@ -72,7 +80,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-6">
             <Clock className="mono-label hidden text-lo sm:inline" />
-            <Link href="#contact" className="mono-label text-solar transition-opacity hover:opacity-80">
+            <Link href="/#contact" className="mono-label text-solar transition-opacity hover:opacity-80">
               contact ↗
             </Link>
           </div>

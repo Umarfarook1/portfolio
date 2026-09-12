@@ -40,7 +40,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section id="packages" aria-labelledby="packages-heading" className="relative py-16 sm:py-20">
+      <section id="packages" aria-labelledby="packages-heading" className="relative py-28 sm:py-36">
         <div className="shell">
           <div className="border-b border-line pb-5">
             <h2 id="packages-heading" className="mono-label text-lo">
@@ -79,7 +79,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section id="how" aria-labelledby="how-heading" className="relative py-16 sm:py-20">
+      <section id="how" aria-labelledby="how-heading" className="relative py-28 sm:py-36">
         <div className="shell">
           <div className="border-b border-line pb-5">
             <h2 id="how-heading" className="mono-label text-lo">
@@ -99,7 +99,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section id="faq" aria-labelledby="faq-heading" className="relative py-16 sm:py-20">
+      <section id="faq" aria-labelledby="faq-heading" className="relative py-28 sm:py-36">
         <div className="shell">
           <div className="border-b border-line pb-5">
             <h2 id="faq-heading" className="mono-label text-lo">
@@ -118,7 +118,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section id="start" aria-labelledby="start-heading" className="relative py-24 sm:py-32">
+      <section id="start" aria-labelledby="start-heading" className="relative py-32 sm:py-44">
         <div className="shell">
           <h2 id="start-heading" className="mono-label text-lo">
             04 / start
