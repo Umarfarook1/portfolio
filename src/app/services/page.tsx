@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     type: "website",
     url: "/services",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services · Umarfarook Gurramkonda",
+    description:
+      "Fixed-price LLM reliability audits, eval harness sprints and feature builds for early-stage teams.",
+  },
 };
 
 // Sibling of Method and Contact: same shell, same mono section captions, same
@@ -65,9 +71,7 @@ export default function ServicesPage() {
                   </ul>
                   <Link
                     href={s.bookingUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="runcmd caret mt-6 inline-block rounded-[2px] px-4 py-3 text-center text-sm"
+                    className="runcmd mt-6 inline-block rounded-[2px] px-4 py-3 text-center text-sm"
                   >
                     {p.cta}
                   </Link>
@@ -76,6 +80,9 @@ export default function ServicesPage() {
             ))}
           </div>
           <p className="mt-6 text-[15px] text-lo">{s.after}</p>
+          <Link href="/#evidence" className="mt-2 inline-block text-sm text-lo underline-offset-4 hover:underline">
+            {s.proofLink}
+          </Link>
         </div>
       </section>
 
@@ -87,15 +94,17 @@ export default function ServicesPage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-10 md:grid-cols-3">
+          <ol className="mt-10 grid gap-10 md:grid-cols-3">
             {s.steps.map((st, i) => (
-              <Rise key={st.n} delay={i * 0.06}>
-                <p className="mono-label text-lo">step {st.n}</p>
-                <h3 className="mt-2 text-xl text-hi">{st.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-lo">{st.body}</p>
-              </Rise>
+              <li key={st.n}>
+                <Rise delay={i * 0.06}>
+                  <p className="mono-label text-lo">step {st.n}</p>
+                  <h3 className="mt-2 text-xl text-hi">{st.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-lo">{st.body}</p>
+                </Rise>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
@@ -126,8 +135,6 @@ export default function ServicesPage() {
           <Rise delay={0.1} className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-4">
             <Link
               href={s.bookingUrl}
-              target="_blank"
-              rel="noreferrer"
               className="runcmd caret inline-block rounded-[2px] px-5 py-3.5 text-sm"
             >
               book 20 minutes

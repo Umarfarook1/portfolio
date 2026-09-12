@@ -6,7 +6,8 @@ export const services = {
   lede:
     "Agents, RAG, NL-to-SQL, with eval harnesses and cost guardrails, so the AI feature you shipped stops surprising you. For seed to Series A teams with no ML hire yet, and for agencies that need white-label LLM capacity.",
   availability: "available now · part-time immediately · full-time on 15 days notice · EU and US overlap hours",
-  bookingUrl: "https://cal.com/umarfarook/intro",
+  // Swap back to the Cal.com URL once the account exists; the labels stay accurate either way.
+  bookingUrl: "mailto:umarfarook0yt@gmail.com?subject=Intro%20call%20request",
   email: "umarfarook0yt@gmail.com",
   packages: [
     {
@@ -53,6 +54,7 @@ export const services = {
     },
   ],
   after: "After a package: $35 per hour, or a 40-hour monthly retainer at $1,300.",
+  proofLink: "the numbers behind this, all rerunnable",
   steps: [
     { n: "1", title: "20-minute call", body: "You show me the feature. I ask where it fails and what it costs." },
     { n: "2", title: "Written scope in 24 hours", body: "One page: what I will deliver, when, for how much. You reply yes or no." },

@@ -26,6 +26,10 @@ export function Navbar() {
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
+    // Clear the stale active section from the previous route before the
+    // observer below rebinds to the new page's sections.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setActive("");
     const ids = [...navItems.map((i) => i.id), "about", "stack", "contact"];
     const sections = ids
       .map((id) => document.getElementById(id))
@@ -49,7 +53,7 @@ export function Navbar() {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <>
