@@ -11,6 +11,7 @@ const navItems = [
   { name: "work", href: "#work", id: "work" },
   { name: "method", href: "#method", id: "method" },
   { name: "checkpoints", href: "#experience", id: "experience" },
+  { name: "services", href: "/services", id: "services" },
 ];
 
 // Minimal mono chrome over the void; the right edge carries a thin ember

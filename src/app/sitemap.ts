@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-// One page, one entry. The resume is a static asset, not a route.
+// Two routes, two entries. The resume is a static asset, not a route.
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -8,6 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: "https://umarfarook-ai.vercel.app/services",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 }

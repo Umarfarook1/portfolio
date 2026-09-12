@@ -13,6 +13,9 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <Link href="/services" className="navlink mono-label">
+            Services
+          </Link>
           <Link href="https://github.com/Umarfarook1" target="_blank" rel="noreferrer" className="navlink mono-label">
             GitHub
           </Link>

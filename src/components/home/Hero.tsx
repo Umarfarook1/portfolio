@@ -81,6 +81,9 @@ export function Hero() {
           >
             $ mail umarfarook0yt@gmail.com
           </Link>
+          <Link href="/services" className="text-sm text-lo underline-offset-4 hover:underline">
+            hire me for a project
+          </Link>
           <div className="flex items-center gap-6">
             <Link
               href="https://github.com/Umarfarook1"
