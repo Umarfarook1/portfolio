@@ -10,18 +10,11 @@ import { springSettle } from "@/lib/motion";
 // nodes that ignite through the ramp as they enter the viewport.
 const checkpoints = [
   {
-    when: "Oct 2025 → now",
+    when: "Oct 2024 → now",
     title: "Founding ML Engineer",
     org: "HypeOn AI",
     body: "I own the LLM orchestration service: routing, intent and composition sub-agents streaming over SSE, plus NL-to-SQL over BigQuery that dry-runs every query before it costs anything. Claude Haiku is primary, Gemini is the fallback.",
     tags: "LangChain · FastAPI · BigQuery · Cloud Run · Claude · Gemini",
-  },
-  {
-    when: "Oct 2024 → Sep 2025",
-    title: "Freelance ML / AI Engineer",
-    org: "Independent",
-    body: "I built an inventory system for a retail client. I extracted invoices with an LLM and forecast stock levels with scikit-learn, then put both behind one dashboard.",
-    tags: "Python · scikit-learn · OpenAI · SQL",
   },
   {
     when: "Jun → Sep 2024",
