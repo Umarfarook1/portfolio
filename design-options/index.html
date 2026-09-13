@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio design options</title>
+<style>
+  :root { --ink: #1a1a1a; --paper: #f4f2ee; --rule: #d9d5cc; --accent: #c8401f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.5 system-ui, sans-serif; padding: 24px 16px 64px; }
+  h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  p.sub { margin: 0 0 24px; color: #5a564f; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .toolbar button { border: 1px solid var(--ink); background: transparent; color: var(--ink); padding: 8px 14px; border-radius: 999px; cursor: pointer; font: inherit; }
+  .toolbar button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+  .opt { border: 1px solid var(--rule); background: #fff; }
+  .opt header { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+  .opt header strong { font-size: 16px; }
+  .opt header a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  .opt header a:hover, .opt header a:focus-visible { text-decoration: underline; }
+  .frame { position: relative; width: 100%; overflow: hidden; background: #eee; }
+  .frame iframe { border: 0; display: block; transform-origin: 0 0; }
+  /* desktop preview: render 1440 wide, scale to fit the column */
+  .frame[data-mode="desktop"] { aspect-ratio: 1440 / 1000; }
+  .frame[data-mode="desktop"] iframe { width: 1440px; height: 1000px; }
+  .frame[data-mode="phone"] { aspect-ratio: 400 / 820; max-width: 400px; margin: 0 auto; }
+  .frame[data-mode="phone"] iframe { width: 400px; height: 820px; }
+</style>
+</head>
+<body>
+  <h1>Portfolio design options</h1>
+  <p class="sub">Four directions, same dummy content, each with its own design DNA at the bottom of its page. Open any option full size, or switch the previews to phone width.</p>
+  <div class="toolbar" role="group" aria-label="Preview width">
+    <button type="button" data-mode="desktop" aria-pressed="true">Desktop 1440</button>
+    <button type="button" data-mode="phone" aria-pressed="false">Phone 400</button>
+  </div>
+  <div class="grid">
+    <section class="opt"><header><strong>A · Swiss instrument panel</strong><a href="option-a.html" target="_blank" rel="noopener">Open full size</a></header><div class="frame" data-mode="desktop"><iframe src="option-a.html" title="Option A" loading="lazy"></iframe></div></section>
+    <section class="opt"><header><strong>B · Editorial field journal</strong><a href="option-b.html" target="_blank" rel="noopener">Open full size</a></header><div class="frame" data-mode="desktop"><iframe src="option-b.html" title="Option B" loading="lazy"></iframe></div></section>
+    <section class="opt"><header><strong>C · Dark lab bench</strong><a href="option-c.html" target="_blank" rel="noopener">Open full size</a></header><div class="frame" data-mode="desktop"><iframe src="option-c.html" title="Option C" loading="lazy"></iframe></div></section>
+    <section class="opt"><header><strong>D · Poster scale gallery</strong><a href="option-d.html" target="_blank" rel="noopener">Open full size</a></header><div class="frame" data-mode="desktop"><iframe src="option-d.html" title="Option D" loading="lazy"></iframe></div></section>
+  </div>
+<script>
+  function fit() {
+    document.querySelectorAll('.frame').forEach(function (f) {
+      var mode = f.dataset.mode, w = mode === 'phone' ? 400 : 1440;
+      var s = f.clientWidth / w;
+      f.querySelector('iframe').style.transform = 'scale(' + s + ')';
+    });
+  }
+  document.querySelectorAll('.toolbar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.toolbar button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      document.querySelectorAll('.frame').forEach(function (f) { f.dataset.mode = b.dataset.mode; });
+      fit();
+    });
+  });
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+</script>
+</body>
+</html>

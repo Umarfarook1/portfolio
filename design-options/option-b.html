@@ -1,0 +1,1726 @@
+<!--
+  ============================================================================
+  CONCEPT RECORD - OPTION B - "THE FIELD JOURNAL"
+  ============================================================================
+
+  BRAND ADJECTIVES (ranked)
+    1. exacting   -> takes structure: a ledger, a rate card, sourced figures
+    2. literate   -> takes the accents: chapters, folios, plates, a colophon
+    3. plainspoken-> demoted to one parameter: no ornament that claims a function
+
+  AESTHETIC COMMITTED TO
+    Editorial / magazine (frontend-design-deslop, aesthetics-library.md),
+    compiled through style vector V7 "Editorial intellectual"
+    (creative-mastery 05-generation/04-style-vectors.md). V6 "Tech precise" is
+    demoted to a single parameter: tabular figures and hairline rules.
+    Named theme: THE FIELD JOURNAL. The page is the annual report of one
+    engineer who measures things. Chapters, running heads, marginalia,
+    plates, a ledger with dotted leaders, a rate card, a colophon.
+
+  ONE SENTENCE
+    The page says "this engineer publishes her own numbers" by setting a
+    portfolio as an annual report with every figure sourced in the margin.
+
+  SIGNATURE MOVE
+    THE MARGINALIA COLUMN. A fixed 188px outer column separated from the body
+    by ONE continuous hairline spine that runs the whole length of the page,
+    section joined to section. Every chapter carries, in that column, its
+    number set large in Fraunces oxblood, its source notes in tracked caps,
+    and exactly one italic aside. Visible in the first screen (Chapter 00,
+    Colophon) and repeated nine times below with no variation.
+
+  TYPE PAIRING, AND WHY
+    Display and figures: FRAUNCES (variable: opsz 9-144, wght, SOFT, WONK).
+    UI labels, marginalia and body: SOURCE SANS 3 (variable, true italics).
+    Fraunces is the only serif on Google Fonts with real optical sizes AND a
+    SOFT axis, so one family covers a severe masthead (opsz 120, SOFT 0) and a
+    warm pull quote (opsz 48, SOFT 30) without a third voice. Source Sans 3 is
+    a quiet humanist with oldstyle and tabular figure sets, so running text
+    takes oldstyle figures and every column of numbers takes tabular.
+    WONK is pinned to 0 on every rule: the Fraunces file ships WONK 1 and
+    wght 900 as fvar defaults, and font-variation-settings drops any axis you
+    fail to list, so all four axes are written out every time.
+    Rejected: Newsreader (authority, but no SOFT axis), Instrument Serif
+    (a 2026 convergence tell), Playfair Display (banned), Inter and Roboto
+    (banned). Two families, no more (P9).
+
+  PALETTE (roles; ratios measured against the paper field)
+    #F7F2E7  paper         dominant warm cream field, ~60% of surface
+    #EFE7D7  paper-deep    recessed zones: rate card, ledger panels, specimen
+    #E7DDC8  paper-edge    zebra rows, disabled fills, secondary hover
+    #1C1815  ink           warm near-black, all body and display   15.79:1
+    #55493D  ink-soft      sources, captions, secondary text        7.82:1
+    #D6CBB6  rule          interior hairlines and dotted leaders
+    #B3A48A  rule-strong   section rules, input borders, table lines
+    #6E2028  oxblood       THE ONE ACCENT, 9.90:1 on paper: chapter numerals,
+                           primary fill, folio marks, link underlines, the
+                           single drop cap, the pull-quote rule, focus ring
+    #521219  oxblood-deep  primary button hover and pressed        12.89:1
+    Neutrals are derived from the paper hue (warm, H around 70), never grey.
+    Accent surface coverage is roughly 4%, held to the 10 of 60-30-10 (P13).
+
+  LAYOUT GRID
+    Two-column asymmetric spread. Page 1180px, side gutter clamp(20,4vw,56).
+    Margin column 188px | 1px spine | 40px | body column ~840px.
+    Prose measure capped at 34em (about 68 characters), so roughly 220px of
+    the body column stays open as field: the asymmetry is the white space,
+    not a decoration. Below 900px the spread collapses to one column and the
+    marginalia becomes a horizontal meta strip ruled top and bottom.
+    Spacing base 8px, scale 4/8/12/16/24/32/48/64/96/128/160.
+    Type scale: perfect fourth, ratio 1.333, base 18px, six steps.
+    Radius: 0 on structure, 2px on form fields only. No shadow anywhere.
+
+  DELIBERATELY REFUSED
+    Cards with shadows. Gradients of any kind. Icon sets. A centred hero.
+    Pill chips. Glass and blur. Scroll-triggered reveals, parallax, counters,
+    typewriters. Bounce easing. Radius above 2px. A second accent hue.
+    More than one drop cap and one pull quote on the whole page, because the
+    V7 parody tell is apparatus outnumbering argument.
+
+  DELIBERATE BREAK (P20, exactly one)
+    A cream field under a high-contrast serif display is named in
+    07-artifact-classes/ui-screens.md 7.1 as the 2026 AI median. It is here
+    because the brief specified it, and 7.1 rule 3 rules a specified axis a
+    decision rather than a sample. The invention is therefore spent on the
+    axes the brief left free: the marginalia column, the dotted-leader
+    ledger, the engraved plates, the rate card and the running heads.
+    Cost: at 5% downsample the page could read as generic cream editorial;
+    the guard is the spine plus the oxblood numeral stack, which survives the
+    squint as a hard vertical rhythm no card grid produces.
+
+  NEAREST FAILURE MODE, AND THE GUARD
+    F5 (whitespace distributed evenly) and the V7 parody tell. Guard: spacing
+    is bimodal by design (8-16px inside a group, 96-160px between chapters),
+    and the page carries exactly one drop cap and one pull quote.
+  ============================================================================
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ada Morgan, AI/ML engineer, Lisbon</title>
+<meta name="description" content="Ada Morgan builds multi-agent LLM systems and the apps around them. Every feature ships behind an eval harness and a hard cost cap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================================
+   1. TOKENS
+   =========================================================================== */
+:root{
+  /* colour */
+  --paper:#F7F2E7;
+  --paper-deep:#EFE7D7;
+  --paper-edge:#E7DDC8;
+  --ink:#1C1815;
+  --ink-soft:#55493D;
+  --rule:#D6CBB6;
+  --rule-strong:#B3A48A;
+  --ox:#6E2028;
+  --ox-deep:#521219;
+
+  /* families */
+  --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3","Segoe UI",Candara,Optima,Helvetica,Arial,sans-serif;
+
+  /* type scale: perfect fourth, 1.333, base 18px */
+  --t-folio:0.875rem;                       /* 14.0  labels, sources, marginalia */
+  --t-text:1.125rem;                        /* 18.0  body */
+  --t-lede:1.5rem;                          /* 24.0  ledes, pull quote on phones */
+  --t-figure:2rem;                          /* 32.0  ledger figures, pull quote */
+  --t-chapter:2.664rem;                     /* 42.6  chapter titles, numerals, prices */
+  --t-display:clamp(3.5rem,9.5vw,5.5rem);   /* 56-88 the masthead */
+
+  /* spacing, base 8 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --s10:128px; --s11:160px;
+
+  /* radius */
+  --r0:0px; --r1:2px;
+
+  /* grid */
+  --page:1180px;
+  --marg:188px;
+  --spine:40px;
+  --gut:clamp(20px,4vw,56px);
+
+  /* motion */
+  --dur:180ms;
+  --ease:cubic-bezier(.2,.6,.3,1);
+}
+
+/* ===========================================================================
+   2. BASE
+   =========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:var(--t-text);
+  line-height:1.62;
+  font-weight:400;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+img,svg{max-width:100%}
+table{border-collapse:collapse;width:100%}
+:focus-visible{outline:2px solid var(--ox);outline-offset:3px}
+::selection{background:var(--ox);color:var(--paper)}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--ink);color:var(--paper);padding:var(--s3) var(--s5);
+  font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+}
+.skip:focus{left:var(--s4);top:var(--s4)}
+
+/* ---- type utilities ---- */
+.folio{
+  font-family:var(--sans);
+  font-size:var(--t-folio);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:600;
+  line-height:1.35;
+}
+.display{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 120,"wght" 560,"SOFT" 0,"WONK" 0;
+  font-weight:560;
+  font-size:var(--t-display);
+  line-height:.94;
+  letter-spacing:-.022em;
+  overflow-wrap:break-word;
+}
+.chapter-title{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 60,"wght" 620,"SOFT" 10,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-chapter);
+  line-height:1.06;
+  letter-spacing:-.014em;
+}
+.sub-title{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 36,"wght" 620,"SOFT" 12,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-figure);
+  line-height:1.12;
+  letter-spacing:-.01em;
+}
+.prose{max-width:34em;font-variant-numeric:oldstyle-nums proportional-nums}
+.lede{
+  font-size:var(--t-lede);
+  line-height:1.48;
+  max-width:30em;
+  font-variant-numeric:oldstyle-nums proportional-nums;
+}
+.tnum{font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+.soft{color:var(--ink-soft)}
+
+/* editorial double rule: thick ink over a thin oxblood hairline */
+.rule2{border-top:3px solid var(--ink);margin-block:var(--s5)}
+.rule2::after{content:"";display:block;margin-top:3px;border-top:1px solid var(--ox)}
+
+/* ===========================================================================
+   3. MASTHEAD AND NAV
+   =========================================================================== */
+.masthead{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);
+  border-bottom:1px solid var(--rule-strong);
+}
+.masthead-in{
+  max-width:var(--page);margin-inline:auto;padding-inline:var(--gut);
+  display:flex;align-items:center;gap:var(--s5);
+  min-height:72px;
+}
+.wordmark{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 30,"wght" 620,"SOFT" 6,"WONK" 0;
+  font-weight:620;
+  font-size:1.3125rem;
+  letter-spacing:-.01em;
+  text-decoration:none;
+  white-space:nowrap;
+  padding-block:var(--s2);
+}
+.wordmark .dot{color:var(--ox)}
+.navlinks{display:flex;align-items:center;gap:var(--s5);margin-left:auto}
+.navlinks a{
+  font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  text-decoration:none;color:var(--ink-soft);
+  padding:var(--s4) 0;
+  box-shadow:inset 0 -1px 0 0 transparent;
+  transition:color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.navlinks a:hover{color:var(--ink);box-shadow:inset 0 -1px 0 0 var(--ox)}
+.navlinks a:active{color:var(--ox)}
+.navcta{display:flex;align-items:center;gap:var(--s3);margin-left:var(--s5)}
+.navtoggle{display:none}
+
+@media (max-width:1080px){
+  .navlinks{gap:var(--s4)}
+  .navcta{margin-left:var(--s4)}
+}
+@media (max-width:860px){
+  .navlinks,.navcta{display:none}
+  .navtoggle{
+    display:inline-flex;align-items:center;gap:var(--s2);margin-left:auto;
+    min-height:44px;padding:0 var(--s4);
+    background:transparent;color:var(--ink);
+    border:1px solid var(--ink);border-radius:var(--r0);
+    font-family:var(--sans);font-size:var(--t-folio);font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    transition:background-color var(--dur) var(--ease);
+  }
+  .navtoggle:hover{background:var(--paper-edge)}
+  .navtoggle:active{background:var(--rule)}
+}
+.navpanel{
+  border-top:1px solid var(--rule);
+  background:var(--paper-deep);
+  padding:var(--s4) var(--gut) var(--s6);
+}
+.navpanel ul{display:flex;flex-direction:column}
+.navpanel li{border-bottom:1px solid var(--rule)}
+.navpanel a{
+  display:block;padding:var(--s4) 0;text-decoration:none;
+  font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+}
+.navpanel .panel-cta{display:flex;flex-wrap:wrap;gap:var(--s3);padding-top:var(--s5)}
+[hidden]{display:none}
+
+/* ===========================================================================
+   4. THE SPREAD: margin column | spine | body column
+   =========================================================================== */
+.spread{
+  max-width:var(--page);margin-inline:auto;padding-inline:var(--gut);
+  display:grid;
+  grid-template-columns:var(--marg) minmax(0,1fr);
+  column-gap:0;
+  align-items:stretch;
+}
+.marg{
+  grid-column:1;
+  padding-right:var(--s5);
+  padding-block:var(--s9) var(--s9);
+}
+.col{
+  grid-column:2;
+  min-width:0;
+  border-left:1px solid var(--rule);
+  padding-left:var(--spine);
+  padding-block:var(--s9) var(--s9);
+}
+.spread--open .marg,.spread--open .col{padding-block:var(--s11) var(--s9)}
+
+/* marginalia contents */
+.chap{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 60,"wght" 620,"SOFT" 4,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-chapter);
+  line-height:.9;
+  color:var(--ox);
+  font-variant-numeric:tabular-nums lining-nums;
+  letter-spacing:-.02em;
+}
+.notes{margin-top:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+.notes li{
+  font-size:var(--t-folio);
+  line-height:1.45;
+  color:var(--ink-soft);
+  padding-top:var(--s3);
+  border-top:1px solid var(--rule);
+}
+.notes .k{
+  display:block;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink);
+  margin-bottom:2px;
+}
+.aside{
+  margin-top:var(--s5);
+  padding-top:var(--s3);
+  font-size:var(--t-folio);
+  font-style:italic;
+  line-height:1.5;
+  color:var(--ink);
+  position:relative;
+}
+.aside::before{content:"";position:absolute;left:0;top:0;width:24px;border-top:2px solid var(--ox)}
+
+/* running chapter head */
+.runhead{
+  display:flex;align-items:center;gap:var(--s3);
+  margin-bottom:var(--s5);
+  color:var(--ink-soft);
+}
+.runhead::before{content:"";flex:0 0 auto;width:8px;height:8px;background:var(--ox)}
+.runhead::after{content:"";flex:1 1 auto;border-top:1px solid var(--rule-strong)}
+
+/* ===========================================================================
+   5. CHAPTER 00: THE MASTHEAD SPREAD
+   =========================================================================== */
+.dateline{
+  border-top:3px solid var(--ink);
+  padding-top:var(--s3);
+  margin-bottom:var(--s6);
+  color:var(--ink-soft);
+}
+h1.display{margin-block:0 var(--s2)}
+.hero-lede{margin-top:var(--s6)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s7)}
+.avail{
+  display:flex;align-items:center;gap:var(--s3);
+  margin-top:var(--s5);color:var(--ink-soft);
+}
+.avail .tick{flex:0 0 auto;width:8px;height:8px;background:var(--ox)}
+
+/* ===========================================================================
+   6. CHAPTER 01: THE LEDGER (dotted leaders, right-aligned figures)
+   =========================================================================== */
+.ledger{margin-top:var(--s6);border-top:1px solid var(--rule-strong)}
+.lrow{
+  display:flex;align-items:baseline;gap:var(--s4);
+  padding-block:var(--s4);
+  border-bottom:1px solid var(--rule);
+}
+.lterm{flex:1 1 auto;min-width:0}
+.lhead{display:flex;align-items:baseline;gap:var(--s3)}
+.lname{flex:0 1 auto;line-height:1.4}
+.ldots{
+  flex:1 1 2rem;min-width:1.5rem;align-self:flex-end;
+  border-bottom:1px dotted var(--rule-strong);
+  margin-bottom:.42em;
+}
+.lsrc{display:block;margin-top:var(--s1);color:var(--ink-soft)}
+.lfig{
+  flex:0 0 auto;min-width:170px;text-align:right;
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 40,"wght" 620,"SOFT" 6,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-figure);
+  line-height:1;
+  letter-spacing:-.014em;
+  font-variant-numeric:tabular-nums lining-nums;
+  white-space:nowrap;
+}
+.lfig .unit{
+  font-family:var(--sans);font-size:.9375rem;font-weight:600;
+  letter-spacing:.06em;color:var(--ink-soft);margin-left:.28em;
+}
+
+/* ===========================================================================
+   7. CHAPTER 02: FIELD NOTES (entries and engraved plates, no cards)
+   =========================================================================== */
+.entries{margin-top:var(--s6)}
+.entry{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 168px;
+  column-gap:var(--s7);
+  padding-block:var(--s6);
+  border-top:1px solid var(--rule-strong);
+}
+.entry:last-child{border-bottom:1px solid var(--rule-strong)}
+.entry-n{color:var(--ox);margin-bottom:var(--s2)}
+.entry-desc{margin-top:var(--s3)}
+.entry-metrics{
+  margin-top:var(--s4);
+  font-variant-numeric:tabular-nums lining-nums;
+  color:var(--ink-soft);
+  font-size:1rem;
+}
+.taglist{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
+.tag{
+  display:inline-block;
+  padding:var(--s1) var(--s2);
+  border:1px solid var(--rule-strong);
+  border-radius:var(--r0);
+  font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  color:var(--ink-soft);
+  background:transparent;
+}
+.entry-plate{align-self:start}
+.plate{display:block;width:100%;height:auto;color:var(--ink)}
+.plate-cap{margin-top:var(--s2);color:var(--ink-soft);font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+
+/* ===========================================================================
+   8. CHAPTER 03: METHOD (hanging numerals, one pull quote)
+   =========================================================================== */
+.steps{margin-top:var(--s6);border-top:1px solid var(--rule-strong)}
+.steps li{
+  display:grid;
+  grid-template-columns:88px minmax(0,1fr);
+  column-gap:var(--s5);
+  padding-block:var(--s5);
+  border-bottom:1px solid var(--rule);
+}
+.step-n{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 40,"wght" 620,"SOFT" 4,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-figure);
+  line-height:1.05;
+  color:var(--ox);
+  font-variant-numeric:tabular-nums lining-nums;
+}
+.step-t{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 24,"wght" 620,"SOFT" 12,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-lede);
+  line-height:1.2;
+  letter-spacing:-.01em;
+}
+.step-b{margin-top:var(--s2);max-width:34em}
+.pull{
+  margin-top:var(--s8);
+  border-top:3px solid var(--ink);
+  padding-top:var(--s5);
+  padding-bottom:var(--s5);
+  border-bottom:1px solid var(--ox);
+  max-width:22em;
+}
+.pull p{
+  font-family:var(--serif);
+  font-style:italic;
+  font-variation-settings:"opsz" 48,"wght" 460,"SOFT" 30,"WONK" 0;
+  font-weight:460;
+  font-size:var(--t-figure);
+  line-height:1.18;
+  letter-spacing:-.012em;
+}
+.pull cite{
+  display:block;margin-top:var(--s4);font-style:normal;
+  font-family:var(--sans);font-size:var(--t-folio);
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);
+}
+
+/* ===========================================================================
+   9. CHAPTER 04: THE RATE CARD
+   =========================================================================== */
+.ratecard{margin-top:var(--s6);border-top:1px solid var(--rule-strong)}
+.pkg{padding-block:var(--s6);border-bottom:1px solid var(--rule-strong)}
+.pkg-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  column-gap:var(--s5);
+  align-items:baseline;
+}
+.pkg-price{
+  grid-column:2;grid-row:1;text-align:right;
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 60,"wght" 620,"SOFT" 6,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-chapter);
+  line-height:1;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums lining-nums;
+  white-space:nowrap;
+}
+.note-ox{color:var(--ox)}
+.pkg-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s3);color:var(--ink-soft)}
+.pkg-list{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:var(--s7);row-gap:var(--s2);
+  margin-top:var(--s5);
+}
+.pkg-list li{
+  padding-left:var(--s4);position:relative;
+  font-size:1rem;line-height:1.5;
+  border-top:1px solid var(--rule);padding-top:var(--s2);padding-bottom:var(--s2);
+}
+.pkg-list li::before{content:"";position:absolute;left:0;top:1.1em;width:8px;height:1px;background:var(--ox)}
+.pkg-foot{margin-top:var(--s5)}
+
+.builds{margin-top:var(--s8)}
+.builds caption{
+  text-align:left;padding-bottom:var(--s3);
+  border-bottom:3px solid var(--ink);
+  color:var(--ink);
+}
+.builds th,.builds td{
+  text-align:left;padding:var(--s3) var(--s3) var(--s3) 0;
+  border-bottom:1px solid var(--rule);
+  vertical-align:baseline;
+}
+.builds th{
+  font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  color:var(--ink-soft);
+}
+.builds .rowh{font-weight:400;font-size:var(--t-text);text-transform:none;letter-spacing:0;color:var(--ink)}
+.builds .num{text-align:right;padding-right:0;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.builds tbody tr:nth-child(even){background:var(--paper-deep)}
+.footnote{margin-top:var(--s4);color:var(--ink-soft);font-size:1rem}
+.footnote .mark{color:var(--ox);font-weight:600}
+
+/* ===========================================================================
+   10. CHAPTER 05: THE RECORD
+   =========================================================================== */
+.record{margin-top:var(--s6);border-top:1px solid var(--rule-strong)}
+.job{
+  display:grid;grid-template-columns:172px minmax(0,1fr);
+  column-gap:var(--s5);
+  padding-block:var(--s6);
+  border-bottom:1px solid var(--rule);
+}
+.job-when{color:var(--ox)}
+.job-where{margin-top:var(--s2);color:var(--ink-soft);font-size:1rem}
+.job-list{margin-top:var(--s4);display:flex;flex-direction:column;gap:var(--s2)}
+.job-list li{padding-left:var(--s4);position:relative;max-width:34em;font-size:1rem;line-height:1.55}
+.job-list li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:1px;background:var(--ox)}
+
+/* ===========================================================================
+   11. CHAPTER 06: APPARATUS
+   =========================================================================== */
+.apparatus{margin-top:var(--s6);border-top:1px solid var(--rule-strong)}
+.arow{
+  display:grid;grid-template-columns:172px minmax(0,1fr);
+  column-gap:var(--s5);
+  padding-block:var(--s4);
+  border-bottom:1px solid var(--rule);
+  align-items:baseline;
+}
+.arow dt{color:var(--ink-soft)}
+
+/* ===========================================================================
+   12. CHAPTER 07: THE AUTHOR
+   =========================================================================== */
+.author{display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:var(--s7);margin-top:var(--s6)}
+.plate-frame{stroke:var(--rule-strong)}
+.reg{stroke:var(--ox)}
+.portrait{border:1px solid var(--rule-strong);background:var(--paper-deep);display:block;width:100%;height:auto;color:var(--ink)}
+.dropcap{max-width:32em}
+.dropcap::first-letter{
+  float:left;
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 144,"wght" 620,"SOFT" 30,"WONK" 0;
+  font-weight:620;
+  font-size:4.5em;
+  line-height:.76;
+  padding:.06em .14em 0 0;
+  color:var(--ox);
+}
+
+/* ===========================================================================
+   13. CHAPTER 08: CORRESPONDENCE
+   =========================================================================== */
+.colophon{border-top:1px solid var(--rule-strong);margin-top:var(--s6);padding-top:var(--s6)}
+.corr{display:flex;flex-wrap:wrap;gap:var(--s5) var(--s7)}
+.corr a{
+  display:inline-block;
+  padding-block:var(--s2);
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 30,"wght" 620,"SOFT" 10,"WONK" 0;
+  font-weight:620;
+  font-size:var(--t-lede);
+  letter-spacing:-.01em;
+  text-decoration:none;
+  box-shadow:inset 0 -1px 0 0 var(--ox);
+  transition:box-shadow var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.corr a:hover{box-shadow:inset 0 -3px 0 0 var(--ox);color:var(--ox)}
+.corr a:active{color:var(--ox-deep)}
+.imprint{
+  display:flex;flex-wrap:wrap;gap:var(--s3) var(--s6);
+  margin-top:var(--s8);padding-top:var(--s4);
+  border-top:1px solid var(--rule);
+  color:var(--ink-soft);
+}
+
+/* ===========================================================================
+   14. CONTROLS
+   =========================================================================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:0 var(--s5);
+  font-family:var(--sans);font-size:1rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;text-align:center;
+  border:1px solid transparent;border-radius:var(--r0);
+  cursor:pointer;
+  transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),
+             border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.btn:focus-visible,.btn.is-focus{outline:2px solid var(--ox);outline-offset:3px}
+.btn-primary{background:var(--ox);color:var(--paper);border-color:var(--ox)}
+.btn-primary:hover,.btn-primary.is-hover{background:var(--ox-deep);border-color:var(--ox-deep)}
+.btn-primary:active{background:var(--ink);border-color:var(--ink)}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-secondary:hover,.btn-secondary.is-hover{background:var(--paper-edge)}
+.btn-secondary:active{background:var(--rule)}
+.btn-ghost{
+  background:transparent;color:var(--ink);border-color:transparent;
+  padding-inline:0;min-height:44px;
+  box-shadow:inset 0 -1px 0 0 var(--ox);
+}
+.btn-ghost:hover,.btn-ghost.is-hover{box-shadow:inset 0 -3px 0 0 var(--ox);color:var(--ox)}
+.btn-ghost:active{color:var(--ox-deep);box-shadow:inset 0 -3px 0 0 var(--ox-deep)}
+.btn-sm{min-height:44px;padding:0 var(--s4);font-size:var(--t-folio)}
+.btn[disabled],.btn.is-disabled{
+  background:var(--paper-edge);color:var(--ink-soft);border-color:var(--rule-strong);
+  box-shadow:none;cursor:not-allowed;
+}
+
+.field{display:flex;flex-direction:column;gap:var(--s2);max-width:26rem}
+.field > label{
+  font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  color:var(--ink-soft);
+}
+.field .hint{font-size:var(--t-folio);color:var(--ink-soft);font-style:italic;letter-spacing:0;text-transform:none}
+.control{
+  font-family:var(--sans);font-size:1rem;line-height:1.5;color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--ink-soft);border-radius:var(--r1);
+  padding:11px 13px;min-height:48px;width:100%;
+  transition:border-color var(--dur) var(--ease),background-color var(--dur) var(--ease);
+}
+.control::placeholder{color:var(--ink-soft);opacity:1;font-style:italic}
+.control:hover{border-color:var(--ink)}
+.control:focus-visible{outline:2px solid var(--ox);outline-offset:2px;border-color:var(--ox)}
+.control[disabled]{background:var(--paper-edge);color:var(--ink-soft);border-color:var(--rule-strong);cursor:not-allowed}
+.control[readonly]{background:var(--paper-deep);border-style:dashed}
+textarea.control{min-height:104px;resize:vertical}
+select.control{appearance:none;-webkit-appearance:none;padding-right:var(--s7);background-image:none}
+.selectwrap{display:block;position:relative}
+.selectwrap::after{
+  content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;
+  border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  transform:translateY(-70%) rotate(45deg);pointer-events:none;
+}
+.check{display:flex;align-items:flex-start;gap:var(--s3);cursor:pointer;max-width:26rem}
+.check input{
+  flex:0 0 auto;width:24px;height:24px;margin:var(--s1) 0 0;
+  accent-color:var(--ox);cursor:pointer;
+}
+.check span{font-size:1rem;line-height:1.45}
+.is-error .control{border-color:var(--ox);border-width:2px}
+.errmsg{
+  display:flex;align-items:baseline;gap:var(--s2);
+  font-size:var(--t-folio);color:var(--ox);font-weight:600;
+}
+.errmsg .lab{letter-spacing:.1em;text-transform:uppercase}
+.errmsg .txt{font-weight:400;color:var(--ink);letter-spacing:0;text-transform:none}
+
+/* ===========================================================================
+   15. CHAPTER 09: THE SPECIMEN (design DNA)
+   =========================================================================== */
+.dna{background:var(--paper-deep)}
+.dna .col{border-left-color:var(--rule-strong)}
+.spec{margin-top:var(--s8)}
+.spec:first-of-type{margin-top:var(--s6)}
+.spec-h{
+  display:flex;align-items:baseline;gap:var(--s3);
+  padding-bottom:var(--s3);margin-bottom:var(--s5);
+  border-bottom:3px solid var(--ink);
+}
+.spec-h .n{color:var(--ox);font-variant-numeric:tabular-nums lining-nums}
+.spec-note{color:var(--ink-soft);font-size:1rem;max-width:34em;margin-bottom:var(--s5)}
+
+.specimen-block{border-top:1px solid var(--rule-strong);padding-top:var(--s4);margin-bottom:var(--s6)}
+.specimen-glyphs{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 72,"wght" 560,"SOFT" 10,"WONK" 0;
+  font-weight:560;font-size:clamp(1.75rem,4.4vw,2.664rem);line-height:1.15;letter-spacing:-.014em;
+  overflow-wrap:break-word;
+}
+.specimen-glyphs.sansface{
+  font-family:var(--sans);font-variation-settings:normal;font-weight:400;letter-spacing:-.005em;
+}
+.weights{display:flex;flex-direction:column;gap:var(--s2);margin-top:var(--s4)}
+.weights li{display:grid;grid-template-columns:220px minmax(0,1fr);column-gap:var(--s4);align-items:baseline;
+  border-top:1px solid var(--rule);padding-top:var(--s2)}
+.weights .w{color:var(--ink-soft)}
+.w-s-400i{font-family:var(--serif);font-style:italic;font-variation-settings:"opsz" 24,"wght" 460,"SOFT" 30,"WONK" 0;font-weight:460;font-size:1.25rem}
+.w-s-560{font-family:var(--serif);font-variation-settings:"opsz" 60,"wght" 560,"SOFT" 0,"WONK" 0;font-weight:560;font-size:1.25rem}
+.w-s-620{font-family:var(--serif);font-variation-settings:"opsz" 60,"wght" 620,"SOFT" 6,"WONK" 0;font-weight:620;font-size:1.25rem}
+.w-n-400{font-weight:400;font-size:1.125rem}
+.w-n-400i{font-weight:400;font-style:italic;font-size:1.125rem}
+.w-n-600{font-weight:600;font-size:1.125rem}
+
+.scale li{
+  display:grid;grid-template-columns:190px minmax(0,1fr);column-gap:var(--s5);align-items:baseline;
+  border-bottom:1px solid var(--rule);padding-block:var(--s3);
+}
+.scale .meta{color:var(--ink-soft);font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.scale .meta em{display:block;font-style:normal;letter-spacing:0;text-transform:none;font-weight:400;color:var(--ink-soft);margin-top:2px}
+.sample{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:var(--s4)}
+.sw-chip{height:78px;border:1px solid var(--rule-strong)}
+.sw h4{margin-top:var(--s2);font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.sw p{font-size:.8125rem;color:var(--ink-soft);line-height:1.45;font-variant-numeric:tabular-nums lining-nums}
+
+.spacing li{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:var(--s4);align-items:center;
+  border-bottom:1px solid var(--rule);padding-block:var(--s2)}
+.spacing .bar{height:12px;background:var(--ink);max-width:100%}
+.spacing .lab{font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);
+  font-variant-numeric:tabular-nums lining-nums}
+
+.states{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:var(--s4) var(--s5);align-items:start}
+.state-col > .folio{color:var(--ink-soft);margin-bottom:var(--s3);padding-bottom:var(--s2);border-bottom:1px solid var(--rule)}
+.state-stack{display:flex;flex-direction:column;gap:var(--s4);align-items:flex-start}
+
+.forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--s6) var(--s7)}
+
+.card{
+  background:var(--paper);
+  border:1px solid var(--rule-strong);
+  border-top:3px solid var(--ink);
+  border-radius:var(--r0);
+  padding:var(--s5);
+  max-width:26rem;
+}
+.card-k{color:var(--ox);margin-bottom:var(--s2)}
+.card h4{font-family:var(--serif);font-variation-settings:"opsz" 30,"wght" 620,"SOFT" 10,"WONK" 0;font-weight:620;
+  font-size:var(--t-lede);line-height:1.15;letter-spacing:-.01em}
+.card p{margin-top:var(--s2);font-size:1rem;color:var(--ink-soft)}
+
+.dtable th,.dtable td{
+  text-align:left;padding:var(--s3) var(--s4) var(--s3) 0;
+  border-bottom:1px solid var(--rule);vertical-align:baseline;
+}
+.dtable thead th{border-bottom:1px solid var(--rule-strong);
+  font-size:var(--t-folio);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
+.dtable tbody th{font-weight:400;font-size:var(--t-text)}
+.dtable .num{text-align:right;padding-right:0;font-variant-numeric:tabular-nums lining-nums}
+.dtable tbody tr:nth-child(even){background:var(--paper-edge)}
+
+.mini{border:1px solid var(--rule-strong);background:var(--paper)}
+.mini-bar{display:flex;align-items:center;gap:var(--s4);padding:var(--s3) var(--s4);border-bottom:1px solid var(--rule-strong);flex-wrap:wrap}
+.mini-bar .mw{font-family:var(--serif);font-variation-settings:"opsz" 24,"wght" 620,"SOFT" 6,"WONK" 0;font-weight:620;font-size:1.0625rem}
+.mini-bar .ml{display:flex;gap:var(--s4);flex-wrap:wrap;margin-left:auto;font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
+.mini-foot{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);padding:var(--s4);font-size:.8125rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
+.mini-foot .ox{color:var(--ink);box-shadow:inset 0 -1px 0 0 var(--ox)}
+
+/* ===========================================================================
+   16. RESPONSIVE
+   =========================================================================== */
+@media (max-width:1080px){
+  :root{--marg:154px;--spine:28px}
+  .lfig{min-width:140px}
+  .entry{grid-template-columns:minmax(0,1fr) 140px;column-gap:var(--s5)}
+}
+@media (max-width:900px){
+  :root{--s9:64px;--s11:72px}
+  .spread{grid-template-columns:minmax(0,1fr)}
+  .marg{
+    grid-column:1;padding-right:0;
+    padding-block:var(--s9) var(--s4);
+    border-bottom:1px solid var(--rule-strong);
+    margin-bottom:var(--s5);
+  }
+  .spread--open .marg{padding-block:var(--s7) var(--s4)}
+  .col{grid-column:1;border-left:0;padding-left:0;padding-block:0 var(--s9)}
+  .spread--open .col{padding-block:0 var(--s9)}
+  .chap{display:inline-block;margin-right:var(--s4);font-size:var(--t-figure)}
+  .notes{margin-top:var(--s3);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--s3)}
+  .aside{margin-top:var(--s4)}
+  .author{grid-template-columns:minmax(0,1fr);row-gap:var(--s5)}
+  .portrait-fig{max-width:260px}
+  .pkg-list{grid-template-columns:minmax(0,1fr)}
+  .job,.arow{grid-template-columns:minmax(0,1fr);row-gap:var(--s3)}
+  .entry{grid-template-columns:minmax(0,1fr);row-gap:var(--s5)}
+  .entry-plate{max-width:180px;order:-1}
+}
+@media (max-width:760px){
+  .pkg-head{grid-template-columns:minmax(0,1fr)}
+  .pkg-price{grid-column:1;grid-row:auto;text-align:left;margin-top:var(--s2)}
+}
+@media (max-width:640px){
+  :root{--t-lede:1.3125rem}
+  .lrow{flex-direction:column-reverse;align-items:flex-start;gap:var(--s2)}
+  .lfig{min-width:0;text-align:left}
+  .ldots{display:none}
+  .steps li{grid-template-columns:minmax(0,1fr);row-gap:var(--s1)}
+  .weights li,.scale li{grid-template-columns:minmax(0,1fr);row-gap:2px}
+  .sample{white-space:normal}
+  .builds th,.builds td{padding-right:var(--s2)}
+  .builds .rowh{font-weight:400;font-size:var(--t-text);text-transform:none;letter-spacing:0;color:var(--ink)}
+.builds .num{white-space:normal}
+}
+
+/* ===========================================================================
+   17. REDUCED MOTION
+   =========================================================================== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    transition-duration:.01ms;
+    animation-duration:.01ms;
+    animation-iteration-count:1;
+  }
+}
+
+section[id]{scroll-margin-top:96px}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to the journal</a>
+
+<!-- =======================================================================
+     MASTHEAD
+     ======================================================================= -->
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="wordmark" href="#main">Ada Morgan<span class="dot">.</span></a>
+    <nav class="navlinks" aria-label="Chapters">
+      <a href="#evidence">Evidence</a>
+      <a href="#work">Work</a>
+      <a href="#method">Method</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="navcta">
+      <a class="btn btn-primary btn-sm" href="mailto:ada@example.com">Email me</a>
+      <a class="btn btn-secondary btn-sm" href="https://cal.com/example/15min">Book 15 min</a>
+    </div>
+    <button class="navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navPanel">Contents</button>
+  </div>
+  <div class="navpanel" id="navPanel" hidden>
+    <ul>
+      <li><a href="#evidence">01 &nbsp; Evidence</a></li>
+      <li><a href="#work">02 &nbsp; Work</a></li>
+      <li><a href="#method">03 &nbsp; Method</a></li>
+      <li><a href="#services">04 &nbsp; Services</a></li>
+      <li><a href="#about">07 &nbsp; About</a></li>
+    </ul>
+    <div class="panel-cta">
+      <a class="btn btn-primary btn-sm" href="mailto:ada@example.com">Email me</a>
+      <a class="btn btn-secondary btn-sm" href="https://cal.com/example/15min">Book 15 min</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- =====================================================================
+       CHAPTER 00 : COLOPHON
+       ===================================================================== -->
+  <section class="spread spread--open" id="top" aria-labelledby="h-hero">
+    <aside class="marg" aria-label="Chapter 00 marginalia">
+      <p class="chap">00</p>
+      <ul class="notes">
+        <li><span class="k">Chapter 00</span>Colophon. Set in Fraunces and Source Sans 3</li>
+        <li><span class="k">Figures</span>Tabular, sourced, rerunnable</li>
+      </ul>
+      <p class="aside">She will show you the failure rate before she shows you the demo. That is the only house style here.</p>
+    </aside>
+
+    <div class="col">
+      <p class="dateline folio">Ada Morgan &middot; founding ML engineer &middot; Northlight AI, Lisbon</p>
+
+      <h1 class="display" id="h-hero">I measure<br>what I ship.</h1>
+      <div class="rule2"></div>
+
+      <p class="lede hero-lede">I build multi-agent LLM systems and natural-language interfaces over data, plus the web, mobile and desktop apps around them. Every feature ships behind an eval harness and a hard cost cap, and the repos are public. Rerun any number on this page.</p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:ada@example.com">Email me</a>
+        <a class="btn btn-secondary" href="#services">Hire me for a project</a>
+      </div>
+
+      <p class="avail folio"><span class="tick" aria-hidden="true"></span>available now &middot; 15-day notice &middot; remote or contract &middot; US, EU or AU hours</p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 01 : EVIDENCE
+       ===================================================================== -->
+  <section class="spread" id="evidence" aria-labelledby="h-evidence">
+    <aside class="marg" aria-label="Chapter 01 marginalia">
+      <p class="chap">01</p>
+      <ul class="notes">
+        <li><span class="k">Sources</span>Cargo Concierge ablation, License Plate Privacy Blurring, TrustBench, mcp-bigquery-evals</li>
+        <li><span class="k">Method</span>Six figures, each one traced to the run that produced it</li>
+      </ul>
+      <p class="aside">A number without a source is a claim. A number with a source is a receipt.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 01, Evidence</span></p>
+      <h2 class="chapter-title" id="h-evidence">Six figures, and where each one came from</h2>
+      <p class="prose soft" style="margin-top:var(--s4)">Read the right column first. Every measure below was produced by a run that is in a public repository, with the sample size written next to it.</p>
+
+      <dl class="ledger">
+        <div class="lrow">
+          <dt class="lterm">
+            <span class="lhead"><span class="lname">Exact-match field extraction from raw quote emails, 6 fields, n = 25</span><span class="ldots" aria-hidden="true"></span></span>
+            <span class="lsrc folio">Source &middot; Cargo Concierge ablation</span>
+          </dt>
+          <dd class="lfig">24/25</dd>
+        </div>
+        <div class="lrow">
+          <dt class="lterm">
+            <span class="lhead"><span class="lname">YOLOv8n mAP@0.5, 6,000-image sample, 25 epochs</span><span class="ldots" aria-hidden="true"></span></span>
+            <span class="lsrc folio">Source &middot; License Plate Privacy Blurring</span>
+          </dt>
+          <dd class="lfig">0.92</dd>
+        </div>
+        <div class="lrow">
+          <dt class="lterm">
+            <span class="lhead"><span class="lname">Mean extraction latency, Gemini Flash, full instructions</span><span class="ldots" aria-hidden="true"></span></span>
+            <span class="lsrc folio">Source &middot; Cargo Concierge ablation</span>
+          </dt>
+          <dd class="lfig">1,850<span class="unit">ms</span></dd>
+        </div>
+        <div class="lrow">
+          <dt class="lterm">
+            <span class="lhead"><span class="lname">Accuracy the rules block is worth, 15-item ablation</span><span class="ldots" aria-hidden="true"></span></span>
+            <span class="lsrc folio">Source &middot; Cargo ablation</span>
+          </dt>
+          <dd class="lfig">+33<span class="unit">pts</span></dd>
+        </div>
+        <div class="lrow">
+          <dt class="lterm">
+            <span class="lhead"><span class="lname">Offline tests, no API key needed</span><span class="ldots" aria-hidden="true"></span></span>
+            <span class="lsrc folio">Source &middot; TrustBench</span>
+          </dt>
+          <dd class="lfig">82</dd>
+        </div>
+        <div class="lrow">
+          <dt class="lterm">
+            <span class="lhead"><span class="lname">Mandatory query cost cap</span><span class="ldots" aria-hidden="true"></span></span>
+            <span class="lsrc folio">Source &middot; mcp-bigquery-evals</span>
+          </dt>
+          <dd class="lfig">100<span class="unit">MB</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 02 : FIELD NOTES (WORK)
+       ===================================================================== -->
+  <section class="spread" id="work" aria-labelledby="h-work">
+    <aside class="marg" aria-label="Chapter 02 marginalia">
+      <p class="chap">02</p>
+      <ul class="notes">
+        <li><span class="k">Plates</span>I to III, drawn from the run output</li>
+        <li><span class="k">Repos</span>Public, with the harness committed beside the feature</li>
+      </ul>
+      <p class="aside">Three projects, three plates. Each plate draws the one number the project exists to hold down.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 02, Field notes</span></p>
+      <h2 class="chapter-title" id="h-work">Three things built, with their harnesses</h2>
+
+      <div class="entries">
+
+        <article class="entry">
+          <div>
+            <p class="entry-n folio">Plate I</p>
+            <h3 class="sub-title">mcp-bigquery-evals</h3>
+            <p class="prose entry-desc">A BigQuery MCP server with mandatory dry-run cost caps and 7 structured error codes.</p>
+            <p class="entry-metrics">211 tests &middot; 7 tools &middot; strict mypy</p>
+            <ul class="taglist">
+              <li class="tag">Python</li><li class="tag">MCP</li><li class="tag">BigQuery</li><li class="tag">PyPI</li>
+            </ul>
+          </div>
+          <figure class="entry-plate">
+            <svg class="plate" viewBox="0 0 168 120" role="img" aria-label="Diagram: six query costs rising toward a fixed dry-run cap that none of them crosses.">
+              <g fill="none" stroke="currentColor" stroke-width="1">
+                <line x1="8" y1="108" x2="160" y2="108"/>
+                <line x1="8" y1="10" x2="8" y2="108"/>
+                <line x1="8" y1="40" x2="160" y2="40" stroke-dasharray="4 3"/>
+                <rect x="20" y="88" width="14" height="20"/>
+                <rect x="42" y="76" width="14" height="32"/>
+                <rect x="64" y="63" width="14" height="45"/>
+                <rect x="86" y="54" width="14" height="54"/>
+                <rect x="108" y="47" width="14" height="61"/>
+                <rect x="130" y="44" width="14" height="64"/>
+              </g>
+            </svg>
+            <figcaption class="plate-cap">Plate I &middot; the cap</figcaption>
+          </figure>
+        </article>
+
+        <article class="entry">
+          <div>
+            <p class="entry-n folio">Plate II</p>
+            <h3 class="sub-title">TrustBench</h3>
+            <p class="prose entry-desc">An eval harness for tool-using support agents: 6 trust dimensions, per-intent regression detection with McNemar tests.</p>
+            <p class="entry-metrics">82 tests &middot; 6 dimensions &middot; green CI</p>
+            <ul class="taglist">
+              <li class="tag">Python</li><li class="tag">LLM-judge</li><li class="tag">CI</li>
+            </ul>
+          </div>
+          <figure class="entry-plate">
+            <svg class="plate" viewBox="0 0 168 120" role="img" aria-label="Diagram: a six-axis chart, one axis per trust dimension, with the measured shape inside the outer bound.">
+              <g fill="none" stroke="currentColor" stroke-width="1">
+                <polygon points="84,12 123.8,35 123.8,81 84,104 44.2,81 44.2,35" stroke="currentColor" stroke-dasharray="3 3"/>
+                <line x1="84" y1="58" x2="84" y2="12"/>
+                <line x1="84" y1="58" x2="123.8" y2="35"/>
+                <line x1="84" y1="58" x2="123.8" y2="81"/>
+                <line x1="84" y1="58" x2="84" y2="104"/>
+                <line x1="84" y1="58" x2="44.2" y2="81"/>
+                <line x1="84" y1="58" x2="44.2" y2="35"/>
+                <polygon points="84,18 113.4,41 120.4,79 84,88 51.1,77 52.8,40" stroke-width="1.6"/>
+              </g>
+            </svg>
+            <figcaption class="plate-cap">Plate II &middot; six dimensions</figcaption>
+          </figure>
+        </article>
+
+        <article class="entry">
+          <div>
+            <p class="entry-n folio">Plate III</p>
+            <h3 class="sub-title">Cargo Concierge</h3>
+            <p class="prose entry-desc">Quote emails to structured shipments with a rules block that adds 33 points of accuracy.</p>
+            <p class="entry-metrics">24/25 exact &middot; 1,850 ms &middot; $0.004 per request</p>
+            <ul class="taglist">
+              <li class="tag">Next.js</li><li class="tag">FastAPI</li><li class="tag">Gemini</li>
+            </ul>
+          </div>
+          <figure class="entry-plate">
+            <svg class="plate" viewBox="0 0 168 120" role="img" aria-label="Diagram: four raw messages resolving into a grid of six structured fields.">
+              <g fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="18" cy="26" r="4"/>
+                <circle cx="18" cy="52" r="4"/>
+                <circle cx="18" cy="78" r="4"/>
+                <circle cx="18" cy="104" r="4"/>
+                <path d="M26 26 C 48 26, 48 58, 68 58"/>
+                <path d="M26 52 C 48 52, 50 58, 68 58"/>
+                <path d="M26 78 C 48 78, 50 58, 68 58"/>
+                <path d="M26 104 C 48 104, 48 58, 68 58"/>
+                <line x1="68" y1="20" x2="68" y2="96"/>
+                <rect x="84" y="16" width="34" height="22"/>
+                <rect x="126" y="16" width="34" height="22"/>
+                <rect x="84" y="47" width="34" height="22"/>
+                <rect x="126" y="47" width="34" height="22"/>
+                <rect x="84" y="78" width="34" height="22"/>
+                <rect x="126" y="78" width="34" height="22"/>
+              </g>
+            </svg>
+            <figcaption class="plate-cap">Plate III &middot; six fields</figcaption>
+          </figure>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 03 : METHOD
+       ===================================================================== -->
+  <section class="spread" id="method" aria-labelledby="h-method">
+    <aside class="marg" aria-label="Chapter 03 marginalia">
+      <p class="chap">03</p>
+      <ul class="notes">
+        <li><span class="k">Order</span>Four steps, run in this order, every time</li>
+        <li><span class="k">Gate</span>Per intent, in continuous integration</li>
+      </ul>
+      <p class="aside">The golden set comes first because a prompt written before the data is a guess with good grammar.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 03, Method</span></p>
+      <h2 class="chapter-title" id="h-method">Four steps, in this order</h2>
+
+      <ol class="steps">
+        <li>
+          <p class="step-n">01</p>
+          <div>
+            <h3 class="step-t">Golden set first</h3>
+            <p class="prose step-b">50 real cases from your traffic before any prompt work.</p>
+          </div>
+        </li>
+        <li>
+          <p class="step-n">02</p>
+          <div>
+            <h3 class="step-t">Deterministic checks, then a judge</h3>
+            <p class="prose step-b">Rules catch the cheap failures, a temperature-0 LLM judge grades the rest.</p>
+          </div>
+        </li>
+        <li>
+          <p class="step-n">03</p>
+          <div>
+            <h3 class="step-t">A gate in CI</h3>
+            <p class="prose step-b">The build fails on a quality drop, per intent.</p>
+          </div>
+        </li>
+        <li>
+          <p class="step-n">04</p>
+          <div>
+            <h3 class="step-t">Cost per request, printed</h3>
+            <p class="prose step-b">Every feature ships with its cost and latency on the dashboard.</p>
+          </div>
+        </li>
+      </ol>
+
+      <blockquote class="pull">
+        <p>The build fails on a quality drop, per intent.</p>
+        <cite>Step 03, the gate</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 04 : RATE CARD (SERVICES)
+       ===================================================================== -->
+  <section class="spread" id="services" aria-labelledby="h-services">
+    <aside class="marg" aria-label="Chapter 04 marginalia">
+      <p class="chap">04</p>
+      <ul class="notes">
+        <li><span class="k">Terms</span>Launch pricing, scoped in writing before work starts</li>
+        <li><span class="k">Aftercare</span>Two weeks of fix support on a build</li>
+      </ul>
+      <p class="aside">Prices are in a column because a price you have to hunt for is a price you do not trust.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 04, Rate card</span></p>
+      <h2 class="chapter-title" id="h-services">What it costs, printed in a column</h2>
+
+      <div class="ratecard">
+
+        <article class="pkg">
+          <div class="pkg-head">
+            <h3 class="sub-title">AI Reliability Audit</h3>
+            <p class="pkg-price">$600</p>
+            <div class="pkg-meta">
+              <span class="folio">5 days</span>
+              <span class="folio note-ox">$450 for the first three clients</span>
+            </div>
+          </div>
+          <ul class="pkg-list">
+            <li>A 50-case golden set from your real traffic</li>
+            <li>Failure taxonomy: where it goes wrong and how often</li>
+            <li>Cost per request by model and step</li>
+            <li>A ranked fix list and a 30-minute walkthrough</li>
+          </ul>
+          <p class="pkg-foot"><a class="btn btn-ghost" href="mailto:ada@example.com">Start with the audit</a></p>
+        </article>
+
+        <article class="pkg">
+          <div class="pkg-head">
+            <h3 class="sub-title">Eval Harness Sprint</h3>
+            <p class="pkg-price">$1,400</p>
+            <div class="pkg-meta">
+              <span class="folio">2 weeks</span>
+              <span class="folio note-ox">the audit, productised into your CI</span>
+            </div>
+          </div>
+          <ul class="pkg-list">
+            <li>Golden sets per intent, versioned in your repo</li>
+            <li>Deterministic checks plus a temperature-0 LLM-judge rubric</li>
+            <li>A regression gate in CI that fails the build on a quality drop</li>
+            <li>Per-intent pass-rate report and a handover doc</li>
+          </ul>
+          <p class="pkg-foot"><a class="btn btn-ghost" href="mailto:ada@example.com">Book the sprint</a></p>
+        </article>
+
+        <article class="pkg">
+          <div class="pkg-head">
+            <h3 class="sub-title">LLM Feature Build</h3>
+            <p class="pkg-price">$2,200 to $3,500</p>
+            <div class="pkg-meta">
+              <span class="folio">3 to 4 weeks</span>
+              <span class="folio note-ox">one scoped feature, shipped with its evals</span>
+            </div>
+          </div>
+          <ul class="pkg-list">
+            <li>One agent, RAG or NL-to-SQL feature, scoped in writing first</li>
+            <li>Structured outputs, streaming and cost caps built in</li>
+            <li>Evals and a golden set delivered with the code</li>
+            <li>Two weeks of fix support after handover</li>
+          </ul>
+          <p class="pkg-foot"><a class="btn btn-ghost" href="mailto:ada@example.com">Scope a build</a></p>
+        </article>
+
+      </div>
+
+      <table class="builds">
+        <caption class="folio">Software builds</caption>
+        <thead>
+          <tr>
+            <th scope="col">Build</th>
+            <th scope="col">Timeline</th>
+            <th scope="col" class="num">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="rowh">Web application</th><td>2 to 3 weeks</td><td class="num">$1,500 to $2,500</td></tr>
+          <tr><th scope="row" class="rowh">Mobile app</th><td>4 to 6 weeks</td><td class="num">$3,000 to $4,500</td></tr>
+          <tr><th scope="row" class="rowh">Desktop app</th><td>3 to 5 weeks</td><td class="num">$2,500 to $4,000</td></tr>
+        </tbody>
+      </table>
+      <p class="footnote"><span class="mark">&dagger;</span> Launch pricing. After a package: $25 per hour or a 40-hour month at $900.</p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 05 : THE RECORD (EXPERIENCE)
+       ===================================================================== -->
+  <section class="spread" id="record" aria-labelledby="h-record">
+    <aside class="marg" aria-label="Chapter 05 marginalia">
+      <p class="chap">05</p>
+      <ul class="notes">
+        <li><span class="k">Current</span>Northlight AI, Lisbon, since Oct 2024</li>
+        <li><span class="k">Education</span>B.Tech Computer Science, 2024</li>
+      </ul>
+      <p class="aside">Two entries. The second one is short because the first one is where the work is.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 05, The record</span></p>
+      <h2 class="chapter-title" id="h-record">Where the hours went</h2>
+
+      <div class="record">
+        <article class="job">
+          <p class="job-when folio tnum">Oct 2024 to present</p>
+          <div>
+            <h3 class="sub-title">Founding ML Engineer</h3>
+            <p class="job-where">Northlight AI, Lisbon</p>
+            <ul class="job-list">
+              <li>Shipped the multi-stage agent orchestration behind a live competitive-intelligence product</li>
+              <li>NL-to-SQL over BigQuery with dry-run cost guardrails</li>
+              <li>A remote MCP server with OAuth 2.1 exposing 12 analysis tools</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <p class="job-when folio tnum">Jan to Jun 2024</p>
+          <div>
+            <h3 class="sub-title">Backend Developer Intern</h3>
+            <p class="job-where">Riverbend Systems</p>
+            <ul class="job-list">
+              <li>Built the ingestion service and its integration tests</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <p class="job-when folio tnum">2024</p>
+          <div>
+            <h3 class="sub-title">B.Tech Computer Science</h3>
+            <p class="job-where">Education</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 06 : APPARATUS (STACK)
+       ===================================================================== -->
+  <section class="spread" id="apparatus" aria-labelledby="h-apparatus">
+    <aside class="marg" aria-label="Chapter 06 marginalia">
+      <p class="chap">06</p>
+      <ul class="notes">
+        <li><span class="k">Rule</span>Nothing listed that has not shipped to production</li>
+        <li><span class="k">Grouping</span>Four bands, alphabetical inside none of them</li>
+      </ul>
+      <p class="aside">The list is short on purpose. A long stack list is a reading test, not a claim.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 06, Apparatus</span></p>
+      <h2 class="chapter-title" id="h-apparatus">The tools that show up in the repos</h2>
+
+      <dl class="apparatus">
+        <div class="arow">
+          <dt class="folio">Languages</dt>
+          <dd><ul class="taglist" style="margin-top:0"><li class="tag">Python</li><li class="tag">TypeScript</li><li class="tag">SQL</li></ul></dd>
+        </div>
+        <div class="arow">
+          <dt class="folio">AI</dt>
+          <dd><ul class="taglist" style="margin-top:0"><li class="tag">Claude</li><li class="tag">Gemini</li><li class="tag">OpenAI</li><li class="tag">LangGraph</li><li class="tag">MCP</li><li class="tag">RAG</li><li class="tag">Evals</li></ul></dd>
+        </div>
+        <div class="arow">
+          <dt class="folio">Web</dt>
+          <dd><ul class="taglist" style="margin-top:0"><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">FastAPI</li><li class="tag">Node.js</li><li class="tag">PostgreSQL</li></ul></dd>
+        </div>
+        <div class="arow">
+          <dt class="folio">Infra</dt>
+          <dd><ul class="taglist" style="margin-top:0"><li class="tag">AWS</li><li class="tag">GCP</li><li class="tag">Vercel</li><li class="tag">Docker</li><li class="tag">GitHub Actions</li></ul></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 07 : THE AUTHOR (ABOUT)
+       ===================================================================== -->
+  <section class="spread" id="about" aria-labelledby="h-about">
+    <aside class="marg" aria-label="Chapter 07 marginalia">
+      <p class="chap">07</p>
+      <ul class="notes">
+        <li><span class="k">Plate</span>IV, engraved placeholder, Lisbon</li>
+        <li><span class="k">Pronouns</span>she / her</li>
+      </ul>
+      <p class="aside">The only drop cap on the page sits below. One is a voice, five would be a costume.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 07, The author</span></p>
+      <h2 class="chapter-title" id="h-about">Ada Morgan</h2>
+
+      <div class="author">
+        <figure class="portrait-fig">
+          <svg class="portrait" viewBox="0 0 260 320" role="img" aria-label="Engraved placeholder portrait of Ada Morgan, head and shoulders rendered as horizontal hatching.">
+            <rect class="plate-frame" x="0.5" y="0.5" width="259" height="319" fill="none"/>
+            <clipPath id="figclip">
+              <path d="M130 44 C 168 44, 192 76, 192 122 C 192 162, 168 196, 130 196 C 92 196, 68 162, 68 122 C 68 76, 92 44, 130 44 Z M 30 320 C 38 246, 80 208, 130 208 C 180 208, 222 246, 230 320 Z"/>
+            </clipPath>
+            <g clip-path="url(#figclip)" stroke="currentColor" fill="none">
+              <line x1="18" y1="38.0" x2="242" y2="38.0" stroke-width="0.55"/>
+              <line x1="18" y1="43.6" x2="242" y2="43.6" stroke-width="0.55"/>
+              <line x1="18" y1="49.2" x2="242" y2="49.2" stroke-width="0.56"/>
+              <line x1="18" y1="54.8" x2="242" y2="54.8" stroke-width="0.58"/>
+              <line x1="18" y1="60.4" x2="242" y2="60.4" stroke-width="0.59"/>
+              <line x1="18" y1="66.0" x2="242" y2="66.0" stroke-width="0.61"/>
+              <line x1="18" y1="71.6" x2="242" y2="71.6" stroke-width="0.63"/>
+              <line x1="18" y1="77.2" x2="242" y2="77.2" stroke-width="0.65"/>
+              <line x1="18" y1="82.8" x2="242" y2="82.8" stroke-width="0.67"/>
+              <line x1="18" y1="88.4" x2="242" y2="88.4" stroke-width="0.69"/>
+              <line x1="18" y1="94.0" x2="242" y2="94.0" stroke-width="0.72"/>
+              <line x1="18" y1="99.6" x2="242" y2="99.6" stroke-width="0.31"/>
+              <line x1="18" y1="105.2" x2="242" y2="105.2" stroke-width="0.33"/>
+              <line x1="18" y1="110.8" x2="242" y2="110.8" stroke-width="0.34"/>
+              <line x1="18" y1="116.4" x2="242" y2="116.4" stroke-width="0.35"/>
+              <line x1="18" y1="122.0" x2="242" y2="122.0" stroke-width="0.36"/>
+              <line x1="18" y1="127.6" x2="242" y2="127.6" stroke-width="0.38"/>
+              <line x1="18" y1="133.2" x2="242" y2="133.2" stroke-width="0.39"/>
+              <line x1="18" y1="138.8" x2="242" y2="138.8" stroke-width="0.41"/>
+              <line x1="18" y1="144.4" x2="242" y2="144.4" stroke-width="0.42"/>
+              <line x1="18" y1="150.0" x2="242" y2="150.0" stroke-width="0.44"/>
+              <line x1="18" y1="155.6" x2="242" y2="155.6" stroke-width="0.46"/>
+              <line x1="18" y1="161.2" x2="242" y2="161.2" stroke-width="0.47"/>
+              <line x1="18" y1="166.8" x2="242" y2="166.8" stroke-width="0.49"/>
+              <line x1="18" y1="172.4" x2="242" y2="172.4" stroke-width="0.51"/>
+              <line x1="18" y1="178.0" x2="242" y2="178.0" stroke-width="0.90"/>
+              <line x1="18" y1="183.6" x2="242" y2="183.6" stroke-width="0.93"/>
+              <line x1="18" y1="189.2" x2="242" y2="189.2" stroke-width="0.96"/>
+              <line x1="18" y1="194.8" x2="242" y2="194.8" stroke-width="1.00"/>
+              <line x1="18" y1="200.4" x2="242" y2="200.4" stroke-width="1.03"/>
+              <line x1="18" y1="206.0" x2="242" y2="206.0" stroke-width="1.06"/>
+              <line x1="18" y1="211.6" x2="242" y2="211.6" stroke-width="1.53"/>
+              <line x1="18" y1="217.2" x2="242" y2="217.2" stroke-width="1.58"/>
+              <line x1="18" y1="222.8" x2="242" y2="222.8" stroke-width="1.63"/>
+              <line x1="18" y1="228.4" x2="242" y2="228.4" stroke-width="1.68"/>
+              <line x1="18" y1="234.0" x2="242" y2="234.0" stroke-width="1.73"/>
+              <line x1="18" y1="239.6" x2="242" y2="239.6" stroke-width="1.78"/>
+              <line x1="18" y1="245.2" x2="242" y2="245.2" stroke-width="1.84"/>
+              <line x1="18" y1="250.8" x2="242" y2="250.8" stroke-width="1.89"/>
+              <line x1="18" y1="256.4" x2="242" y2="256.4" stroke-width="1.94"/>
+              <line x1="18" y1="262.0" x2="242" y2="262.0" stroke-width="2.00"/>
+              <line x1="18" y1="267.6" x2="242" y2="267.6" stroke-width="2.06"/>
+              <line x1="18" y1="273.2" x2="242" y2="273.2" stroke-width="2.11"/>
+              <line x1="18" y1="278.8" x2="242" y2="278.8" stroke-width="2.17"/>
+              <line x1="18" y1="284.4" x2="242" y2="284.4" stroke-width="2.23"/>
+              <line x1="18" y1="290.0" x2="242" y2="290.0" stroke-width="2.29"/>
+              <line x1="18" y1="295.6" x2="242" y2="295.6" stroke-width="2.35"/>
+              <line x1="18" y1="301.2" x2="242" y2="301.2" stroke-width="2.41"/>
+              <line x1="18" y1="306.8" x2="242" y2="306.8" stroke-width="2.47"/>
+              <line x1="18" y1="312.4" x2="242" y2="312.4" stroke-width="2.54"/>
+            </g>
+            <path d="M130 44 C 168 44, 192 76, 192 122 C 192 162, 168 196, 130 196 C 92 196, 68 162, 68 122 C 68 76, 92 44, 130 44 Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <path d="M30 320 C 38 246, 80 208, 130 208 C 180 208, 222 246, 230 320" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <line class="reg" x1="12" y1="12" x2="26" y2="12" stroke-width="1.6"/>
+            <line class="reg" x1="12" y1="12" x2="12" y2="26" stroke-width="1.6"/>
+          </svg>
+          <figcaption class="plate-cap">Plate IV &middot; the author, Lisbon</figcaption>
+        </figure>
+
+        <div>
+          <p class="prose dropcap">I am the engineer who asks for the failure rate before the demo. I work in the open, publish the harness with the feature, and keep the cost per request on the dashboard next to the accuracy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 08 : CORRESPONDENCE
+       ===================================================================== -->
+  <section class="spread" id="contact" aria-labelledby="h-contact">
+    <aside class="marg" aria-label="Chapter 08 marginalia">
+      <p class="chap">08</p>
+      <ul class="notes">
+        <li><span class="k">Hours</span>US, EU or AU, by arrangement</li>
+        <li><span class="k">Reply</span>Same working day, in most weeks</li>
+      </ul>
+      <p class="aside">Send the messiest example you have. A tidy sample tells neither of us anything.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 08, Correspondence</span></p>
+      <h2 class="chapter-title" id="h-contact">Write, or take a quarter of an hour</h2>
+
+      <div class="colophon">
+        <nav class="corr" aria-label="Contact">
+          <a href="mailto:ada@example.com">Email me</a>
+          <a href="https://cal.com/example/15min">Book 15 min</a>
+          <a href="https://github.com/example">GitHub</a>
+          <a href="https://linkedin.com/in/example">LinkedIn</a>
+        </nav>
+        <p class="imprint folio">
+          <span>Lisbon &middot; UTC+1</span>
+          <span>&copy; 2026 Ada Morgan</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CHAPTER 09 : THE SPECIMEN (DESIGN DNA)
+       ===================================================================== -->
+  <section class="spread dna" id="dna" aria-labelledby="h-dna">
+    <aside class="marg" aria-label="Chapter 09 marginalia">
+      <p class="chap">09</p>
+      <ul class="notes">
+        <li><span class="k">Theme</span>The Field Journal</li>
+        <li><span class="k">Tokens</span>Every value below is the same custom property the page above uses</li>
+      </ul>
+      <p class="aside">A style guide that does not render itself is a promise. This one renders itself.</p>
+    </aside>
+
+    <div class="col">
+      <p class="runhead folio"><span>Chapter 09, The specimen</span></p>
+      <h2 class="chapter-title" id="h-dna">Design DNA</h2>
+      <p class="prose spec-note" style="margin-top:var(--s4)">Adjectives: exacting, literate, plainspoken. Aesthetic: editorial magazine, style vector V7. Signature move: the marginalia column and its continuous spine. Refused: shadows, gradients, icon sets, a centred hero.</p>
+
+      <!-- 09.1 TYPE SPECIMENS -->
+      <section class="spec" aria-labelledby="s1">
+        <h3 class="spec-h sub-title" id="s1"><span class="n folio">09.1</span> <span>Faces</span></h3>
+
+        <div class="specimen-block">
+          <p class="folio soft" style="margin-bottom:var(--s3)">Display &middot; Fraunces &middot; three weights, 460 italic / 560 / 620, on opsz 9 to 144</p>
+          <p class="specimen-glyphs">ABCDEFGHIJKLM abcdefghijklm 0123456789</p>
+          <ul class="weights">
+            <li><span class="w folio">460 italic, opsz 24, SOFT 30</span><span class="w-s-400i">The one pull quote, the one aside</span></li>
+            <li><span class="w folio">560 roman, opsz 120, SOFT 0</span><span class="w-s-560">I measure what I ship</span></li>
+            <li><span class="w folio">620 roman, opsz 60, SOFT 10</span><span class="w-s-620">Chapter titles and numerals</span></li>
+            <li><span class="w folio">620 roman, tabular figures</span><span class="w-s-620 tnum">1,850 ms &middot; 24/25 &middot; $2,200</span></li>
+          </ul>
+          <p class="folio soft" style="margin-top:var(--s4)">WONK is pinned to 0 on every rule. The file ships WONK 1 and wght 900 as defaults, so all four axes are written out every time.</p>
+        </div>
+
+        <div class="specimen-block">
+          <p class="folio soft" style="margin-bottom:var(--s3)">Text and UI &middot; Source Sans 3 &middot; two weights only, 400 and 600, with true italics</p>
+          <p class="specimen-glyphs sansface">ABCDEFGHIJKLM abcdefghijklm 0123456789</p>
+          <ul class="weights">
+            <li><span class="w folio">400 regular</span><span class="w-n-400">Body, marginalia, table cells</span></li>
+            <li><span class="w folio">400 italic</span><span class="w-n-400i">The one aside per chapter</span></li>
+            <li><span class="w folio">600 semibold</span><span class="w-n-600">Folios, labels, buttons, tags</span></li>
+          </ul>
+          <p class="folio soft" style="margin-top:var(--s4)">Running text takes oldstyle figures. Every column of numbers takes tabular lining figures.</p>
+        </div>
+      </section>
+
+      <!-- 09.2 TYPE SCALE -->
+      <section class="spec" aria-labelledby="s2">
+        <h3 class="spec-h sub-title" id="s2"><span class="n folio">09.2</span> <span>Scale</span></h3>
+        <p class="spec-note">Perfect fourth, ratio 1.333, base 18px. Six steps. The display step breaks the ratio on purpose: it is a poster jump, 4.9 times body at 1440px.</p>
+        <ul class="scale">
+          <li><span class="meta">Folio, 14px<em>labels, sources, marginalia</em></span><span class="sample folio">Chapter 03, Method</span></li>
+          <li><span class="meta">Text, 18px<em>body, 34em measure</em></span><span class="sample">Rerun any number on this page</span></li>
+          <li><span class="meta">Lede, 24px<em>ledes, step titles</em></span><span class="sample" style="font-size:var(--t-lede)">Rerun any number on this page</span></li>
+          <li><span class="meta">Figure, 32px<em>ledger figures, pull quote</em></span><span class="sample sub-title">Rerun any number</span></li>
+          <li><span class="meta">Chapter, 42.6px<em>chapter titles, numerals, prices</em></span><span class="sample chapter-title">Rerun any number</span></li>
+          <li><span class="meta">Display, 56 to 88px<em>the masthead only</em></span><span class="sample display" style="font-size:clamp(2.5rem,7vw,3.5rem)">I measure</span></li>
+        </ul>
+      </section>
+
+      <!-- 09.3 COLOUR -->
+      <section class="spec" aria-labelledby="s3">
+        <h3 class="spec-h sub-title" id="s3"><span class="n folio">09.3</span> <span>Colour</span></h3>
+        <p class="spec-note">One dominant field, neutrals derived from the paper hue, one accent rationed to about 4% of surface. Ratios are measured against the paper field.</p>
+        <div class="swatches">
+          <div class="sw"><div class="sw-chip" style="background:var(--paper)"></div><h4>Paper</h4><p>#F7F2E7 &middot; dominant field</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--paper-deep)"></div><h4>Paper deep</h4><p>#EFE7D7 &middot; recessed zones</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--paper-edge)"></div><h4>Paper edge</h4><p>#E7DDC8 &middot; zebra, disabled</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--ink)"></div><h4>Ink</h4><p>#1C1815 &middot; all text &middot; 15.79:1</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--ink-soft)"></div><h4>Ink soft</h4><p>#55493D &middot; sources &middot; 7.82:1</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--rule)"></div><h4>Rule</h4><p>#D6CBB6 &middot; hairlines, leaders</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--rule-strong)"></div><h4>Rule strong</h4><p>#B3A48A &middot; section rules, borders</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--ox)"></div><h4>Oxblood</h4><p>#6E2028 &middot; the one accent &middot; 9.90:1</p></div>
+          <div class="sw"><div class="sw-chip" style="background:var(--ox-deep)"></div><h4>Oxblood deep</h4><p>#521219 &middot; primary hover &middot; 12.89:1</p></div>
+        </div>
+      </section>
+
+      <!-- 09.4 SPACING AND RADIUS -->
+      <section class="spec" aria-labelledby="s4">
+        <h3 class="spec-h sub-title" id="s4"><span class="n folio">09.4</span> <span>Space and radius</span></h3>
+        <p class="spec-note">Base unit 8px. Spacing is bimodal on purpose: 8 to 16px inside a group, 96 to 160px between chapters. Radius is 0 on structure and 2px on form fields, because the page is printed, not rounded. No shadow token exists.</p>
+        <ul class="spacing">
+          <li><span class="lab">s1 &middot; 4</span><span class="bar" style="width:4px"></span></li>
+          <li><span class="lab">s2 &middot; 8</span><span class="bar" style="width:8px"></span></li>
+          <li><span class="lab">s3 &middot; 12</span><span class="bar" style="width:12px"></span></li>
+          <li><span class="lab">s4 &middot; 16</span><span class="bar" style="width:16px"></span></li>
+          <li><span class="lab">s5 &middot; 24</span><span class="bar" style="width:24px"></span></li>
+          <li><span class="lab">s6 &middot; 32</span><span class="bar" style="width:32px"></span></li>
+          <li><span class="lab">s7 &middot; 48</span><span class="bar" style="width:48px"></span></li>
+          <li><span class="lab">s8 &middot; 64</span><span class="bar" style="width:64px"></span></li>
+          <li><span class="lab">s9 &middot; 96</span><span class="bar" style="width:96px"></span></li>
+          <li><span class="lab">s10 &middot; 128</span><span class="bar" style="width:128px"></span></li>
+          <li><span class="lab">s11 &middot; 160</span><span class="bar" style="width:160px"></span></li>
+        </ul>
+      </section>
+
+      <!-- 09.5 BUTTONS -->
+      <section class="spec" aria-labelledby="s5">
+        <h3 class="spec-h sub-title" id="s5"><span class="n folio">09.5</span> <span>Buttons</span></h3>
+        <p class="spec-note">Ranked by importance, never coloured by meaning. One primary per view. States are rendered here as static examples. Font weight never changes between states, so nothing reflows under the pointer.</p>
+        <div class="states">
+          <div class="state-col">
+            <p class="folio">Default</p>
+            <div class="state-stack">
+              <span class="btn btn-primary">Email me</span>
+              <span class="btn btn-secondary">Book 15 min</span>
+              <span class="btn btn-ghost">Scope a build</span>
+            </div>
+          </div>
+          <div class="state-col">
+            <p class="folio">Hover</p>
+            <div class="state-stack">
+              <span class="btn btn-primary is-hover">Email me</span>
+              <span class="btn btn-secondary is-hover">Book 15 min</span>
+              <span class="btn btn-ghost is-hover">Scope a build</span>
+            </div>
+          </div>
+          <div class="state-col">
+            <p class="folio">Focus</p>
+            <div class="state-stack">
+              <span class="btn btn-primary is-focus">Email me</span>
+              <span class="btn btn-secondary is-focus">Book 15 min</span>
+              <span class="btn btn-ghost is-focus">Scope a build</span>
+            </div>
+          </div>
+          <div class="state-col">
+            <p class="folio">Disabled</p>
+            <div class="state-stack">
+              <span class="btn btn-primary is-disabled">Email me</span>
+              <span class="btn btn-secondary is-disabled">Book 15 min</span>
+              <span class="btn btn-ghost is-disabled">Scope a build</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09.6 INPUTS -->
+      <section class="spec" aria-labelledby="s6">
+        <h3 class="spec-h sub-title" id="s6"><span class="n folio">09.6</span> <span>Fields</span></h3>
+        <p class="spec-note">Every field carries a visible label. Placeholders show the pattern, never the label. Errors are stated in words as well as colour, and they validate on blur, never per keystroke.</p>
+        <div class="forms">
+          <div>
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input class="control" id="f-name" type="text" name="name" placeholder="Ada Morgan" autocomplete="name">
+            </div>
+            <div class="field is-error" style="margin-top:var(--s5)">
+              <label for="f-mail">Work email</label>
+              <input class="control" id="f-mail" type="email" name="email" value="ada@" aria-describedby="f-mail-err" aria-invalid="true" autocomplete="email">
+              <p class="errmsg" id="f-mail-err"><span class="lab">Error</span><span class="txt">Add the domain, for example ada@northlight.ai</span></p>
+            </div>
+            <div class="field" style="margin-top:var(--s5)">
+              <label for="f-pkg">Package</label>
+              <span class="selectwrap">
+                <select class="control" id="f-pkg" name="package">
+                  <option>AI Reliability Audit, 5 days</option>
+                  <option>Eval Harness Sprint, 2 weeks</option>
+                  <option>LLM Feature Build, 3 to 4 weeks</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="field">
+              <label for="f-brief">What goes wrong today</label>
+              <textarea class="control" id="f-brief" name="brief" placeholder="Paste the messiest example you have&hellip;"></textarea>
+              <p class="hint">The messier the sample, the more useful the audit.</p>
+            </div>
+            <label class="check" style="margin-top:var(--s5)">
+              <input type="checkbox" name="repos" checked>
+              <span>Send me the public repos and the eval harness before the call</span>
+            </label>
+            <p style="margin-top:var(--s5)"><span class="btn btn-primary">Send the brief</span></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09.7 CARD, TAGS, TABLE -->
+      <section class="spec" aria-labelledby="s7">
+        <h3 class="spec-h sub-title" id="s7"><span class="n folio">09.7</span> <span>Card, tags, table</span></h3>
+        <p class="spec-note">The card is a ruled field with a heavy top rule and no shadow, because a shadow here would claim a depth the page does not have. Tags are ruled, not pills. Tables use light separators, text left, numbers right, tabular figures.</p>
+
+        <div class="card">
+          <p class="card-k folio">Plate I</p>
+          <h4>mcp-bigquery-evals</h4>
+          <p>A BigQuery MCP server with mandatory dry-run cost caps and 7 structured error codes.</p>
+          <ul class="taglist">
+            <li class="tag">Python</li><li class="tag">MCP</li><li class="tag">BigQuery</li>
+          </ul>
+        </div>
+
+        <table class="dtable" style="margin-top:var(--s6)">
+          <caption class="folio" style="text-align:left;padding-bottom:var(--s3);color:var(--ink-soft)">Run log, last four builds</caption>
+          <thead>
+            <tr>
+              <th scope="col">Build</th>
+              <th scope="col">Intent</th>
+              <th scope="col" class="num">Pass rate</th>
+              <th scope="col" class="num">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">1204</th><td>quote extraction</td><td class="num">96.0%</td><td class="num">$0.004</td></tr>
+            <tr><th scope="row">1203</th><td>quote extraction</td><td class="num">92.0%</td><td class="num">$0.004</td></tr>
+            <tr><th scope="row">1202</th><td>route lookup</td><td class="num">88.5%</td><td class="num">$0.002</td></tr>
+            <tr><th scope="row">1201</th><td>route lookup</td><td class="num">89.0%</td><td class="num">$0.002</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 09.8 NAV AND FOOTER PATTERNS -->
+      <section class="spec" aria-labelledby="s8">
+        <h3 class="spec-h sub-title" id="s8"><span class="n folio">09.8</span> <span>Nav and footer</span></h3>
+        <p class="spec-note">The masthead is a newspaper bar: wordmark left, chapters right in tracked caps, two ranked actions. The footer is a colophon: serif links with an oxblood underline, then the imprint line.</p>
+
+        <div class="mini">
+          <div class="mini-bar">
+            <span class="mw">Ada Morgan<span style="color:var(--ox)">.</span></span>
+            <span class="ml">
+              <span>Evidence</span><span>Work</span><span>Method</span><span>Services</span><span>About</span>
+            </span>
+            <span class="btn btn-primary btn-sm">Email me</span>
+          </div>
+          <div class="mini-foot">
+            <span class="ox">Email me</span><span class="ox">Book 15 min</span><span class="ox">GitHub</span><span class="ox">LinkedIn</span>
+            <span>Lisbon &middot; UTC+1</span><span>&copy; 2026 Ada Morgan</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var t = document.getElementById("navToggle");
+  var p = document.getElementById("navPanel");
+  if (t === null || p === null) { return; }
+  t.addEventListener("click", function () {
+    var open = t.getAttribute("aria-expanded") === "true";
+    t.setAttribute("aria-expanded", open === true ? "false" : "true");
+    p.hidden = open;
+  });
+  p.addEventListener("click", function (e) {
+    if (e.target && e.target.tagName === "A") {
+      t.setAttribute("aria-expanded", "false");
+      p.hidden = true;
+    }
+  });
+})();
+</script>
+</body>
+</html>

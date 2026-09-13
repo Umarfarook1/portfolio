@@ -1,0 +1,1317 @@
+<!--
+  CONCEPT RECORD  |  option C  |  theme name: BENCH
+
+  BRAND ADJECTIVES
+    instrumented, exacting, unflinching.
+
+  AESTHETIC COMMITTED TO
+    A dark lab bench: a piece of instrumentation, not a hacker set dress.
+    Style vector V6 Tech precise is dominant and supplies every structure channel
+    (grid, 4px spacing scale, type system, value structure, motion physics).
+    Style vector V14 Masculine industrial supplies accent channels only: one utility
+    amber in the safety-signal band, zero corner radius, structural hairlines, and
+    signage lettering for titles. Two adjectives composed base-plus-accent per the
+    combination rule in 04-style-vectors.md; no third vector bids on any channel.
+
+  CONCEPT (07-concept.md)
+    move: M6, repetition as meaning. carrier: composition structure. viewer action: compare.
+    one sentence: the page argues the work is measured by being built out of measurements.
+    fusion rung 4. The readout cell is the page's only content container, so a claim with
+    no value, no unit and no source has nowhere on this page to sit. Rung 1 was rejected
+    because a dark portfolio with a mono label font is a skin, and this is meant to be a
+    structure the content has to satisfy.
+    swap test: three named competitors (a generic ML portfolio, an agency page, a SaaS
+    landing) cannot run this layout, because every cell demands a source line and they
+    publish none.
+
+  SIGNATURE MOVE
+    THE READOUT: index code, tracked label, large tabular value, unit line, and a dotted
+    leader running to the source, inside a 1px hairline cell. It appears in the first
+    screen beside the headline, then carries the evidence bank, the project statistics,
+    the service prices and the swatches in the Design DNA section. One move, repeated,
+    never decorated.
+
+  TYPE PAIRING AND WHY
+    Display: Chakra Petch 500 and 600, used only for the headline, section titles and
+    project names. It is a chamfered, squared industrial letterform in the Eurostile
+    lineage, which is the machine-plate voice this page wants, and it is not one of the
+    generated-site default faces.
+    Text and data: Geist Mono 300, 400, 500, 600 for every label, value, price and line
+    of prose. Mono is the body voice on purpose: a page whose claim is measurement should
+    set its prose in the same face as its numbers.
+    Rejected: Space Grotesk and Syne sit on the type-voice avoid list for display roles.
+    JetBrains Mono, IBM Plex Mono and Fira Code carry IDE branding this page does not want.
+    Tabular numerals are on for every figure, price, date and count.
+    Scale: 6 steps, perfect fourth (1.333), base 16px, plus one 12px control-label step.
+
+  PALETTE, ROLES, AUTHORED IN OKLCH FOR DARK (never inverted from a light theme)
+    #0A0C0F  field        oklch(0.155 0.007 258)  cool graphite near-black, never #000
+    #131519  panel        oklch(0.195 0.008 258)  one lightness step up: readout cells, rows
+    #1B1E22  cell         oklch(0.235 0.009 258)  two steps up: controls, inset wells
+    #373B40  rule         oklch(0.350 0.010 258)  1px hairline frames and dividers
+    #575B61  rule strong  oklch(0.470 0.011 258)  dotted leaders, section rules
+    #686C73  edge         oklch(0.530 0.012 258)  control borders, 3:1 non-text contrast
+    #EBE9E6  ink          oklch(0.935 0.004 85)   off-white with a faint warm cast, not #FFF
+    #B2B4B8  ink 2        oklch(0.770 0.006 258)  secondary prose and units
+    #8E9195  ink 3        oklch(0.655 0.007 258)  labels, index codes, captions
+    #EBBA5C  amber        oklch(0.815 0.125 82)   the one accent: primary action, focus, live pips
+    #B97F2B  amber deep   oklch(0.640 0.120 72)   pressed state and rules under the accent
+    #E78378  signal err   oklch(0.715 0.125 27)   error state only, never decoration
+    #8FD0A0  signal ok    oklch(0.800 0.095 152)  pass state only, always with a word beside it
+    Accent coverage is held near 10 percent of surface. Every pair above was measured:
+    ink on field 16.2:1, ink 2 on field 9.4:1, ink 3 on field 6.2:1, ink 3 on cell 5.3:1,
+    amber on field 10.9:1, field on amber 10.9:1, edge on cell 3.2:1.
+
+  LAYOUT GRID
+    Content column max 1280px, side padding clamp(16px, 4vw, 48px).
+    Above 1100px: a two-track shell, a 140px sticky index rail plus the content track,
+    56px column gap. Inside the content track, a 12-column grid, 24px gutter.
+    Hero splits 7 / 5 against that grid. Evidence is a 3 x 2 bank built from 1px gaps over
+    the rule colour, so the bank reads as one instrument face rather than six cards.
+    Spacing scale 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128. Radius 0 everywhere.
+    Below 1100px the rail collapses and the bank steps to 2 columns, then to 1 at 640px.
+
+  DELIBERATELY REFUSED
+    Neon glow, scanlines, CRT curvature, blinking cursors, matrix rain, ANSI palettes,
+    glassmorphism, every gradient, rounded cards with drop shadows, side-tab accent
+    borders, icon tiles above headings, scroll-triggered reveals, parallax, particles,
+    HUD ornament (crosshairs, corner coordinates, fake terminal output) because decoration
+    impersonating instrumentation is exactly the parody tell for this vector.
+    One deliberate principle break (P20): the headline sets one word inside a caliper rule,
+    which breaks the flat-field discipline once, because the word is the argument.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0C0F">
+<title>Ada Morgan, AI/ML engineer, Lisbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Geist+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BENCH  |  tokens
+   ============================================================ */
+:root{
+  /* colour */
+  --field:#0A0C0F;
+  --panel:#131519;
+  --cell:#1B1E22;
+  --rule:#373B40;
+  --rule-2:#575B61;
+  --edge:#686C73;
+  --ink:#EBE9E6;
+  --ink-2:#B2B4B8;
+  --ink-3:#8E9195;
+  --amber:#EBBA5C;
+  --amber-hi:#F5CE84;
+  --amber-deep:#B97F2B;
+  --amber-edge:#4A3A1C;
+  --err:#E78378;
+  --err-edge:#4A2A28;
+  --err-well:#1E1517;
+  --ok:#8FD0A0;
+  --ok-edge:#2C4535;
+
+  /* type */
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --display:"Chakra Petch","Geist Mono",ui-monospace,system-ui,sans-serif;
+  --t-label:0.75rem;   /* 12px control label */
+  --t1:1rem;           /* 16px body        */
+  --t2:1.333rem;       /* 21.3px           */
+  --t3:1.777rem;       /* 28.4px           */
+  --t4:2.369rem;       /* 37.9px           */
+  --t5:3.157rem;       /* 50.5px           */
+  --t6:4.209rem;       /* 67.3px display   */
+
+  /* space */
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp5:24px;
+  --sp6:32px; --sp7:48px; --sp8:64px; --sp9:96px; --sp10:128px;
+
+  /* geometry + motion */
+  --radius:0px;
+  --hair:1px;
+  --ease:cubic-bezier(.2,0,0,1);
+  --fast:150ms;
+  --slow:220ms;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{color-scheme:dark;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--field);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:var(--t1);
+  font-weight:300;
+  line-height:1.65;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:600;line-height:1.04;letter-spacing:-.015em}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+a{color:inherit}
+::selection{background:var(--amber);color:var(--field)}
+
+/* focus: FO1 to FO4, measured against both adjacent surfaces */
+:focus-visible,.is-focus{
+  outline:2px solid var(--amber);
+  outline-offset:2px;
+}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:60;
+  background:var(--amber);color:var(--field);
+  padding:var(--sp3) var(--sp4);font-size:var(--t-label);
+  letter-spacing:.09em;text-transform:uppercase;font-weight:500;
+}
+.skip:focus{left:0}
+
+/* ============================================================
+   shell + grid
+   ============================================================ */
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.shell{display:grid;grid-template-columns:minmax(0,1fr);column-gap:var(--sp7)}
+@media(min-width:1100px){.shell{grid-template-columns:140px minmax(0,1fr);column-gap:56px}}
+
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--sp5)}
+
+section{padding-block:var(--sp8)}
+@media(min-width:900px){section{padding-block:var(--sp9)}}
+.hairline{border:0;border-top:var(--hair) solid var(--rule);margin:0}
+
+/* micro label, the page's smallest voice */
+.lbl{
+  font-size:var(--t-label);line-height:1.3;font-weight:500;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+}
+.code{font-size:var(--t-label);letter-spacing:.14em;font-weight:500;color:var(--ink-3)}
+.dim{color:var(--ink-2)}
+.amber{color:var(--amber)}
+
+/* ============================================================
+   nav + status strip
+   ============================================================ */
+.topbar{position:sticky;top:0;z-index:40;background:var(--field);border-bottom:var(--hair) solid var(--rule)}
+.nav{display:flex;align-items:center;gap:var(--sp5);min-height:60px}
+.brand{
+  font-family:var(--display);font-weight:600;font-size:var(--t2);
+  letter-spacing:-.01em;text-decoration:none;margin-right:auto;
+  display:flex;align-items:center;gap:var(--sp3);
+}
+.brand .mark{
+  width:14px;height:14px;background:var(--amber);flex:none;
+  clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);
+}
+.navlinks{display:none;gap:var(--sp5);align-items:center}
+@media(min-width:980px){.navlinks{display:flex}}
+.navlinks a{
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:500;color:var(--ink-2);text-decoration:none;
+  padding:var(--sp3) 0;transition:color var(--fast) var(--ease);
+}
+.navlinks a:hover{color:var(--ink)}
+.navcta{display:none;gap:var(--sp3)}
+@media(min-width:780px){.navcta{display:flex}}
+.navtoggle{display:inline-flex}
+@media(min-width:980px){.navtoggle{display:none}}
+#navPanel{border-top:var(--hair) solid var(--rule);padding-block:var(--sp4)}
+#navPanel ul{display:grid;gap:var(--sp1)}
+#navPanel a{
+  display:block;text-decoration:none;padding:var(--sp3) 0;
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;
+  font-weight:500;color:var(--ink-2);border-bottom:var(--hair) solid var(--rule);
+}
+#navPanel .row{display:flex;gap:var(--sp3);padding-top:var(--sp4)}
+
+.status{border-bottom:var(--hair) solid var(--rule);background:var(--panel)}
+.status .in{
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp2) var(--sp4);
+  padding-block:var(--sp3);font-size:var(--t-label);letter-spacing:.09em;
+  text-transform:uppercase;font-weight:500;color:var(--ink-3);
+}
+.status strong{color:var(--ink);font-weight:500;display:flex;align-items:center;gap:var(--sp2)}
+.pip{width:8px;height:8px;background:var(--amber);flex:none}
+.status .sep{color:var(--rule-2)}
+.status .right{margin-left:auto;color:var(--ink-3)}
+
+/* ============================================================
+   index rail
+   ============================================================ */
+.rail{display:none}
+@media(min-width:1100px){
+  .rail{display:block;position:sticky;top:88px;align-self:start;padding-top:var(--sp9)}
+}
+.rail ol{list-style:none;margin:0;padding:0;border-top:var(--hair) solid var(--rule)}
+.rail a{
+  display:flex;gap:var(--sp3);align-items:baseline;text-decoration:none;
+  padding:var(--sp3) 0;border-bottom:var(--hair) solid var(--rule);
+  font-size:var(--t-label);color:var(--ink-3);letter-spacing:.06em;
+  transition:color var(--fast) var(--ease);
+}
+.rail a .n{color:var(--rule-2);letter-spacing:.14em;transition:color var(--fast) var(--ease)}
+.rail a:hover{color:var(--ink)}
+.rail a:hover .n{color:var(--amber)}
+.rail .note{padding-top:var(--sp4);font-size:var(--t-label);color:var(--rule-2);line-height:1.5}
+
+/* ============================================================
+   section heads
+   ============================================================ */
+.sec-head{
+  display:grid;grid-template-columns:auto 1fr;gap:var(--sp2) var(--sp4);
+  align-items:baseline;padding-bottom:var(--sp4);
+  border-bottom:var(--hair) solid var(--rule-2);margin-bottom:var(--sp7);
+}
+.sec-head .code{grid-row:1;align-self:baseline}
+.sec-head h2{grid-row:1;font-size:var(--t3);letter-spacing:-.01em}
+.sec-head .note{grid-column:2;font-size:var(--t-label);color:var(--ink-3);letter-spacing:.06em}
+@media(min-width:900px){.sec-head h2{font-size:var(--t4)}}
+
+/* ============================================================
+   hero
+   ============================================================ */
+.hero{padding-top:var(--sp8);padding-bottom:var(--sp8)}
+@media(min-width:900px){.hero{padding-top:var(--sp9);padding-bottom:var(--sp9)}}
+.eyebrow{
+  font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;
+  padding-bottom:var(--sp4);border-bottom:var(--hair) solid var(--rule);
+  margin-bottom:var(--sp6);
+}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp7)}
+@media(min-width:1000px){
+  .hero-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start}
+}
+h1{
+  font-size:clamp(2.369rem,8.4vw,4.209rem);
+  font-weight:600;letter-spacing:-.025em;line-height:1.0;margin-bottom:var(--sp6);
+}
+/* the one deliberate break: a caliper rule under the operative word */
+.caliper{position:relative;display:inline-block;color:var(--amber);padding-bottom:.12em}
+.caliper::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--amber);
+}
+.caliper::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:10px;
+  border-left:2px solid var(--amber);border-right:2px solid var(--amber);
+}
+.lead{font-size:var(--t1);color:var(--ink-2);max-width:56ch;margin-bottom:var(--sp6)}
+@media(min-width:900px){.lead{font-size:1.0625rem}}
+.cta-row{display:flex;flex-wrap:wrap;gap:var(--sp3);margin-bottom:var(--sp6)}
+.availability{
+  font-size:var(--t-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+  border-top:var(--hair) solid var(--rule);padding-top:var(--sp4);font-weight:500;
+}
+
+/* ============================================================
+   THE READOUT  |  signature component
+   ============================================================ */
+.readout{background:var(--panel);padding:var(--sp5);display:flex;flex-direction:column;gap:var(--sp3)}
+.readout .r-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp3)}
+.readout .r-label{
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;
+}
+.readout .r-idx{font-size:var(--t-label);letter-spacing:.14em;color:var(--rule-2);font-weight:500;flex:none}
+.readout .r-value{
+  font-family:var(--mono);font-weight:400;font-size:var(--t4);line-height:1;
+  letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;
+  display:flex;align-items:baseline;gap:.18em;flex-wrap:wrap;
+}
+.readout .r-value .suffix{font-size:.5em;letter-spacing:0;color:var(--ink-2);font-weight:400}
+.readout .r-unit{font-size:var(--t-label);line-height:1.5;color:var(--ink-2);letter-spacing:.02em}
+.leaders{display:flex;align-items:baseline;gap:var(--sp2);font-size:var(--t-label);color:var(--ink-3)}
+.leaders .k{flex:none;letter-spacing:.1em;text-transform:uppercase;color:var(--rule-2);font-weight:500}
+.leaders .dots{flex:1 1 auto;border-bottom:var(--hair) dotted var(--rule-2);transform:translateY(-.28em);min-width:16px}
+.leaders .v{flex:none;color:var(--ink-2);text-align:right}
+
+/* hero readout, slightly taller, sits in the first screen */
+.hero-readout{border:var(--hair) solid var(--rule);background:var(--panel)}
+.hero-readout .readout{padding:var(--sp6) var(--sp5)}
+.hero-readout .r-value{font-size:var(--t5)}
+.spec{border-top:var(--hair) solid var(--rule);padding:var(--sp5);display:grid;gap:var(--sp3);background:var(--cell)}
+
+/* the bank: 1px gaps over the rule colour, one instrument face */
+.bank{
+  display:grid;gap:var(--hair);background:var(--rule);
+  border:var(--hair) solid var(--rule);grid-template-columns:minmax(0,1fr);
+}
+@media(min-width:640px){.bank{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.bank{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.bank .readout{min-height:190px}
+
+/* ============================================================
+   work
+   ============================================================ */
+.proj{border-top:var(--hair) solid var(--rule);padding-block:var(--sp7)}
+.proj:last-of-type{border-bottom:var(--hair) solid var(--rule)}
+.proj-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--sp5)}
+@media(min-width:820px){
+  .proj-grid{grid-template-columns:minmax(0,1fr) 260px;gap:var(--sp7);align-items:start}
+}
+.proj .code{display:block;margin-bottom:var(--sp3)}
+.proj h3{font-size:var(--t3);margin-bottom:var(--sp3);letter-spacing:-.01em}
+.proj .desc{color:var(--ink-2);max-width:58ch;margin-bottom:var(--sp5)}
+.proj .stats{display:flex;flex-wrap:wrap;gap:var(--sp5);margin-bottom:var(--sp5)}
+.stat{display:flex;flex-direction:column;gap:2px;min-width:96px}
+.stat .v{font-size:var(--t2);line-height:1.1;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:400}
+.stat .k{font-size:var(--t-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.plate{border:var(--hair) solid var(--rule);background:var(--panel);padding:var(--sp4)}
+.plate figcaption{font-size:var(--t-label);letter-spacing:.08em;color:var(--ink-3);padding-top:var(--sp3);line-height:1.5}
+.plate svg{display:block;width:100%;height:auto}
+
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:var(--sp2)}
+.tag{
+  font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;font-weight:500;
+  color:var(--ink-2);border:var(--hair) solid var(--rule);background:var(--cell);
+  padding:5px var(--sp3);white-space:nowrap;
+}
+.tag.on{color:var(--field);background:var(--amber);border-color:var(--amber)}
+
+/* ============================================================
+   method
+   ============================================================ */
+.steps{display:grid;gap:var(--hair);background:var(--rule);border:var(--hair) solid var(--rule)}
+@media(min-width:760px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1180px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.step{background:var(--panel);padding:var(--sp5);display:flex;flex-direction:column;gap:var(--sp3)}
+.step .n{font-family:var(--mono);font-size:var(--t3);color:var(--amber);font-weight:400;line-height:1;letter-spacing:-.02em}
+.step h3{font-family:var(--display);font-size:var(--t2);font-weight:500;letter-spacing:-.005em;line-height:1.15}
+.step p{color:var(--ink-2);font-size:.9375rem}
+
+/* ============================================================
+   services
+   ============================================================ */
+.pkgs{
+  display:grid;gap:var(--hair);background:var(--rule);border:var(--hair) solid var(--rule);
+  grid-template-columns:minmax(0,1fr);grid-template-rows:auto;
+}
+@media(min-width:900px){
+  .pkgs{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,auto)}
+  .pkg{grid-row:span 4;grid-template-rows:subgrid;row-gap:var(--sp4)}
+}
+.pkg{background:var(--panel);padding:var(--sp5);display:grid;gap:var(--sp4);align-content:start}
+.pkg h3{font-size:var(--t2);font-weight:500;letter-spacing:-.005em}
+.pkg .price{
+  display:flex;flex-direction:column;gap:var(--sp1);
+  border-top:var(--hair) solid var(--rule);border-bottom:var(--hair) solid var(--rule);
+  padding-block:var(--sp4);
+}
+.pkg .price .v{font-size:var(--t4);line-height:1.05;letter-spacing:-.03em;font-variant-numeric:tabular-nums;overflow-wrap:break-word}
+.pkg .price .k{font-size:var(--t-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.pkg .price .note{font-size:var(--t-label);color:var(--ink-3);letter-spacing:.04em}
+.pkg .price .note.offer{color:var(--amber)}
+.pkg ul{display:grid;gap:var(--sp3)}
+.pkg li{display:grid;grid-template-columns:auto 1fr;gap:var(--sp3);font-size:.9375rem;color:var(--ink-2);line-height:1.55}
+.pkg li .b,.role li .b{width:9px;height:1px;background:var(--rule-2);margin-top:.78em;flex:none}
+.pkg .go{align-self:end}
+
+.table-wrap{overflow-x:auto;border:var(--hair) solid var(--rule);margin-top:var(--sp7)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.9375rem}
+caption{
+  text-align:left;padding:var(--sp4) var(--sp5);border-bottom:var(--hair) solid var(--rule);
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:500;background:var(--panel);
+}
+th,td{padding:var(--sp3) var(--sp5);text-align:left;border-bottom:var(--hair) solid var(--rule)}
+thead th{
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;background:var(--panel);
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody td:first-child{color:var(--ink)}
+tbody td{color:var(--ink-2)}
+.footnote{font-size:var(--t-label);color:var(--ink-3);letter-spacing:.03em;margin-top:var(--sp4);line-height:1.6}
+
+/* ============================================================
+   experience, stack, about
+   ============================================================ */
+.role{border-top:var(--hair) solid var(--rule);padding-block:var(--sp6);display:grid;gap:var(--sp4)}
+@media(min-width:880px){.role{grid-template-columns:240px minmax(0,1fr);gap:var(--sp7)}}
+.role:last-of-type{border-bottom:var(--hair) solid var(--rule)}
+.role h3{font-size:var(--t2);font-weight:500;margin-bottom:var(--sp2);letter-spacing:-.005em}
+.role .where{font-size:var(--t-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.role ul{display:grid;gap:var(--sp3)}
+.role li{display:grid;grid-template-columns:auto 1fr;gap:var(--sp3);color:var(--ink-2);font-size:.9375rem}
+
+.stack{display:grid;gap:var(--sp5)}
+.stack-row{display:grid;gap:var(--sp3);border-top:var(--hair) solid var(--rule);padding-top:var(--sp4)}
+@media(min-width:760px){.stack-row{grid-template-columns:140px minmax(0,1fr);gap:var(--sp5);align-items:start}}
+
+.about{display:grid;gap:var(--sp7)}
+@media(min-width:880px){.about{grid-template-columns:280px minmax(0,1fr);gap:56px;align-items:start}}
+.portrait{border:var(--hair) solid var(--rule);background:var(--cell);aspect-ratio:4/5;display:grid;place-items:center;position:relative}
+.portrait .mono-mark{font-family:var(--display);font-size:var(--t5);font-weight:600;color:var(--rule-2);letter-spacing:-.02em}
+.portrait-cap{font-size:var(--t-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding-top:var(--sp3);font-weight:500}
+.about p{font-size:var(--t2);line-height:1.45;color:var(--ink);max-width:44ch;font-weight:300}
+
+/* ============================================================
+   buttons
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp2);
+  min-height:44px;padding:var(--sp3) var(--sp5);border-radius:var(--radius);
+  font-family:var(--mono);font-size:var(--t-label);font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;
+  border:var(--hair) solid transparent;background:transparent;color:var(--ink);white-space:nowrap;
+  transition:background-color var(--fast) var(--ease),color var(--fast) var(--ease),border-color var(--fast) var(--ease),transform var(--fast) var(--ease);
+}
+.btn-primary{background:var(--amber);color:var(--field);border-color:var(--amber);font-weight:600}
+.btn-primary:hover,.btn-primary.is-hover{background:var(--amber-hi);border-color:var(--amber-hi)}
+.btn-primary:active,.btn-primary.is-active{background:var(--amber-deep);border-color:var(--amber-deep);transform:translateY(1px)}
+.btn-secondary{background:var(--cell);color:var(--ink);border-color:var(--edge)}
+.btn-secondary:hover,.btn-secondary.is-hover{background:var(--rule);border-color:var(--ink-3)}
+.btn-secondary:active,.btn-secondary.is-active{background:var(--cell);transform:translateY(1px)}
+.btn-ghost{background:transparent;color:var(--ink-2);border-color:transparent;padding-inline:var(--sp2)}
+.btn-ghost:hover,.btn-ghost.is-hover{color:var(--amber)}
+.btn-ghost:active,.btn-ghost.is-active{color:var(--amber-deep)}
+.btn:disabled,.btn.is-disabled,.btn[aria-disabled="true"]{
+  background:var(--panel);color:var(--ink-3);border-color:var(--edge);
+  cursor:not-allowed;transform:none;
+}
+.btn-full{width:100%}
+
+/* ============================================================
+   forms (used in the DNA section)
+   ============================================================ */
+.field-set{display:grid;gap:var(--sp4)}
+.field{display:grid;gap:var(--sp2)}
+.field > label{font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.input,textarea,select{
+  font-family:var(--mono);font-size:var(--t1);font-weight:300;color:var(--ink);
+  background:var(--cell);border:var(--hair) solid var(--edge);border-radius:var(--radius);
+  padding:var(--sp3) var(--sp4);min-height:44px;width:100%;
+  transition:border-color var(--fast) var(--ease),background-color var(--fast) var(--ease);
+}
+textarea{min-height:104px;resize:vertical;line-height:1.6}
+select{appearance:none;padding-right:var(--sp7)}
+.select-wrap{position:relative}
+.select-wrap::after{
+  content:"";position:absolute;right:var(--sp4);top:50%;width:8px;height:8px;
+  border-right:var(--hair) solid var(--ink-2);border-bottom:var(--hair) solid var(--ink-2);
+  transform:translateY(-70%) rotate(45deg);pointer-events:none;
+}
+.input::placeholder,textarea::placeholder{color:var(--ink-3);opacity:1}
+.input:hover,textarea:hover,select:hover{border-color:var(--ink-3)}
+.field .hint{font-size:var(--t-label);color:var(--ink-3);letter-spacing:.03em}
+.field.error .input,.field.error textarea{border-color:var(--err);background:var(--err-well)}
+.field.error .hint{color:var(--err);display:flex;gap:var(--sp2);align-items:baseline}
+.field.error .hint::before{content:"error";font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--err)}
+.check{display:flex;gap:var(--sp3);align-items:flex-start;cursor:pointer;padding-block:var(--sp2);min-height:44px}
+.check input{
+  appearance:none;width:20px;height:20px;flex:none;margin-top:2px;
+  background:var(--cell);border:var(--hair) solid var(--edge);border-radius:var(--radius);
+  display:grid;place-items:center;cursor:pointer;
+}
+.check input:checked{background:var(--amber);border-color:var(--amber)}
+.check input:checked::after{
+  content:"";width:10px;height:6px;border-left:2px solid var(--field);border-bottom:2px solid var(--field);
+  transform:translateY(-1px) rotate(-45deg);
+}
+.check span{font-size:.9375rem;color:var(--ink-2);line-height:1.5}
+
+/* ============================================================
+   badges, card, DNA specimens
+   ============================================================ */
+.badge{
+  display:inline-flex;align-items:center;gap:var(--sp2);
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  padding:4px var(--sp3);border:var(--hair) solid var(--rule);color:var(--ink-2);background:var(--panel);
+}
+.badge .dot{width:7px;height:7px;flex:none;background:currentColor}
+.badge.pass{color:var(--ok);border-color:var(--ok-edge)}
+.badge.fail{color:var(--err);border-color:var(--err-edge)}
+.badge.live{color:var(--amber);border-color:var(--amber-edge)}
+
+.card{border:var(--hair) solid var(--rule);background:var(--panel);padding:var(--sp5);display:grid;gap:var(--sp4);max-width:420px}
+.card h4{font-family:var(--display);font-size:var(--t2);font-weight:500;letter-spacing:-.005em}
+.card p{color:var(--ink-2);font-size:.9375rem}
+
+.dna-block{padding-block:var(--sp7);border-top:var(--hair) solid var(--rule)}
+.dna-block > h3{
+  font-family:var(--mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;margin-bottom:var(--sp5);
+}
+.specimen{border:var(--hair) solid var(--rule);background:var(--panel);padding:var(--sp5);display:grid;gap:var(--sp4)}
+.specimen .set{font-family:var(--display);font-size:var(--t4);line-height:1.05;letter-spacing:-.02em;word-break:break-word}
+.specimen .set.mono{font-family:var(--mono);letter-spacing:-.02em;font-weight:300}
+.specimen .weights{display:flex;flex-wrap:wrap;gap:var(--sp5)}
+.specimen .weights div{display:grid;gap:2px}
+.specimen .weights .w{font-size:var(--t2);line-height:1.2}
+.two{display:grid;gap:var(--sp5)}
+@media(min-width:880px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.three{display:grid;gap:var(--sp5)}
+@media(min-width:700px){.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.scale-row{
+  display:grid;grid-template-columns:auto 1fr;gap:var(--sp4);align-items:baseline;
+  border-bottom:var(--hair) solid var(--rule);padding-block:var(--sp3);
+}
+.scale-row .meta{font-size:var(--t-label);color:var(--ink-3);letter-spacing:.08em;white-space:nowrap}
+.scale-row .demo{font-family:var(--display);font-weight:500;line-height:1.05;letter-spacing:-.015em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.swatches{display:grid;gap:var(--hair);background:var(--rule);border:var(--hair) solid var(--rule);grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:700px){.swatches{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.sw{background:var(--panel);padding:var(--sp4);display:grid;gap:var(--sp3)}
+.sw .chip{height:52px;border:var(--hair) solid var(--rule)}
+.sw .hex{font-size:var(--t-label);letter-spacing:.08em;color:var(--ink)}
+.sw .role{font-size:var(--t-label);color:var(--ink-3);letter-spacing:.04em;line-height:1.4}
+
+.spacing-row{display:flex;align-items:center;gap:var(--sp4);padding-block:var(--sp2)}
+.spacing-row .bar{height:14px;background:var(--amber);flex:none}
+.spacing-row .meta{font-size:var(--t-label);color:var(--ink-3);letter-spacing:.08em;white-space:nowrap}
+
+.state-grid{display:grid;gap:var(--sp4);grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.state-cell{display:grid;gap:var(--sp3);justify-items:start}
+.state-cell .lbl{letter-spacing:.1em}
+
+/* ============================================================
+   footer
+   ============================================================ */
+footer{border-top:var(--hair) solid var(--rule-2);background:var(--panel);padding-block:var(--sp8)}
+.foot-grid{display:grid;gap:var(--sp7)}
+@media(min-width:880px){.foot-grid{grid-template-columns:minmax(0,1fr) auto;align-items:end}}
+.foot-links{display:flex;flex-wrap:wrap;gap:var(--sp5)}
+.foot-links a{
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  color:var(--ink-2);text-decoration:none;border-bottom:var(--hair) solid var(--rule-2);
+  padding-bottom:var(--sp1);transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease);
+}
+.foot-links a:hover{color:var(--amber);border-color:var(--amber)}
+.foot-bottom{
+  display:flex;flex-wrap:wrap;gap:var(--sp4);justify-content:space-between;
+  border-top:var(--hair) solid var(--rule);margin-top:var(--sp7);padding-top:var(--sp4);
+  font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+}
+.foot-title{font-family:var(--display);font-size:var(--t4);font-weight:600;letter-spacing:-.02em;margin-bottom:var(--sp5);line-height:1.05}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>Ada Morgan</a>
+      <div class="navlinks">
+        <a href="#evidence">Evidence</a>
+        <a href="#work">Work</a>
+        <a href="#method">Method</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="navcta">
+        <a class="btn btn-secondary" href="https://cal.com/example/15min">Book 15 min</a>
+        <a class="btn btn-primary" href="mailto:ada@example.com">Email me</a>
+      </div>
+      <button class="btn btn-secondary navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navPanel">Menu</button>
+    </nav>
+  </div>
+  <div class="wrap">
+    <div id="navPanel" hidden>
+      <ul>
+        <li><a href="#evidence">Evidence</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="row">
+        <a class="btn btn-secondary" href="https://cal.com/example/15min">Book 15 min</a>
+        <a class="btn btn-primary" href="mailto:ada@example.com">Email me</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="status" id="top">
+  <div class="wrap">
+    <div class="in">
+      <strong><span class="pip" aria-hidden="true"></span>available now</strong>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <span>15-day notice</span>
+      <span class="right">Lisbon, UTC+1 &middot; reply within 1 working day</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="shell">
+
+  <aside class="rail" aria-label="Section index">
+    <ol>
+      <li><a href="#evidence"><span class="n">EV</span><span>Evidence</span></a></li>
+      <li><a href="#work"><span class="n">WK</span><span>Work</span></a></li>
+      <li><a href="#method"><span class="n">ME</span><span>Method</span></a></li>
+      <li><a href="#services"><span class="n">SV</span><span>Services</span></a></li>
+      <li><a href="#experience"><span class="n">XP</span><span>Experience</span></a></li>
+      <li><a href="#about"><span class="n">AB</span><span>About</span></a></li>
+      <li><a href="#dna"><span class="n">DN</span><span>Design DNA</span></a></li>
+    </ol>
+    <p class="note">Every figure on this page carries its source. Rerun any of them.</p>
+  </aside>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-labelledby="h1">
+      <p class="eyebrow">Ada Morgan &middot; founding ML engineer &middot; Northlight AI, Lisbon</p>
+      <div class="hero-grid">
+        <div>
+          <h1 id="h1">I <span class="caliper">measure</span> what I ship.</h1>
+          <p class="lead">I build multi-agent LLM systems and natural-language interfaces over data, plus the web, mobile and desktop apps around them. Every feature ships behind an eval harness and a hard cost cap, and the repos are public. Rerun any number on this page.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:ada@example.com">Email me</a>
+            <a class="btn btn-secondary" href="mailto:ada@example.com?subject=Project">Hire me for a project</a>
+          </div>
+          <p class="availability">available now &middot; 15-day notice &middot; remote or contract &middot; US, EU or AU hours</p>
+        </div>
+
+        <div class="hero-readout">
+          <div class="readout">
+            <div class="r-top">
+              <span class="r-label">Headline result</span>
+              <span class="r-idx">EV-01</span>
+            </div>
+            <div class="r-value">24<span class="suffix">/25</span></div>
+            <p class="r-unit">exact-match field extraction from raw quote emails, 6 fields, n = 25</p>
+            <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">Cargo Concierge ablation</span></div>
+          </div>
+          <div class="spec">
+            <div class="leaders"><span class="k">harness</span><span class="dots" aria-hidden="true"></span><span class="v">ships with the feature</span></div>
+            <div class="leaders"><span class="k">cost cap</span><span class="dots" aria-hidden="true"></span><span class="v">hard, per request</span></div>
+            <div class="leaders"><span class="k">repos</span><span class="dots" aria-hidden="true"></span><span class="v">public</span></div>
+            <div class="leaders"><span class="k">first call</span><span class="dots" aria-hidden="true"></span><span class="v">15 minutes, free</span></div>
+            <div class="leaders"><span class="k">handover</span><span class="dots" aria-hidden="true"></span><span class="v">doc plus 2 weeks of fixes</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EVIDENCE ===================== -->
+    <section id="evidence" aria-labelledby="evidence-t">
+      <header class="sec-head">
+        <span class="code">EV</span>
+        <h2 id="evidence-t">Evidence</h2>
+        <p class="note">six numbers, each with the harness that produced it</p>
+      </header>
+
+      <div class="bank">
+        <div class="readout">
+          <div class="r-top"><span class="r-label">Field extraction</span><span class="r-idx">EV-01</span></div>
+          <div class="r-value">24<span class="suffix">/25</span></div>
+          <p class="r-unit">exact-match field extraction from raw quote emails, 6 fields, n = 25</p>
+          <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">Cargo Concierge ablation</span></div>
+        </div>
+        <div class="readout">
+          <div class="r-top"><span class="r-label">Detection quality</span><span class="r-idx">EV-02</span></div>
+          <div class="r-value">0.92<span class="suffix">mAP</span></div>
+          <p class="r-unit">YOLOv8n mAP@0.5, 6,000-image sample, 25 epochs</p>
+          <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">License Plate Privacy Blurring</span></div>
+        </div>
+        <div class="readout">
+          <div class="r-top"><span class="r-label">Extraction latency</span><span class="r-idx">EV-03</span></div>
+          <div class="r-value">1,850<span class="suffix">ms</span></div>
+          <p class="r-unit">mean extraction latency, Gemini Flash, full instructions</p>
+          <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">Cargo Concierge ablation</span></div>
+        </div>
+        <div class="readout">
+          <div class="r-top"><span class="r-label">Rules block delta</span><span class="r-idx">EV-04</span></div>
+          <div class="r-value">+33<span class="suffix">pts</span></div>
+          <p class="r-unit">accuracy the rules block is worth, 15-item ablation</p>
+          <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">Cargo ablation</span></div>
+        </div>
+        <div class="readout">
+          <div class="r-top"><span class="r-label">Offline coverage</span><span class="r-idx">EV-05</span></div>
+          <div class="r-value">82<span class="suffix">tests</span></div>
+          <p class="r-unit">offline tests, no API key needed</p>
+          <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">TrustBench</span></div>
+        </div>
+        <div class="readout">
+          <div class="r-top"><span class="r-label">Query cost cap</span><span class="r-idx">EV-06</span></div>
+          <div class="r-value">100<span class="suffix">MB</span></div>
+          <p class="r-unit">mandatory query cost cap, enforced before execution</p>
+          <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">mcp-bigquery-evals</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORK ===================== -->
+    <section id="work" aria-labelledby="work-t">
+      <header class="sec-head">
+        <span class="code">WK</span>
+        <h2 id="work-t">Work</h2>
+        <p class="note">three repositories, each with the figure it is accountable to</p>
+      </header>
+
+      <article class="proj">
+        <div class="proj-grid">
+          <div>
+            <p class="code">WK-01</p>
+            <h3>mcp-bigquery-evals</h3>
+            <p class="desc">A BigQuery MCP server with mandatory dry-run cost caps and 7 structured error codes.</p>
+            <div class="stats">
+              <div class="stat"><span class="v">211</span><span class="k">tests</span></div>
+              <div class="stat"><span class="v">7</span><span class="k">tools</span></div>
+              <div class="stat"><span class="v">strict</span><span class="k">mypy</span></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">MCP</span><span class="tag">BigQuery</span><span class="tag">PyPI</span>
+            </div>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 240 116" role="img" aria-label="Five queries measured against a mandatory 100 MB cap: each bar stops short of the cap line.">
+              <g stroke="#8E9195" stroke-width="9" fill="none">
+                <path d="M0 12h96"/><path d="M0 32h142"/><path d="M0 52h64"/><path d="M0 72h118"/><path d="M0 92h81"/>
+              </g>
+              <path d="M176 0v104" stroke="#EBBA5C" stroke-width="2"/>
+              <text x="176" y="116" fill="#EBBA5C" font-family="monospace" font-size="10" letter-spacing="1">100 MB CAP</text>
+            </svg>
+            <figcaption>dry-run bytes per query against the cap, last 5 calls</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-grid">
+          <div>
+            <p class="code">WK-02</p>
+            <h3>TrustBench</h3>
+            <p class="desc">An eval harness for tool-using support agents: 6 trust dimensions, per-intent regression detection with McNemar tests.</p>
+            <div class="stats">
+              <div class="stat"><span class="v">82</span><span class="k">tests</span></div>
+              <div class="stat"><span class="v">6</span><span class="k">dimensions</span></div>
+              <div class="stat"><span class="v">green</span><span class="k">CI</span></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">LLM-judge</span><span class="tag">CI</span>
+            </div>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 240 116" role="img" aria-label="Six trust dimensions scored as horizontal bars, all above the pass threshold.">
+              <g stroke="#8E9195" stroke-width="7" fill="none">
+                <path d="M0 10h204"/><path d="M0 30h168"/><path d="M0 50h192"/><path d="M0 70h150"/><path d="M0 90h186"/><path d="M0 110h174"/>
+              </g>
+              <path d="M132 2v112" stroke="#EBBA5C" stroke-width="2" stroke-dasharray="4 4"/>
+            </svg>
+            <figcaption>per-dimension pass rate, threshold marked</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-grid">
+          <div>
+            <p class="code">WK-03</p>
+            <h3>Cargo Concierge</h3>
+            <p class="desc">Quote emails to structured shipments with a rules block that adds 33 points of accuracy.</p>
+            <div class="stats">
+              <div class="stat"><span class="v">24/25</span><span class="k">exact</span></div>
+              <div class="stat"><span class="v">1,850</span><span class="k">ms</span></div>
+              <div class="stat"><span class="v">$0.004</span><span class="k">per request</span></div>
+            </div>
+            <div class="tags">
+              <span class="tag">Next.js</span><span class="tag">FastAPI</span><span class="tag">Gemini</span>
+            </div>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 240 116" role="img" aria-label="Twenty-five extraction cases as marks: twenty-four exact matches and one miss.">
+              <g stroke="#EBBA5C" stroke-width="10" fill="none">
+                <path d="M4 12h34 M50 12h34 M96 12h34 M142 12h34 M188 12h34"/>
+                <path d="M4 36h34 M50 36h34 M96 36h34 M142 36h34 M188 36h34"/>
+                <path d="M4 60h34 M50 60h34 M96 60h34 M142 60h34 M188 60h34"/>
+                <path d="M4 84h34 M50 84h34 M96 84h34 M142 84h34 M188 84h34"/>
+                <path d="M4 108h34 M50 108h34 M96 108h34 M142 108h34"/>
+              </g>
+              <path d="M188 108h34" stroke="#373B40" stroke-width="10" fill="none"/>
+            </svg>
+            <figcaption>25 cases, 24 exact, 1 miss shown dark</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== METHOD ===================== -->
+    <section id="method" aria-labelledby="method-t">
+      <header class="sec-head">
+        <span class="code">ME</span>
+        <h2 id="method-t">Method</h2>
+        <p class="note">four steps, run in this order, on every feature</p>
+      </header>
+
+      <div class="steps">
+        <div class="step">
+          <span class="n">01</span>
+          <h3>Golden set first</h3>
+          <p>50 real cases from your traffic before any prompt work.</p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <h3>Deterministic checks, then a judge</h3>
+          <p>Rules catch the cheap failures, a temperature-0 LLM judge grades the rest.</p>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <h3>A gate in CI</h3>
+          <p>The build fails on a quality drop, per intent.</p>
+        </div>
+        <div class="step">
+          <span class="n">04</span>
+          <h3>Cost per request, printed</h3>
+          <p>Every feature ships with its cost and latency on the dashboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" aria-labelledby="services-t">
+      <header class="sec-head">
+        <span class="code">SV</span>
+        <h2 id="services-t">Services</h2>
+        <p class="note">three packages, priced in the open, plus software builds</p>
+      </header>
+
+      <div class="pkgs">
+        <div class="pkg">
+          <h3>AI Reliability Audit</h3>
+          <div class="price">
+            <span class="k">5 days</span>
+            <span class="v">$600</span>
+            <span class="note offer">$450 for the first three clients</span>
+          </div>
+          <ul>
+            <li><span class="b" aria-hidden="true"></span><span>A 50-case golden set from your real traffic</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Failure taxonomy: where it goes wrong and how often</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Cost per request by model and step</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>A ranked fix list and a 30-minute walkthrough</span></li>
+          </ul>
+          <div class="go"><a class="btn btn-secondary btn-full" href="mailto:ada@example.com?subject=Audit">Start with the audit</a></div>
+        </div>
+
+        <div class="pkg">
+          <h3>Eval Harness Sprint</h3>
+          <div class="price">
+            <span class="k">2 weeks</span>
+            <span class="v">$1,400</span>
+            <span class="note">the audit, productised into your CI</span>
+          </div>
+          <ul>
+            <li><span class="b" aria-hidden="true"></span><span>Golden sets per intent, versioned in your repo</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Deterministic checks plus a temperature-0 LLM-judge rubric</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>A regression gate in CI that fails the build on a quality drop</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Per-intent pass-rate report and a handover doc</span></li>
+          </ul>
+          <div class="go"><a class="btn btn-primary btn-full" href="mailto:ada@example.com?subject=Sprint">Book the sprint</a></div>
+        </div>
+
+        <div class="pkg">
+          <h3>LLM Feature Build</h3>
+          <div class="price">
+            <span class="k">3 to 4 weeks</span>
+            <span class="v">$2,200 to $3,500</span>
+            <span class="note">one scoped feature, shipped with its evals</span>
+          </div>
+          <ul>
+            <li><span class="b" aria-hidden="true"></span><span>One agent, RAG or NL-to-SQL feature, scoped in writing first</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Structured outputs, streaming and cost caps built in</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Evals and a golden set delivered with the code</span></li>
+            <li><span class="b" aria-hidden="true"></span><span>Two weeks of fix support after handover</span></li>
+          </ul>
+          <div class="go"><a class="btn btn-secondary btn-full" href="mailto:ada@example.com?subject=Build">Scope a build</a></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Software builds</caption>
+          <thead>
+            <tr><th scope="col">Build</th><th scope="col" class="num">Price</th><th scope="col" class="num">Timeline</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Web application</td><td class="num">$1,500 to $2,500</td><td class="num">2 to 3 weeks</td></tr>
+            <tr><td>Mobile app</td><td class="num">$3,000 to $4,500</td><td class="num">4 to 6 weeks</td></tr>
+            <tr><td>Desktop app</td><td class="num">$2,500 to $4,000</td><td class="num">3 to 5 weeks</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">Launch pricing. After a package: $25 per hour or a 40-hour month at $900.</p>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience" aria-labelledby="experience-t">
+      <header class="sec-head">
+        <span class="code">XP</span>
+        <h2 id="experience-t">Experience</h2>
+        <p class="note">two roles, one degree</p>
+      </header>
+
+      <div class="role">
+        <div>
+          <p class="where">Oct 2024 to present</p>
+          <h3>Founding ML Engineer</h3>
+          <p class="where">Northlight AI, Lisbon</p>
+        </div>
+        <ul>
+          <li><span class="b" aria-hidden="true"></span><span>Shipped the multi-stage agent orchestration behind a live competitive-intelligence product</span></li>
+          <li><span class="b" aria-hidden="true"></span><span>NL-to-SQL over BigQuery with dry-run cost guardrails</span></li>
+          <li><span class="b" aria-hidden="true"></span><span>A remote MCP server with OAuth 2.1 exposing 12 analysis tools</span></li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div>
+          <p class="where">Jan to Jun 2024</p>
+          <h3>Backend Developer Intern</h3>
+          <p class="where">Riverbend Systems</p>
+        </div>
+        <ul>
+          <li><span class="b" aria-hidden="true"></span><span>Built the ingestion service and its integration tests</span></li>
+        </ul>
+      </div>
+
+      <div style="padding-top:var(--sp5)">
+        <div class="leaders" style="max-width:520px"><span class="k">education</span><span class="dots" aria-hidden="true"></span><span class="v">B.Tech Computer Science, 2024</span></div>
+      </div>
+
+      <div style="padding-top:var(--sp8)">
+        <h3 class="lbl" style="margin-bottom:var(--sp5)">Stack</h3>
+        <div class="stack">
+          <div class="stack-row">
+            <p class="lbl">Languages</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">SQL</span></div>
+          </div>
+          <div class="stack-row">
+            <p class="lbl">AI</p>
+            <div class="tags"><span class="tag">Claude</span><span class="tag">Gemini</span><span class="tag">OpenAI</span><span class="tag">LangGraph</span><span class="tag">MCP</span><span class="tag">RAG</span><span class="tag">evals</span></div>
+          </div>
+          <div class="stack-row">
+            <p class="lbl">Web</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
+          </div>
+          <div class="stack-row">
+            <p class="lbl">Infra</p>
+            <div class="tags"><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Vercel</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" aria-labelledby="about-t">
+      <header class="sec-head">
+        <span class="code">AB</span>
+        <h2 id="about-t">About</h2>
+        <p class="note">how I work, in one paragraph</p>
+      </header>
+
+      <div class="about">
+        <div>
+          <div class="portrait"><span class="mono-mark">AM</span></div>
+          <p class="portrait-cap">portrait &middot; placeholder</p>
+        </div>
+        <div>
+          <p>I am the engineer who asks for the failure rate before the demo. I work in the open, publish the harness with the feature, and keep the cost per request on the dashboard next to the accuracy.</p>
+          <div style="margin-top:var(--sp6);display:flex;flex-wrap:wrap;gap:var(--sp3)">
+            <a class="btn btn-primary" href="mailto:ada@example.com">Email me</a>
+            <a class="btn btn-secondary" href="https://cal.com/example/15min">Book 15 min</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DESIGN DNA ===================== -->
+    <section id="dna" aria-labelledby="dna-t">
+      <header class="sec-head">
+        <span class="code">DN</span>
+        <h2 id="dna-t">Design DNA</h2>
+        <p class="note">the system this page is built from, rendered live from the same tokens</p>
+      </header>
+
+      <!-- type -->
+      <div class="dna-block" style="border-top:0;padding-top:0">
+        <h3>01 &middot; Typefaces</h3>
+        <div class="two">
+          <div class="specimen">
+            <p class="lbl">Display &middot; Chakra Petch</p>
+            <p class="set">I measure what I ship</p>
+            <div class="weights">
+              <div><span class="w" style="font-family:var(--display);font-weight:500">Aa 500</span><span class="lbl">medium, section titles</span></div>
+              <div><span class="w" style="font-family:var(--display);font-weight:600">Aa 600</span><span class="lbl">semibold, headline</span></div>
+            </div>
+            <p class="lbl" style="color:var(--ink-2);letter-spacing:.03em;text-transform:none">Chamfered industrial letterform. Headline, section titles and project names only.</p>
+          </div>
+          <div class="specimen">
+            <p class="lbl">Text and data &middot; Geist Mono</p>
+            <p class="set mono">0123456789 $1,850 ms</p>
+            <div class="weights">
+              <div><span class="w" style="font-weight:300">Aa 300</span><span class="lbl">prose</span></div>
+              <div><span class="w" style="font-weight:400">Aa 400</span><span class="lbl">values</span></div>
+              <div><span class="w" style="font-weight:500">Aa 500</span><span class="lbl">labels</span></div>
+              <div><span class="w" style="font-weight:600">Aa 600</span><span class="lbl">primary button</span></div>
+            </div>
+            <p class="lbl" style="color:var(--ink-2);letter-spacing:.03em;text-transform:none">Tabular numerals on everywhere, so columns of figures align and live values do not jitter.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- scale -->
+      <div class="dna-block">
+        <h3>02 &middot; Type scale &middot; perfect fourth 1.333, base 16px</h3>
+        <div>
+          <div class="scale-row"><span class="meta">s6 &middot; 67.3px</span><span class="demo" style="font-size:var(--t6)">Measured</span></div>
+          <div class="scale-row"><span class="meta">s5 &middot; 50.5px</span><span class="demo" style="font-size:var(--t5)">Measured</span></div>
+          <div class="scale-row"><span class="meta">s4 &middot; 37.9px</span><span class="demo" style="font-size:var(--t4)">Measured</span></div>
+          <div class="scale-row"><span class="meta">s3 &middot; 28.4px</span><span class="demo" style="font-size:var(--t3)">Measured</span></div>
+          <div class="scale-row"><span class="meta">s2 &middot; 21.3px</span><span class="demo" style="font-size:var(--t2)">Measured</span></div>
+          <div class="scale-row"><span class="meta">s1 &middot; 16px body</span><span class="demo" style="font-size:var(--t1);font-family:var(--mono);font-weight:300">Measured</span></div>
+          <div class="scale-row"><span class="meta">label &middot; 12px</span><span class="demo" style="font-size:var(--t-label);font-family:var(--mono);font-weight:500;letter-spacing:.11em;text-transform:uppercase">Measured</span></div>
+        </div>
+      </div>
+
+      <!-- colour -->
+      <div class="dna-block">
+        <h3>03 &middot; Colour tokens</h3>
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:var(--field)"></div><span class="hex">#0A0C0F</span><span class="role">field &middot; page ground, L 0.155</span></div>
+          <div class="sw"><div class="chip" style="background:var(--panel)"></div><span class="hex">#131519</span><span class="role">panel &middot; readout cells, rows</span></div>
+          <div class="sw"><div class="chip" style="background:var(--cell)"></div><span class="hex">#1B1E22</span><span class="role">cell &middot; controls, inset wells</span></div>
+          <div class="sw"><div class="chip" style="background:var(--rule)"></div><span class="hex">#373B40</span><span class="role">rule &middot; 1px hairlines</span></div>
+          <div class="sw"><div class="chip" style="background:var(--rule-2)"></div><span class="hex">#575B61</span><span class="role">rule strong &middot; leaders, section rules</span></div>
+          <div class="sw"><div class="chip" style="background:var(--edge)"></div><span class="hex">#686C73</span><span class="role">edge &middot; control borders, 3.2:1</span></div>
+          <div class="sw"><div class="chip" style="background:var(--ink)"></div><span class="hex">#EBE9E6</span><span class="role">ink &middot; primary text, 16.2:1</span></div>
+          <div class="sw"><div class="chip" style="background:var(--ink-2)"></div><span class="hex">#B2B4B8</span><span class="role">ink 2 &middot; prose, units, 9.4:1</span></div>
+          <div class="sw"><div class="chip" style="background:var(--ink-3)"></div><span class="hex">#8E9195</span><span class="role">ink 3 &middot; labels, captions, 6.2:1</span></div>
+          <div class="sw"><div class="chip" style="background:var(--amber)"></div><span class="hex">#EBBA5C</span><span class="role">amber &middot; the one accent, 10.9:1</span></div>
+          <div class="sw"><div class="chip" style="background:var(--err)"></div><span class="hex">#E78378</span><span class="role">signal error &middot; error state only</span></div>
+          <div class="sw"><div class="chip" style="background:var(--ok)"></div><span class="hex">#8FD0A0</span><span class="role">signal pass &middot; pass state only</span></div>
+        </div>
+      </div>
+
+      <!-- spacing -->
+      <div class="dna-block">
+        <h3>04 &middot; Spacing unit 4px, radius 0</h3>
+        <div class="two">
+          <div>
+            <div class="spacing-row"><span class="bar" style="width:4px"></span><span class="meta">4 &middot; inside a label pair</span></div>
+            <div class="spacing-row"><span class="bar" style="width:8px"></span><span class="meta">8 &middot; tag gap</span></div>
+            <div class="spacing-row"><span class="bar" style="width:12px"></span><span class="meta">12 &middot; control padding</span></div>
+            <div class="spacing-row"><span class="bar" style="width:16px"></span><span class="meta">16 &middot; field gap</span></div>
+            <div class="spacing-row"><span class="bar" style="width:24px"></span><span class="meta">24 &middot; grid gutter, cell padding</span></div>
+            <div class="spacing-row"><span class="bar" style="width:32px"></span><span class="meta">32 &middot; block gap</span></div>
+            <div class="spacing-row"><span class="bar" style="width:48px"></span><span class="meta">48 &middot; group separation</span></div>
+            <div class="spacing-row"><span class="bar" style="width:64px"></span><span class="meta">64 &middot; section padding, phone</span></div>
+            <div class="spacing-row"><span class="bar" style="width:96px"></span><span class="meta">96 &middot; section padding, desktop</span></div>
+            <div class="spacing-row"><span class="bar" style="width:128px"></span><span class="meta">128 &middot; reserved, page breaks</span></div>
+          </div>
+          <div class="specimen">
+            <p class="lbl">Geometry</p>
+            <p style="color:var(--ink-2);font-size:.9375rem">Radius 0 on every element. Nothing on this page is rounded, so the only curves are in the letterforms. Borders are a single 1px hairline in the rule colour, lighter than the surface they sit on, and no element carries a border and a shadow at once. There are no shadows: elevation is one lightness step.</p>
+            <div class="leaders"><span class="k">radius</span><span class="dots" aria-hidden="true"></span><span class="v">0px, all elements</span></div>
+            <div class="leaders"><span class="k">hairline</span><span class="dots" aria-hidden="true"></span><span class="v">1px solid</span></div>
+            <div class="leaders"><span class="k">elevation</span><span class="dots" aria-hidden="true"></span><span class="v">+0.04 L per step, no shadow</span></div>
+            <div class="leaders"><span class="k">motion</span><span class="dots" aria-hidden="true"></span><span class="v">150ms, cubic-bezier(.2,0,0,1)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- buttons -->
+      <div class="dna-block">
+        <h3>05 &middot; Buttons &middot; default, hover, focus, disabled</h3>
+        <div class="state-grid" style="margin-bottom:var(--sp6)">
+          <div class="state-cell"><span class="lbl">Primary default</span><span class="btn btn-primary">Email me</span></div>
+          <div class="state-cell"><span class="lbl">Primary hover</span><span class="btn btn-primary is-hover">Email me</span></div>
+          <div class="state-cell"><span class="lbl">Primary focus</span><span class="btn btn-primary is-focus">Email me</span></div>
+          <div class="state-cell"><span class="lbl">Primary disabled</span><span class="btn btn-primary is-disabled" aria-disabled="true">Email me</span></div>
+        </div>
+        <div class="state-grid" style="margin-bottom:var(--sp6)">
+          <div class="state-cell"><span class="lbl">Secondary default</span><span class="btn btn-secondary">Book 15 min</span></div>
+          <div class="state-cell"><span class="lbl">Secondary hover</span><span class="btn btn-secondary is-hover">Book 15 min</span></div>
+          <div class="state-cell"><span class="lbl">Secondary focus</span><span class="btn btn-secondary is-focus">Book 15 min</span></div>
+          <div class="state-cell"><span class="lbl">Secondary disabled</span><span class="btn btn-secondary is-disabled" aria-disabled="true">Book 15 min</span></div>
+        </div>
+        <div class="state-grid">
+          <div class="state-cell"><span class="lbl">Ghost default</span><span class="btn btn-ghost">View repo</span></div>
+          <div class="state-cell"><span class="lbl">Ghost hover</span><span class="btn btn-ghost is-hover">View repo</span></div>
+          <div class="state-cell"><span class="lbl">Ghost focus</span><span class="btn btn-ghost is-focus">View repo</span></div>
+          <div class="state-cell"><span class="lbl">Ghost disabled</span><span class="btn btn-ghost is-disabled" aria-disabled="true">View repo</span></div>
+        </div>
+      </div>
+
+      <!-- inputs -->
+      <div class="dna-block">
+        <h3>06 &middot; Inputs</h3>
+        <div class="two">
+          <form class="field-set" onsubmit="return false">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input class="input" id="f-name" name="name" type="text" placeholder="Ada Morgan">
+            </div>
+            <div class="field">
+              <label for="f-brief">What are you shipping</label>
+              <textarea id="f-brief" name="brief" placeholder="One paragraph is enough."></textarea>
+            </div>
+            <div class="field">
+              <label for="f-pkg">Package</label>
+              <div class="select-wrap">
+                <select id="f-pkg" name="package">
+                  <option>AI Reliability Audit</option>
+                  <option>Eval Harness Sprint</option>
+                  <option>LLM Feature Build</option>
+                </select>
+              </div>
+            </div>
+            <label class="check"><input type="checkbox" checked><span>Send the failure taxonomy before the call</span></label>
+          </form>
+          <div class="field-set">
+            <div class="field error">
+              <label for="f-mail">Work email</label>
+              <input class="input" id="f-mail" name="email" type="email" value="ada@" aria-invalid="true" aria-describedby="f-mail-h">
+              <span class="hint" id="f-mail-h">that address is missing a domain, for example ada@northlight.ai</span>
+            </div>
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <input class="input" id="f-budget" name="budget" type="text" value="$1,400">
+              <span class="hint">Validated on blur, never per keystroke.</span>
+            </div>
+            <div class="field">
+              <label for="f-off">Disabled field</label>
+              <input class="input" id="f-off" name="off" type="text" value="set after the audit" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card, badges, table -->
+      <div class="dna-block">
+        <h3>07 &middot; Card, badges, data table</h3>
+        <div class="two" style="align-items:start">
+          <div style="display:grid;gap:var(--sp5)">
+            <div class="card">
+              <p class="code">CD-01</p>
+              <h4>Eval Harness Sprint</h4>
+              <p>Golden sets per intent, a temperature-0 judge rubric, and a regression gate that fails the build on a quality drop.</p>
+              <div class="leaders"><span class="k">price</span><span class="dots" aria-hidden="true"></span><span class="v">$1,400</span></div>
+              <div class="tags"><span class="tag">Python</span><span class="tag">CI</span><span class="tag on">2 weeks</span></div>
+            </div>
+            <div class="tags">
+              <span class="badge live"><span class="dot" aria-hidden="true"></span>available</span>
+              <span class="badge pass"><span class="dot" aria-hidden="true"></span>pass</span>
+              <span class="badge fail"><span class="dot" aria-hidden="true"></span>fail</span>
+              <span class="badge">neutral</span>
+            </div>
+          </div>
+          <div class="table-wrap" style="margin-top:0">
+            <table>
+              <caption>Per-intent regression, last run</caption>
+              <thead>
+                <tr><th scope="col">Intent</th><th scope="col" class="num">Cases</th><th scope="col" class="num">Pass rate</th><th scope="col">State</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>refund status</td><td class="num">32</td><td class="num">0.97</td><td><span class="badge pass"><span class="dot" aria-hidden="true"></span>pass</span></td></tr>
+                <tr><td>address change</td><td class="num">24</td><td class="num">0.92</td><td><span class="badge pass"><span class="dot" aria-hidden="true"></span>pass</span></td></tr>
+                <tr><td>plan upgrade</td><td class="num">18</td><td class="num">0.78</td><td><span class="badge fail"><span class="dot" aria-hidden="true"></span>fail</span></td></tr>
+                <tr><td>invoice copy</td><td class="num">8</td><td class="num">1.00</td><td><span class="badge pass"><span class="dot" aria-hidden="true"></span>pass</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- readout + nav + footer patterns -->
+      <div class="dna-block">
+        <h3>08 &middot; The readout, the nav and the footer patterns</h3>
+        <div class="two" style="align-items:start">
+          <div class="bank" style="grid-template-columns:minmax(0,1fr)">
+            <div class="readout">
+              <div class="r-top"><span class="r-label">Signature component</span><span class="r-idx">RO-00</span></div>
+              <div class="r-value">1,850<span class="suffix">ms</span></div>
+              <p class="r-unit">index code, label, tabular value, unit, dotted leader to the source</p>
+              <div class="leaders"><span class="k">source</span><span class="dots" aria-hidden="true"></span><span class="v">this page, every section</span></div>
+            </div>
+          </div>
+          <div style="display:grid;gap:var(--sp5)">
+            <div class="specimen" style="padding:0">
+              <div style="border-bottom:var(--hair) solid var(--rule);padding:var(--sp4) var(--sp5)">
+                <div style="display:flex;align-items:center;gap:var(--sp4)">
+                  <span style="font-family:var(--display);font-weight:600;font-size:var(--t2);display:flex;align-items:center;gap:var(--sp3)"><span class="mark" style="width:12px;height:12px;background:var(--amber);clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%)"></span>Ada Morgan</span>
+                  <span class="lbl" style="margin-left:auto">nav pattern</span>
+                </div>
+              </div>
+              <div style="padding:var(--sp3) var(--sp5);background:var(--cell)">
+                <div class="in" style="display:flex;flex-wrap:wrap;gap:var(--sp2) var(--sp4);font-size:var(--t-label);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500">
+                  <span style="color:var(--ink);display:flex;align-items:center;gap:var(--sp2)"><span class="pip" aria-hidden="true"></span>available now</span>
+                  <span style="color:var(--rule-2)" aria-hidden="true">&middot;</span>
+                  <span>15-day notice</span>
+                </div>
+              </div>
+            </div>
+            <div class="specimen">
+              <p class="lbl">Footer pattern</p>
+              <div class="foot-links">
+                <a href="mailto:ada@example.com">Email me</a>
+                <a href="https://cal.com/example/15min">Book 15 min</a>
+                <a href="https://github.com/example">GitHub</a>
+              </div>
+              <div class="foot-bottom" style="margin-top:var(--sp4)">
+                <span>Lisbon &middot; UTC+1</span>
+                <span>&copy; 2026 Ada Morgan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="lbl" style="margin-bottom:var(--sp4)">Contact</p>
+        <p class="foot-title">Send the failure rate,<br>not the demo.</p>
+        <div class="foot-links">
+          <a href="mailto:ada@example.com">Email me</a>
+          <a href="https://cal.com/example/15min">Book 15 min</a>
+          <a href="https://github.com/example">GitHub</a>
+          <a href="https://linkedin.com/in/example">LinkedIn</a>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--sp3);flex-wrap:wrap">
+        <a class="btn btn-secondary" href="https://cal.com/example/15min">Book 15 min</a>
+        <a class="btn btn-primary" href="mailto:ada@example.com">Email me</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Lisbon &middot; UTC+1</span>
+      <span>available now &middot; 15-day notice</span>
+      <span>&copy; 2026 Ada Morgan</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('navToggle'),p=document.getElementById('navPanel');
+  if(!b||!p){return;}
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    b.setAttribute('aria-expanded',String(!open));
+    p.hidden=open;
+  });
+})();
+</script>
+</body>
+</html>
