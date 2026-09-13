@@ -137,7 +137,7 @@ export default function ServicesPage() {
               href={s.bookingUrl}
               className="runcmd caret inline-block rounded-[2px] px-5 py-3.5 text-sm"
             >
-              book 20 minutes
+              book 15 minutes
             </Link>
             <Link href={`mailto:${s.email}`} className="text-sm text-lo underline-offset-4 hover:underline">
               or email {s.email}
