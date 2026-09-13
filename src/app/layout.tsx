@@ -13,9 +13,9 @@ const instrument = Instrument_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://umarfarook-ai.vercel.app"),
-  title: "Umarfarook Gurramkonda · Applied AI / ML Engineer",
+  title: "Umarfarook Gurramkonda · Software and AI Engineer",
   description:
-    "I build multi-agent LLM systems and NL-to-SQL interfaces. I ship each one behind an eval harness and a 100 MB query cost cap.",
+    "I build software and AI features: web, mobile and desktop apps, multi-agent LLM systems and NL-to-SQL interfaces, each shipped behind an eval harness and a cost cap.",
   authors: [{ name: "Umarfarook Gurramkonda" }],
   keywords: [
     "AI Engineer",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Contract",
   ],
   openGraph: {
-    title: "Umarfarook Gurramkonda · Applied AI / ML Engineer",
+    title: "Umarfarook Gurramkonda · Software and AI Engineer",
     description:
       "Multi-agent LLM systems and NL-to-SQL over BigQuery, with the eval numbers published.",
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Umarfarook Gurramkonda · Applied AI / ML Engineer",
+    title: "Umarfarook Gurramkonda · Software and AI Engineer",
     description:
       "Multi-agent LLM systems and NL-to-SQL over BigQuery, with the eval numbers published.",
   },

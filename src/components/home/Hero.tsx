@@ -21,9 +21,9 @@ export function Hero() {
         <h1 className="h1 mt-4 max-w-3xl">I measure what I ship.</h1>
 
         <p className="lead mt-6 max-w-2xl">
-          I build multi-agent LLM systems and natural-language interfaces over data. I ship each
-          one behind an eval harness and a hard cost cap, and the repos are public. Rerun any
-          number on this page.
+          I build full-stack web, mobile and desktop apps, and the LLM features inside them:
+          agents, RAG, NL-to-SQL. I ship each one behind an eval harness and a hard cost cap,
+          and the repos are public. Rerun any number on this page.
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3">
