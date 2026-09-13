@@ -7,11 +7,11 @@ import { TokenStream } from "@/components/ui/TokenStream";
 export const metadata: Metadata = {
   title: "Services · Umarfarook Gurramkonda",
   description:
-    "Fixed-price LLM reliability audits, eval harness sprints and feature builds for early-stage teams. Agents, RAG, NL-to-SQL, measured.",
+    "Fixed-price software and AI development for early-stage teams: web, mobile and desktop builds, LLM reliability audits, eval harness sprints and feature builds. Launch pricing.",
   openGraph: {
     title: "Services · Umarfarook Gurramkonda",
     description:
-      "Fixed-price LLM reliability audits, eval harness sprints and feature builds for early-stage teams.",
+      "Fixed-price software and AI development: web, mobile and desktop builds, LLM audits, eval sprints and feature builds.",
     type: "website",
     url: "/services",
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services · Umarfarook Gurramkonda",
     description:
-      "Fixed-price LLM reliability audits, eval harness sprints and feature builds for early-stage teams.",
+      "Fixed-price software and AI development: web, mobile and desktop builds, LLM audits, eval sprints and feature builds.",
   },
 };
 
@@ -54,32 +54,39 @@ export default function ServicesPage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {s.packages.map((p, i) => (
-              <Rise key={p.code} delay={i * 0.06}>
-                <article className="flex h-full flex-col rounded-[2px] border border-line bg-panel p-6">
-                  <p className="mono-label text-lo">
-                    {p.code} · {p.duration}
-                  </p>
-                  <h3 className="display mt-3 text-2xl text-hi">{p.name}</h3>
-                  <p className="display mt-2 text-3xl text-hi">{p.price}</p>
-                  <p className="mt-1 text-sm text-lo">{p.note}</p>
-                  <ul className="mt-5 flex-1 space-y-2 text-[15px] leading-relaxed text-lo">
-                    {p.deliverables.map((d) => (
-                      <li key={d}>{d}</li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={s.bookingUrl}
-                    className="runcmd mt-6 inline-block rounded-[2px] px-4 py-3 text-center text-sm"
-                  >
-                    {p.cta}
-                  </Link>
-                </article>
-              </Rise>
-            ))}
-          </div>
-          <p className="mt-6 text-[15px] text-lo">{s.after}</p>
+          {s.groups.map((g, gi) => (
+            <div key={g.label} className={gi === 0 ? "mt-10" : "mt-16"}>
+              <p className="mono-label text-ember">{g.label}</p>
+              <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-lo">{g.intro}</p>
+              <div className="mt-6 grid gap-6 md:grid-cols-3">
+                {g.packages.map((p, i) => (
+                  <Rise key={p.code} delay={i * 0.06}>
+                    <article className="flex h-full flex-col rounded-[2px] border border-line bg-panel p-6">
+                      <p className="mono-label text-lo">
+                        {p.code} · {p.duration}
+                      </p>
+                      <h3 className="display mt-3 text-2xl text-hi">{p.name}</h3>
+                      <p className="display mt-2 text-3xl text-hi">{p.price}</p>
+                      <p className="mt-1 text-sm text-lo">{p.note}</p>
+                      <ul className="mt-5 flex-1 space-y-2 text-[15px] leading-relaxed text-lo">
+                        {p.deliverables.map((d) => (
+                          <li key={d}>{d}</li>
+                        ))}
+                      </ul>
+                      <Link
+                        href={s.bookingUrl}
+                        className="runcmd mt-6 inline-block rounded-[2px] px-4 py-3 text-center text-sm"
+                      >
+                        {p.cta}
+                      </Link>
+                    </article>
+                  </Rise>
+                ))}
+              </div>
+            </div>
+          ))}
+          <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-lo">{s.pricingNote}</p>
+          <p className="mt-3 text-[15px] text-lo">{s.after}</p>
           <Link href="/#evidence" className="mt-2 inline-block text-sm text-lo underline-offset-4 hover:underline">
             {s.proofLink}
           </Link>
