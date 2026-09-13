@@ -1,31 +1,22 @@
-import { Odometer } from "@/components/ui/Odometer";
-import { Rise } from "@/components/ui/Rise";
-import { TokenStream } from "@/components/ui/TokenStream";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
-// The set piece: metrics as imagery. Monumental digits roll, overshoot and
-// settle like SGD; captions are figure plates. Ragged scales, never a
-// uniform stat-banner row.
+// Three headline figures, four supporting ones. Every value is in the named
+// repo and can be rerun from it.
 const headline = [
   {
     value: "14/15",
     caption: "exact-match field extraction from raw quote emails · 6 fields, n = 15",
-    source: "fig. 1.1 · Cargo Concierge ablation",
-    align: "self-start",
-    size: "text-[clamp(4.8rem,13vw,11.5rem)]",
+    source: "Cargo Concierge ablation",
   },
   {
     value: "0.782",
     caption: "YOLOv8n mAP@0.5 · 6,000-image sample, 25 epochs",
-    source: "fig. 1.2 · License Plate Privacy Blurring",
-    align: "self-end text-right",
-    size: "text-[clamp(3.8rem,10vw,8.5rem)]",
+    source: "License Plate Privacy Blurring",
   },
   {
     value: "2,680 ms",
     caption: "mean extraction latency · Gemini Flash, full instructions",
-    source: "fig. 1.3 · Cargo Concierge ablation",
-    align: "self-start sm:ml-[12%]",
-    size: "text-[clamp(3.2rem,8vw,7rem)]",
+    source: "Cargo Concierge ablation",
   },
 ];
 
@@ -46,40 +37,31 @@ const secondary = [
 
 export function Evidence() {
   return (
-    <section id="evidence" className="relative py-28 sm:py-36">
+    <section id="evidence" className="py-24 sm:py-32">
       <div className="shell">
-        <div className="flex items-baseline justify-between border-b border-line pb-5">
-          <p className="mono-label text-lo">01 / evidence</p>
-          <p className="mono-label hidden text-lo/60 sm:block">all numbers rerunnable from the repos</p>
-        </div>
-
-        <TokenStream
-          text="Seven numbers, all rerunnable."
-          wonkWord="rerunnable."
-          className="display mt-10 max-w-3xl text-[clamp(2rem,4.5vw,3.6rem)] text-hi"
+        <SectionHeader
+          label="Evidence"
+          title="Seven numbers, all rerunnable."
+          aside="all numbers rerunnable from the repos"
         />
 
-        <div className="mt-16 flex flex-col gap-14 sm:gap-20">
-          {headline.map((m, i) => (
-            <Rise key={m.value} delay={i * 0.08} className={`flex max-w-full flex-col ${m.align}`}>
-              <p className={`display tabular leading-none text-hi ${m.size}`}>
-                <Odometer value={m.value} />
-              </p>
-              <p className="mt-3 max-w-md text-[15px] text-lo">{m.caption}</p>
-              <p className="mono-label mt-1.5 text-ember">{m.source}</p>
-            </Rise>
+        <div className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
+          {headline.map((m) => (
+            <div key={m.value}>
+              <p className="figure text-[clamp(2.75rem,6vw,4rem)]">{m.value}</p>
+              <p className="mt-4 text-[15px] leading-6 text-muted">{m.caption}</p>
+              <p className="mt-1 text-[13px] text-muted">{m.source}</p>
+            </div>
           ))}
         </div>
 
-        <div className="mt-24 grid grid-cols-2 gap-x-8 gap-y-12 border-t border-line pt-12 lg:grid-cols-4">
-          {secondary.map((m, i) => (
-            <Rise key={m.value} delay={i * 0.06}>
-              <p className="display tabular text-4xl text-hi sm:text-5xl">
-                <Odometer value={m.value} />
-              </p>
-              <p className="mt-2.5 text-sm leading-6 text-lo">{m.caption}</p>
-              <p className="mono-label mt-1.5 text-lo/60">{m.source}</p>
-            </Rise>
+        <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-line pt-10 lg:grid-cols-4">
+          {secondary.map((m) => (
+            <div key={m.value}>
+              <p className="figure text-[2rem]">{m.value}</p>
+              <p className="mt-3 text-[15px] leading-6 text-muted">{m.caption}</p>
+              <p className="mt-1 text-[13px] text-muted">{m.source}</p>
+            </div>
           ))}
         </div>
       </div>

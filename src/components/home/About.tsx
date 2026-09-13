@@ -1,49 +1,23 @@
-import { Rise } from "@/components/ui/Rise";
-import { TokenStream } from "@/components/ui/TokenStream";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
-// Short bone band. Restraint here makes the dark sections read louder.
 export function About() {
   return (
-    <section id="about" className="on-bone relative py-28 sm:py-36">
+    <section id="about" className="py-24 sm:py-32">
       <div className="shell">
-        <div className="flex items-baseline justify-between border-b border-boneink/15 pb-5">
-          <p className="mono-label text-bonelo">06 / about</p>
-          <p className="mono-label hidden text-bonelo/70 sm:block">what I spend the day on</p>
-        </div>
+        <SectionHeader
+          label="About"
+          title="Most of my time goes to the layer around the model."
+          aside="what I spend the day on"
+        />
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[11rem_1fr]">
-          <Rise>
-            <figure>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/avatar.jpg"
-                alt="Umarfarook Gurramkonda"
-                width={176}
-                height={176}
-                className="h-44 w-44 rounded-[2px] object-cover contrast-105"
-              />
-              <figcaption className="mono-label mt-3 text-bonelo/70">
-                fig. 6.1 · the source image
-              </figcaption>
-            </figure>
-          </Rise>
-
-          <div>
-            <TokenStream
-              text="Most of my time goes to the layer around the model."
-              wonkWord="around"
-              className="display max-w-3xl text-[clamp(1.8rem,3.8vw,3rem)] text-boneink"
-            />
-            <Rise delay={0.25}>
-              <p className="mt-8 max-w-2xl text-[17px] leading-8 text-bonelo">
-                I decide when a model earns its place, then check the output still holds under
-                real traffic. Most of the work is evaluation and cost discipline. Neither is fun.
-                I want applied ML and LLM engineering roles at early-stage companies, where that
-                judgment counts as much as model choice.
-              </p>
-              <p className="display mt-10 text-2xl text-boneink">Umarfarook.</p>
-            </Rise>
-          </div>
+        <div className="mt-10 max-w-2xl">
+          <p className="text-[17px] leading-8 text-muted">
+            I decide when a model earns its place, then check the output still holds under real
+            traffic. Most of the work is evaluation and cost discipline. Neither is fun. I want
+            applied ML and LLM engineering roles at early-stage companies, where that judgment
+            counts as much as model choice.
+          </p>
+          <p className="mt-8 text-[17px] font-semibold tracking-tight">Umarfarook.</p>
         </div>
       </div>
     </section>

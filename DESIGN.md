@@ -4,92 +4,78 @@ Single source of truth for the portfolio's design system. If code drifts from th
 
 ## Discovery
 
-- **Artifact**: personal portfolio / hiring site for an applied AI/ML engineer.
-- **Audience**: hiring managers and senior engineers at AI companies; secondary: collaborators via GitHub/PyPI.
-- **Primary action**: email. Secondary: open a case-study repo.
-- **Positioning**: technical and rigorous, presented with the visual force of a top-tier motion/designer portfolio.
-- **Brand adjectives**: cinematic, rigorous, alive, unmistakable.
-- **Aesthetic essence (3 words)**: a beautiful training run.
+- **Artifact**: personal portfolio and services page for an applied AI / software engineer.
+- **Audience**: founders and engineering leads at seed to Series A companies in the EU and US who might book a call; secondary: hiring managers and collaborators via GitHub.
+- **Primary action**: book 15 minutes (Cal.com) or email. Secondary: open a repo.
+- **Positioning**: technical and exact, presented with restraint. The owner asked for "clean and visually good, better fonts, no animations, like Apple" (2026-09-13).
+- **Brand adjectives**: clean, precise, calm, credible.
+- **Aesthetic essence (3 words)**: quiet, exact, trustworthy.
+
+Research basis (2026-09-13): apple.com product pages and the HIG typography guidance, plus rauno.me, paco.me and brianlovin.com. All four converge on one narrow column, a near-monochrome palette, weight-driven hierarchy, work listed as plain rows, sparse navigation and a one-line footer.
 
 ## Committed aesthetic
 
-**GRADIENT DESCENT.** The whole site is art-directed like the material every AI hiring manager stares at daily: inferno colormaps, loss curves, checkpoints, telemetry — elevated to cinematic editorial art on a warm plum-black ground. The R3F point-cloud self-portrait is the single hard idea: it opens as Gaussian noise and visibly denoises into his face while a step counter runs. Every hue on the page is a coordinate on one scientific colormap; motion behaves like optimization (attack, overshoot, settle). Nothing here is decoration: every effect is his literal day job rendered gorgeously, which no designer portfolio can copy.
+**QUIET SANS.** One off-white ground, one near-black ink, one blue. One sans family in three weights. Hairlines instead of shadows, pills for buttons, 12px radius for cards, nothing moves. The numbers are the imagery: large, tabular, tight. Every sentence on the page stays inside the getwork honesty ledger; this file governs only how it looks.
 
-Research basis (2026-07-16): 7-agent workflow (UX/UI portfolios, motion/editor portfolios, creative-dev implementation, taste critic, creative director) + firsthand Playwright teardowns of dennissnellenberg.com, p5aholic.me, robin-noguier.com, minhpham.design, lusion.co, obys.agency, vanholtz.co.
-
-**Signature moves** (in order of memory):
-1. The diffusion self-portrait: point-cloud face denoises from noise on load, disperses on scroll, repels from the cursor; colors sampled from the inferno ramp.
-2. Inferno as the entire color system; section accents are ramp coordinates, never decorative gradients.
-3. Token-stream typography: headlines reveal in word-cluster cadence like LLM output; counters tick in steps().
-4. Metrics as imagery: monumental Fraunces digits that roll, overshoot and settle like SGD.
-5. The run-command email CTA: `$ mail umarfarook0yt@gmail.com` with a blinking block caret, opening the hero and closing the page.
+**Signature move**: the evidence figures. Seven rerunnable numbers set in 64px tabular semibold with the source under each, on a page that otherwise has no pictures.
 
 ## Typography
 
-- **Display**: Fraunces (variable; opsz maxed at display sizes, SOFT 0). WONK axis ON for exactly one word per headline — the personality channel. Never italic-serif-accent-word inside a sans headline.
-- **Body**: Schibsted Grotesk (400/500), 17–19px/1.6.
-- **Mono**: Fragment Mono (400). All page furniture: counters, telemetry, captions as figure plates, the run-command CTA. Tracked +0.04em, small sizes.
-- Exactly two display scales (hero-monumental ~9vw, section-large ~4.5vw) + body + mono-caption. No in-between sizes.
-- NEVER: Inter, Space Grotesk, Instrument Serif, Geist, Satoshi, Clash Display, gradient text.
-- Gotcha: next/font variable classes go on `<html>`; Fraunces opsz must be set explicitly per size.
+- **Family**: Instrument Sans (Google, variable) for everything, loaded through next/font/google as `--font-instrument`. Chosen because it reads as a crisp SF-like grotesque without being Inter or Geist, and it ships tabular figures.
+- **Weights**: 400 body, 500 labels and buttons, 600 headings and figures. Nothing heavier.
+- **Scale (px)**: 12 label · 13 meta · 15 small · 17 body · 20 lead · 22 h3 · 36 h2 (clamp to 28 on phones) · 64 h1 (clamp to 40 on phones) · 64 hero figures.
+- **Tracking**: h1 -0.03em, h2 -0.02em, h3 -0.01em, body 0, uppercase labels +0.06em.
+- **Leading**: h1 1.05, h2 1.1, h3 1.25, body 1.6, figures 1.
+- **Numerals**: `tabular-nums` on every figure, year, price and code.
+- Utilities: `.h1 .h2 .h3 .lead .label .figure .tabular` in `globals.css`. No mono face on the site.
 
-## Color (OKLCH) — the inferno ramp
+## Color (OKLCH)
 
-Every color is a sample from one continuous data ramp ending in warm plum-black. No third palette, no decorative gradients (the ramp may only appear as data: point cloud, sparkline, heat cells).
+| token        | value                  | role                                              |
+|--------------|------------------------|---------------------------------------------------|
+| bg           | oklch(0.985 0.002 250) | page ground, slightly cool off-white              |
+| surface      | oklch(1 0 0)           | cards and secondary buttons                       |
+| fg           | oklch(0.21 0.01 260)   | headings, body, primary text                      |
+| muted        | oklch(0.5 0.012 260)   | secondary text, captions, labels (AA on bg)       |
+| line         | oklch(0.9 0.005 260)   | every hairline                                    |
+| accent       | oklch(0.5 0.17 257)    | the one blue: primary buttons, links, focus ring  |
+| accent-hover | oklch(0.43 0.17 257)   | primary button hover                              |
+| accent-fg    | oklch(1 0 0)           | text on accent                                    |
+| tint         | oklch(0.95 0.025 257)  | text selection only                               |
 
-| token      | value                    | role                                                        |
-|------------|--------------------------|-------------------------------------------------------------|
-| void       | oklch(0.14 0.025 300)    | page background (plum-black, never neutral #111)             |
-| panel      | oklch(0.18 0.03 310)     | raised surfaces; separated by hairlines, never shadows       |
-| line       | oklch(0.30 0.025 320)    | 1px hairlines, table borders, axes                           |
-| crimson    | oklch(0.55 0.24 20)      | ramp mid: hovers, active nav, selection, accents on bone     |
-| ember      | oklch(0.75 0.18 55)      | ramp hot: underlines, sparklines, in-progress, node ignition |
-| solar      | oklch(0.90 0.15 95)      | PRIMARY ACCENT (ramp peak): email CTA, key digits, focus     |
-| hi         | oklch(0.94 0.012 90)     | headlines/body on dark (warm off-white, never pure white)    |
-| lo         | oklch(0.65 0.03 60)      | secondary text, captions, mono labels                        |
-| bone       | oklch(0.96 0.01 95)      | inverted light bands (method, about)                         |
-| boneink    | oklch(0.22 0.02 300)     | text on bone (same plum family as void)                      |
+Rules: no gradients, no shadows, no second accent. Light only; there is no dark mode and none is planned.
 
-Rules: solar is scarce (CTA, key digits, focus). Crimson carries accents on bone; ember carries them on void. Hairlines not shadows. Elevation = lightness only.
+## Motion
 
-## Motion — "convergence"
-
-Everything moves like optimization: an attack, an overshoot, a settle.
-
-- Micro-interactions 150–250ms. Text entrances 0.8s. Headline clusters ~1.0s total. Hero denoise 2.2s hard cap (once per session via sessionStorage; real HTML text painted immediately for LCP).
-- Easings: entrances expo-out `cubic-bezier(0.16,1,0.3,1)`; wipes expo-in-out `cubic-bezier(0.87,0,0.13,1)`; stat settles spring `{stiffness:170, damping:14, mass:1}` (ONE visible overshoot — the SGD settle, reserved for stats/checkpoints); cursor-follow spring `{stiffness:300, damping:30, mass:0.5}`; anything numeric ticks in `steps()`; scroll-scrubbed scenes are linear and interruptible.
-- Choreography: headlines token-stream in word clusters (40ms stagger, masked rise); the cloud disperses back toward noise as the hero scrolls away (scrubbed 1:1); project rows spawn a spring-lagged cursor preview playing a generative canvas loop per project; stack items scramble-resolve on hover; checkpoints ignite through the ramp when in view.
-- Native scroll ONLY (no Lenis/scroll-hijack). Once-only reveals via useInView with PIXEL margins (framer whileInView % margins are dead — project gotcha).
-- Reduced motion: transforms die, 200ms opacity fades survive; canvas renders the converged portrait statically.
+None. The only transitions are 150ms colour and border-colour changes on hover, and they collapse to 0 under `prefers-reduced-motion`. No scroll reveals, no counters, no canvases, no cursor followers, no scroll progress. framer-motion and three.js are not installed.
 
 ## Space, radius, elevation
 
-- Sections py-28/40; asymmetric composition, never centered-everything.
-- Radius: 2px on small chrome, 8px on the preview panel. No pills, no rounded-2xl.
-- Elevation: none. Hairlines (`line`) and lightness steps only.
+- Shell `min(960px, 100% - 3rem)`; prose blocks cap at `max-w-2xl`; 24px side gutter at phone width.
+- Sections `py-24` (`sm:py-32`). Section header: label, aside, h2, hairline. Within groups 8 to 16px, between groups 24 to 40px.
+- Radius: 999px pills for buttons, 12px cards, 6px focus ring. Nothing else is rounded.
+- Elevation: none. Hairlines only. The nav is the one translucent surface (80% ground + 24px blur) so content scrolls under it.
 
-## Kill list (verified 2026 clichés — do not reintroduce)
+## Components
 
-Purple/indigo gradients; preloader percentage counters (the denoise IS the entrance); Inter/Space Grotesk/Instrument Serif/Geist/Satoshi/Clash Display; infinite marquees; magnetic buttons; blob or dot custom cursors; cursor spotlight; Lenis smooth-scroll hijack; scroll-skewed images; glassmorphism; bento grids; icon-card feature grids; uniform stat-banner rows; grain PNG overlays (texture must be computed, i.e. the point cloud itself); GitHub contribution walls; skill bars; orbiting logo clouds; neural-net node diagrams as decoration; typewriter hero; matrix-rain/hacker green; tilted 3D dashboard mockups; horizontal-scroll galleries; fake logos/screenshots/metrics; em dashes in UI copy; "X, not Y" antithesis headlines; multiple `<Canvas>` mounts.
+- **Buttons**: `.btn` 44px tall, 15/500, pill. `.btn-primary` solid accent, `.btn-secondary` white with hairline. `.btn-sm` 36px for the nav. Ranked by importance: one primary per view.
+- **Links**: `.link` accent, underline on hover at 4px offset. `.title-link` ink at rest, accent on hover (project titles). `.navlink` muted to ink.
+- **Cards**: `.card` white, hairline, 12px, no shadow (services packages only).
+- **Rows**: project, method and experience entries are hairline-separated rows in a numbered column grid, never cards.
+- **Forms**: the site has none (email and Cal.com are the conversion points). If one is added it follows the button idiom: 44px inputs, 10px radius, hairline border, accent focus ring, label above the field, no placeholder-as-label.
 
-## Craft rules
+## Accessibility
 
-- One `<Canvas>` (hero). dpr [1,1.5], ~30k points desktop / ~10k mobile, single Points draw call, additive blending on void.
-- Buttons: rectangular, hairline border, mono uppercase; primary = solar text run-command with caret; `:active` scale(0.98).
-- Hover effects gated behind `@media (hover:hover) and (pointer:fine)`.
-- Tables/metrics: tabular-nums. Numbers ragged, asymmetric scales, never a uniform stat row.
-- Accessibility: AA contrast (hi on void ≈ 13:1, boneink on bone ≈ 14:1, solar reserved for ≥18px or non-text on void), visible solar focus rings, 24px+ targets, semantic landmarks, reduced-motion respected.
-- Every number and artifact shown must be real; the hero step counter counts the denoise itself (honest telemetry).
+- Contrast: fg on bg 14:1, muted on bg 5:1, accent on white 5.5:1, white on accent 5.5:1.
+- 2px accent focus ring at 3px offset on every focusable element; 44px targets on buttons, 36px in the nav.
+- Semantic landmarks, skip link, one h1 per page, headings in order.
 
-## Copy voice
+## Kill list
 
-First person, concrete, plain claims backed by numbers. Section titles are lab-notebook labels (Evidence, Work, Method, Checkpoints, Working set). Banned: em dashes in UI copy, antithesis headlines, rhetorical CTAs, "landscape/journey/seamless".
-
-## Slop audit
-
-- 2026-07-16 v3: rebuilt from "Offprint" (restrained Swiss print) to GRADIENT DESCENT after user verdict: needs designer-portfolio eye candy. Kill list re-verified against 2026 cliché morgue by taste-critic agent.
+Animations of any kind; Fraunces, Inter, Geist, system-ui as the primary face; dark ground; gradients; shadows; glassmorphism beyond the nav bar; mono labels; icon-tile feature cards; stat banners with equal boxes; fake screenshots, logos or metrics; em dashes in UI copy.
 
 ## Changelog
 
-- 2026-07-16 v3 "GRADIENT DESCENT" — ground-up dark cinematic rebuild per this file.
+- 2026-09-13 v4 "QUIET SANS" — light, static, Instrument Sans, pills and hairlines. Replaces v3.
+- 2026-07-16 v3 "GRADIENT DESCENT" — dark cinematic, point-cloud portrait, framer-motion. Superseded.
 - 2026-07-16 v2 "Offprint" — superseded.

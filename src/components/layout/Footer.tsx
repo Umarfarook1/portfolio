@@ -1,45 +1,36 @@
 import Link from "next/link";
-import { Clock } from "@/components/ui/Clock";
 
-// Closing telemetry: live local time, real links, the build's own facts.
+const links = [
+  { name: "Services", href: "/services" },
+  { name: "GitHub", href: "https://github.com/Umarfarook1", external: true },
+  { name: "LinkedIn", href: "https://linkedin.com/in/umarfarook-gurramkonda", external: true },
+  { name: "Email", href: "mailto:umarfarook0yt@gmail.com" },
+  { name: "Resume", href: "/Umarfarook_Gurramkonda_ML_Engineer.pdf", external: true },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="shell flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <p className="mono-label text-lo">© {new Date().getFullYear()} Umarfarook Gurramkonda</p>
-          <Clock className="mono-label text-lo/60" />
-          <p className="mono-label text-lo/60">open to applied ML roles · remote or contract</p>
+      <div className="shell flex flex-col gap-4 py-10 text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <p>© {new Date().getFullYear()} Umarfarook Gurramkonda</p>
+          <p>open to applied ML roles · remote or contract</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <Link href="/services" className="navlink mono-label">
-            Services
-          </Link>
-          <Link href="https://github.com/Umarfarook1" target="_blank" rel="noreferrer" className="navlink mono-label">
-            GitHub
-          </Link>
-          <Link
-            href="https://linkedin.com/in/umarfarook-gurramkonda"
-            target="_blank"
-            rel="noreferrer"
-            className="navlink mono-label"
-          >
-            LinkedIn
-          </Link>
-          <Link href="mailto:umarfarook0yt@gmail.com" className="navlink mono-label">
-            Email
-          </Link>
-          <Link
-            href="/Umarfarook_Gurramkonda_ML_Engineer.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="navlink mono-label"
-          >
-            Resume
-          </Link>
-          <p className="mono-label text-lo/40">Fraunces · Schibsted · Fragment Mono</p>
-        </div>
+        <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          {links.map((l) => (
+            <li key={l.name}>
+              <Link
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noreferrer" : undefined}
+                className="navlink text-[13px]"
+              >
+                {l.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </footer>
   );

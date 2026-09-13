@@ -8,28 +8,25 @@ Personal portfolio of Umarfarook Gurramkonda, applied AI/ML engineer.
 
 - Next.js 16 / React 19 / TypeScript
 - Tailwind CSS 4
-- react-three-fiber for the point-cloud portrait
-- framer-motion for animations
+- Instrument Sans via next/font
+
+No animation or 3D libraries. The site is static markup and CSS.
 
 ## Design
 
 [DESIGN.md](DESIGN.md) is the binding source of truth for the design system: the
-inferno-ramp palette, the type scale, the motion rules, and a kill list of
-patterns that must not come back. If the code and that file disagree, the file
-wins.
+palette, the type scale, the spacing rules and a kill list of patterns that must
+not come back. If the code and that file disagree, the file wins.
 
-The current theme is v3, "GRADIENT DESCENT". The centerpiece is
-`src/components/three/PortraitField.tsx`, a shader point cloud that opens as
-Gaussian noise, denoises into a self-portrait while a step counter runs, and
-disperses back toward noise as the hero scrolls away. It is the page's one
-`<Canvas>`, not a background.
+The current theme is v4, "QUIET SANS": one off-white ground, one ink, one blue,
+one sans family, no motion.
 
-## Sections
+## Pages
 
-`01 / evidence` monumental metrics · `02 / work` project rows with generated
-canvas previews · `03 / method` four stages, each linking its repo ·
-`04 / checkpoints` work history · `05 / working set` tools ·
-`06 / about` · `07 / contact`
+- `/` — evidence (seven rerunnable numbers), work (project rows), method (four
+  stages with proof links), experience, stack, about, contact.
+- `/services` — packages, prices, how it works, questions. All copy lives in
+  `src/content/services.ts`.
 
 Every number on the page traces to a file committed in the public repo the row
 names, and each is checkable at its source. Where a project has not produced a
