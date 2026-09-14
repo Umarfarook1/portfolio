@@ -12,9 +12,9 @@ export function Cover() {
       data-section="loading"
       data-start-year={site.startYear}
       data-end-year={site.endYear}
-      data-header-bg="#262220"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
       aria-label={`${site.name}, cover`}
     >
       <div className="hero__base" data-loading-base-overlay></div>
@@ -52,7 +52,7 @@ export function Cover() {
               <span data-name-line-text>{site.firstName}</span>
               <span data-name-line-text>{site.lastName}</span>
             </h1>
-            <p className="hero__lead" data-loading-tagline data-reveal-line>
+            <p className="hero__lead" data-loading-tagline data-reveal-line data-reveal="fade">
               <span data-line>I build multi-agent LLM systems and</span>
               <span data-line>natural-language interfaces over data,</span>
               <span data-line>plus the web, mobile and desktop apps</span>
@@ -69,12 +69,16 @@ export function Cover() {
         </div>
 
         <div className="hero__meta">
-          <p data-reveal-line>
+          <p data-reveal-line data-reveal="top">
             {site.location} <span className="num" data-clock>{"--:--"}</span>
           </p>
-          <p data-reveal-line>{site.availability}</p>
-          <p data-reveal-line>{site.hours}</p>
-          <p className="hero__scroll" data-reveal-line>
+          <p data-reveal-line data-reveal="top">
+            {site.availability}
+          </p>
+          <p data-reveal-line data-reveal="top">
+            {site.hours}
+          </p>
+          <p className="hero__scroll" data-reveal-line data-reveal="top">
             Scroll
             <span className="glyph" aria-hidden="true">
               {"→"}

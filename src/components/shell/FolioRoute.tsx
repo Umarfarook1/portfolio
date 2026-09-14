@@ -19,6 +19,8 @@ import { ScrollTrigger, registerGsap, gsap, type Cleanup } from "@/motion/env";
 import { initHorizontal } from "@/motion/horizontal";
 import { claimHeroLines, initClock, runLoader } from "@/motion/loader";
 import { initAboutChapter, initClients, initFooter, initServices, initWorkChapter } from "@/motion/chapters";
+import { initCareerMap } from "@/motion/career";
+import { initSelects } from "@/motion/select";
 import { initScrollImageReveals, initScrollLineReveals } from "@/motion/reveal";
 import { initLinkUnderline } from "@/motion/underline";
 import { initForm } from "@/motion/form";
@@ -67,7 +69,9 @@ export function FolioRoute({
       offs.push(initWorkChapter(root));
       offs.push(initServices(root));
       offs.push(initClients(root));
+      offs.push(initCareerMap(root));
       offs.push(initFooter(root));
+      offs.push(initSelects(root));
       offs.push(initForm(root));
       offs.push(initScrollLineReveals(root, {}));
       offs.push(initScrollImageReveals(root, {}));
@@ -94,6 +98,7 @@ export function FolioRoute({
       offs.push(initScrollLineReveals(root, {}));
       offs.push(initScrollImageReveals(root, {}));
       offs.push(initLinkUnderline(root));
+      offs.push(initSelects(root));
       offs.push(initForm(root));
       if (route === "works") offs.push(initWorksRoute(root));
       mountPens(root);

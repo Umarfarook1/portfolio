@@ -55,7 +55,7 @@ export function initForm(scope: ParentNode): Cleanup {
     if (!email) return;
     if (on) {
       email.setAttribute("aria-invalid", "true");
-      if (email.parentElement) email.parentElement.style.setProperty("--drawably-stroke", "#9c2f28");
+      if (email.parentElement) email.parentElement.style.setProperty("--drawably-stroke", "var(--err)");
     } else {
       email.removeAttribute("aria-invalid");
       if (email.parentElement) email.parentElement.style.removeProperty("--drawably-stroke");

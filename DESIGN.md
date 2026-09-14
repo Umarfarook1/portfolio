@@ -11,31 +11,32 @@ governs only how it looks and how it moves.
 - Audience: founders and engineering leads at seed to Series A companies in the EU and US who might book
   a call; hiring managers who arrive from a resume or a repo.
 - Primary action: book 15 minutes on Cal.com, or send the mail draft the commission form composes.
-- Adjectives: composed, editorial, exact, measured, quiet.
+- Adjectives: composed, editorial, exact, measured, direct.
 - Visual word translations: composed to a fixed left rail and one grid per chapter; editorial to Roman
   chapter numbers, running heads and a colophon; exact to tabular figures and a sample size under every
-  number; measured to one warm ink used only where something was measured.
-- Aesthetic essence (3 words): folio, ink, evidence.
+  number; measured to one red used only where something was measured.
+- Aesthetic essence (3 words): red, ink, evidence.
 - Single-minded proposition: he measures what he ships, and here is the harness.
 - References: admire khanhnguyen.design for the pinned horizontal story and its line reveals, drawably
   (MIT, Danilaa1/drawably) for the hand-drawn stroke renderer, and letterpress trade catalogues for the
   chapter chrome. Avoid the dark glassmorphic agency template and the three-icon feature row.
-- Mode: light only. The dark chapters are part of the book, not a theme. There is no toggle.
+- Mode: light only. The red chapters are part of the book, not a theme. There is no toggle.
 - Density: dense in the chapter chrome, airy in the reading column.
 - Constraints: Next.js 16 App Router, React 19, Tailwind v4 kept for utilities, TypeScript, node 24.
   Dependencies limited to gsap, lenis and split-type. No CDN script tags. Deployed on Vercel.
 
 ## Aesthetic
 
-- Direction: FOLIO. The site is printed, not designed: a cover, seven numbered chapters, a colophon,
-  and an index route for the work.
+- Direction: RED AND WHITE. The site is printed, not designed: a cover, seven numbered chapters, a
+  colophon, and an index route for the work, set in red on white.
 - Defining trait: the page is a spread. The rail is the spine (70px fixed from 768px up, a 56px bar
   below that), each chapter is one viewport-wide panel, and the story scrolls sideways on a pinned
-  track while the page scrolls down.
-- Signature move: **the pen only marks what was measured.** One warm ink (#9e3f1c) draws an underline,
-  a circle, a rule or a control edge, and it is spent only on a figure that came out of a run: the
-  ablation delta, the word "measure" in the services headline, the phrase "eval harness" on the cover.
-  Nothing decorative gets the ink.
+  track while the page scrolls down. The rail always carries the inverse of the chapter behind it, so
+  the spine flips white to red as the story moves.
+- Signature move: **the pen only marks what was measured.** One red (#c8102e) draws an underline, a
+  circle, a rule or a control edge, and it is spent only where something was measured or decided: the
+  ablation delta, the verb in "I measure what I ship", the word "measure" in the services headline,
+  the phrase "eval harness" on the cover, the last stop on the career map. Nothing decorative gets it.
 
 ## Typography
 
@@ -72,63 +73,70 @@ Tracking: display -0.028em, hero name -0.042em, metric and work rows -0.03em, bo
 
 ## Color
 
-Strategy: paper first. Three stocks of off-white carry the chapters, three darks carry the cover, the
-wide chapter and the colophon, and exactly one chromatic ink is rationed across the whole site. The
-palette is warm and neutral, which is the opposite of the default cool indigo product site.
+Strategy: red and white. One pure white field, three tints of it, three reds that run from the
+chapter ground to the colophon, and one saturated red that is the pen. The site reads as printed
+matter in two inks, which is the opposite of the cool indigo product site and of the beige folio it
+replaced.
 
-Distribution: 60 paper, 30 ink, 10 pen.
+Distribution: 60 white, 30 red ground, 10 pen.
 
 | role | hex | OKLCH | note |
 |---|---|---|---|
-| paper | #faf9f6 | oklch(0.982 0.004 91.4) | the page field |
-| paper-2 | #f1ece4 | oklch(0.945 0.012 79.8) | raised stock, evidence and studio |
-| paper-3 | #e6dfd4 | oklch(0.906 0.017 79.3) | deep stock, the pause and the index |
-| char | #262220 | oklch(0.256 0.007 48.4) | charcoal, the cover and chapter IV |
-| char-2 | #2e2b28 | oklch(0.291 0.007 67.6) | the contents field |
-| black | #1a1917 | oklch(0.214 0.004 84.6) | the colophon |
-| ink | #2f2b27 | oklch(0.292 0.009 67.5) | body text on paper |
-| ink-2 | #4a4339 | oklch(0.387 0.019 76.8) | secondary text |
-| muted | #675e51 | oklch(0.487 0.023 77.1) | meta and sources |
-| rule | #cfc7bb | oklch(0.833 0.019 78.2) | decorative hairline |
-| rule-2 | #a79d8f | oklch(0.701 0.023 76.5) | table and instrument separators |
-| rule-dark | #5a524d | oklch(0.445 0.013 54.2) | hairline on charcoal |
-| pen | #9e3f1c | oklch(0.492 0.135 39.3) | THE PEN, one warm ink, rationed |
-| pen-light | #d98b52 | oklch(0.706 0.120 55.5) | the same ink lifted for charcoal |
-| paper-ink | #f3efe8 | oklch(0.953 0.010 81.8) | text on charcoal |
-| paper-muted | #a99f92 | oklch(0.707 0.022 74.6) | meta on charcoal |
+| paper | #ffffff | oklch(1.000 0.000 90) | the page field, pure white |
+| paper-2 | #fbf3f2 | oklch(0.970 0.009 26.0) | raised stock, evidence and studio |
+| paper-3 | #f6e9e8 | oklch(0.944 0.014 22.8) | deep stock, the pause and the index |
+| char | #9b1b1b | oklch(0.448 0.163 27.0) | the red chapters: cover base, chapter IV, the pause rect |
+| char-2 | #7f1515 | oklch(0.388 0.141 26.8) | the contents dialog field |
+| black | #5c0f0f | oklch(0.311 0.109 26.4) | the colophon field |
+| ink | #1a1212 | oklch(0.192 0.013 18.4) | body text on white |
+| ink-2 | #4a2c2c | oklch(0.331 0.045 19.7) | secondary text |
+| muted | #7d5a5a | oklch(0.504 0.046 18.8) | meta and sources |
+| rule | #e8d4d4 | oklch(0.886 0.022 17.6) | decorative hairline |
+| rule-2 | #cfb0b0 | oklch(0.784 0.036 17.9) | table and instrument separators |
+| rule-dark | #b54747 | oklch(0.546 0.144 23.1) | hairline on a red ground |
+| pen | #c8102e | oklch(0.530 0.207 22.3) | THE PEN, one red, rationed |
+| pen-light | #ffb3b3 | oklch(0.839 0.089 19.1) | the pen lifted for the red chapters |
+| paper-ink | #ffffff | oklch(1.000 0.000 90) | text on a red ground |
+| red-ink-2 | #f3d9d9 | oklch(0.907 0.029 17.7) | secondary and meta text on a red ground |
+| paper-muted | #e9d6d5 | oklch(0.891 0.021 21.2) | the collage screen fills |
 | ok | #2f6b44 | oklch(0.477 0.089 153.0) | success, never the only signal |
-| err | #9c2f28 | oklch(0.470 0.146 27.8) | error, always with a glyph and words |
+| err | #8a1c1c | oklch(0.416 0.146 26.3) | error, always with a glyph and words |
 
 Measured contrast (sRGB, 2026-09-14):
 
 | pair | ratio |
 |---|---|
-| ink on paper | 13.3:1 |
-| ink-2 on paper | 9.3:1 |
-| muted on paper | 6.1:1 |
-| pen on paper | 6.3:1 |
-| paper on pen (the solid button) | 6.3:1 |
-| ok on paper | 6.0:1 |
-| err on paper | 7.0:1 |
-| ink on paper-2 | 11.9:1 |
-| muted on paper-2 | 5.4:1 |
-| ink on paper-3 | 10.6:1 |
-| muted on paper-3 | 4.8:1 |
-| paper-ink on char | 13.8:1 |
-| paper-muted on char | 6.1:1 |
-| pen-light on char | 5.8:1 |
-| paper-ink on black | 15.3:1 |
-| paper-muted on black | 6.7:1 |
-| pen-light on black | 6.5:1 |
-| paper-ink on char-2 (the contents) | 12.3:1 |
+| ink on white | 18.4:1 |
+| ink-2 on white | 12.4:1 |
+| muted on white | 6.0:1 |
+| pen on white | 5.9:1 |
+| white on pen (the solid button) | 5.9:1 |
+| ok on white | 6.4:1 |
+| err on white | 9.3:1 |
+| ink on paper-2 | 16.9:1 |
+| muted on paper-2 | 5.5:1 |
+| ink on paper-3 | 15.6:1 |
+| muted on paper-3 | 5.1:1 |
+| white on char (the red chapters) | 8.2:1 |
+| red-ink-2 on char | 6.1:1 |
+| pen-light on char | 4.8:1 |
+| white on char-2 (the contents) | 10.4:1 |
+| white on black (the colophon) | 13.7:1 |
+| red-ink-2 on black | 10.3:1 |
+| pen-light on black | 8.1:1 |
+| char on white (the rail, red on white) | 8.2:1 |
 
-Hairlines are decorative and sit below 3:1 on purpose (rule 1.6:1, rule-2 2.5:1). No hairline is the
-only thing carrying meaning.
+On a saturated red ground two near white tints read as one, so the second and third text levels share
+red-ink-2 and take their hierarchy from size and weight instead. Hairlines are decorative and sit
+below 3:1 on purpose (rule 1.4:1, rule-2 2.0:1, rule-dark on red 1.5:1). No hairline is the only thing
+carrying meaning.
 
 Per surface, one attribute swaps the working colours: `[data-field="paper-2"]`, `paper-3`, `dark` and
 `black` redefine `--field`, `--fg`, `--fg-2`, `--fg-muted`, `--hairline`, `--hairline-2` and
 `--accent`. A chapter declares its rail theme with `data-header-bg`, `data-header-text` and
-`data-header-border`, and the rail crossfades to it over 500ms.
+`data-header-border`, and the rail crossfades to it over 500ms. Three themes only: a white chapter
+carries `#9b1b1b / #ffffff / #b54747`, a red chapter carries `#ffffff / #9b1b1b / #e8d4d4`, and the
+colophon carries `#ffffff / #5c0f0f / #e8d4d4`.
 
 ## Spacing, radius, shadow
 
@@ -148,6 +156,10 @@ Per surface, one attribute swaps the working colours: `[data-field="paper-2"]`, 
 - Spacing rhythm: tight within a group (s-2 to s-3), loud between groups (s-5 to s-7).
 - Signature layout move: the year strip and the name row share one grid cell, so the loader's handoff
   is a swap in place with no gap left behind at any width.
+- Chapter V is a map, not a list: one drawn route across the panel with five stops placed on it by
+  percent coordinates, and it stacks top to bottom under 768px.
+- Chapter VI is six equal cards in two labelled rows of three, so the software build prices sit beside
+  the AI packages instead of hiding in a foot list.
 - Scanning: Z across a chapter, F down a sheet.
 - Responsive: desktop-first, two breakpoints. Under 768 the rail becomes a 56px top bar, the track
   stops being horizontal and every panel becomes a full-height vertical section. Between 768 and 1080
@@ -168,8 +180,13 @@ Per surface, one attribute swaps the working colours: `[data-field="paper-2"]`, 
 - Overlays: the contents is a real `<dialog>`. Escape closes it, the rest of the document goes inert,
   focus lands on Close and returns to the burger. The work detail is a fixed region that clips open
   and closed, locks the scroll behind it and returns focus to the row that opened it.
-- Rows over cards: work, clients, timeline and method entries are hairline-separated rows. The only
-  cards are the studio packages, and they are drawn rules, not boxes.
+- Select: no native `<select>` anywhere. The commission form uses a drawn listbox: a toggle button with
+  `aria-haspopup="listbox"` and `aria-expanded`, a `role="listbox"` of options, and a hidden input that
+  carries the value. Arrow keys, Home, End, type-ahead, Enter, Space and Escape all work, and focus
+  returns to the toggle on close.
+- Rows over cards: work, timeline and method entries are hairline-separated rows. The only cards are
+  the studio packages (six of them, in two labelled rows) and the career stops, and they are drawn
+  rules, not boxes.
 - Empty and loading: the cover runs the loader once per session; every other route paints its end state
   immediately. A cover image that has not been drawn yet falls back to the drawn placeholder thumb, so
   no route ever shows a hole.
@@ -228,12 +245,45 @@ that kills its ScrollTriggers, tweens and listeners.
 | Checkbox draw | checked | stroke-dashoffset 1 | stroke-dashoffset 0 | 0.24s | cubic-bezier(0.2,0,0,1) | 0 |
 | Radio dot | checked | scale 0.5 | scale 1 | 0.16s | cubic-bezier(0.2,0,0,1) | 0 |
 | Toggle knob | checked | translateX 0 | translateX 20px | 0.16s | cubic-bezier(0.2,0,0,1) | 0 |
+| Cover slideshow | chapter III on screen, no row hovered | opacity 0, scale 1.03 | opacity 1, scale 1, a cover every 2.8s | 0.70s | power2.out | 0 |
+| Slideshow resume | 1.5s after the pointer or focus leaves a row | the cover that was held | the cycle | 0.70s | power2.out | 0 |
+| Career route draw | chapter V 60% on screen | stroke-dashoffset 100% | stroke-dashoffset 0 | 1.60s | power2.inOut | 0 |
+| Career stop marker | the route reaches the stop | scale 0 | scale 1 | 0.50s | back.out(1.6) | to the route progress |
+| Career stop text | with its marker | y 12px, opacity 0 | y 0, opacity 1 | 0.60s | power3.out | to the route progress |
+| Career stop lift | stop hover or focus | translateY 0, marker stroke 1x | translateY -4px, thicker marker stroke | 0.12s | cubic-bezier(0.2,0,0,1) | 0 |
+| Select open | toggle click, Space, Enter or ArrowDown | inset(0 0 100% 0) | inset(0 0 0 0) | 0.28s | power3.out | 0 |
+| Chapter snap | scrolling stops on the pinned track | where the scroll stopped | the nearest chapter start | 0.25s to 0.70s | power2.inOut | 0.12s delay, directional |
+
+Entrance variants. Every text block can name its entrance with `data-reveal`, so the story does not
+rise from the bottom nine times in a row. The trigger stays the same: once, when 80% of the block is
+on screen inside the track.
+
+| value | motion |
+|---|---|
+| `bottom` | the line reveal above, and the default when the attribute is absent |
+| `left` | lines slide in from the left, xPercent -60 with a clip from the left, 1.2s power3.out, stagger 0.06 |
+| `right` | the mirror of left |
+| `top` | lines drop from above, yPercent -102, the timing of bottom |
+| `fade` | opacity 0 to 1 with a 12px blur clearing, 1.0s power2.out, stagger 0.08 |
+| `scale` | the block scales 0.92 to 1 with opacity, origin 50% 100%, 0.9s power3.out |
+| `count` | numerals count from 0 to the printed value over 1.4s power2.out, tabular figures held, unit and formatting kept |
+| `flip` | the block rotates in from rotateX 60deg, origin top, with opacity, 1.0s power3.out |
+| `clip-top` | a clip-path wipe from the top edge down, 0.9s power2.out |
+| `draw` | SVG strokes draw with stroke-dashoffset, 1.2s power2.inOut |
+
+Assignment: the cover keeps the loader choreography, with the lead `fade` and the meta `top`; chapter I
+intro `left`, about paragraph `fade`, statement `scale`; chapter II figures `count` with captions
+`fade` and the footnote `left`; the pause is unchanged; chapter III rows `right` and footnote `fade`;
+chapter IV columns `clip-top` and statement `left`; chapter V `draw`; chapter VI cards `flip` with a
+0.08s stagger and notes `fade`; chapter VII form `draw`; the colophon words `top`. Sheets: /work rows
+`left`, /about blocks `fade`, /services cards `flip`. Images keep the wipe.
 
 Reduced motion: under `prefers-reduced-motion: reduce` every row above collapses to its end state, the
 boil freezes on one frame, Lenis is never started, and the horizontal chapters become a plain vertical
-read. Nothing is hidden in the first place: the entrance styles are gated on a `.has-motion` class that
-an inline script adds only when the libraries can run, so a browser with no scripting gets a legible
-page.
+read. The slideshow holds the first cover and hover swaps it instantly, the career route and its stops
+are already drawn, the listbox appears without a clip, and nothing snaps. Nothing is hidden in the
+first place: the entrance styles are gated on a `.has-motion` class that an inline script adds only
+when the libraries can run, so a browser with no scripting gets a legible page.
 
 ## Iconography
 
@@ -250,13 +300,17 @@ joins.
   `public/art/plates/<slug>.webp`.
 - Never a product screenshot, never a mockup in a laptop shell, never a stock photograph, never a logo
   wall. The work is proved by numbers and repos, not by pictures of screens.
-- The one photograph is the portrait, `public/avatar.jpg`, 400 x 400, a real photo of the owner,
-  captioned "Fig. 1, the author, unretouched".
+- No photograph appears on the site. `public/avatar.jpg` (400 x 400, a real photo of the owner) stays
+  in the repo for a social card, and nothing on a page renders it.
 - Every image goes through `next/image` with `fill` and a `sizes` attribute, inside the reveal shell so
   the overlay wipes it in. `art()` asks the filesystem at render time; a missing file falls back to the
   drawn placeholder thumb, so the build never breaks while art is still being drawn.
+- Covers are white paper with ink lines and a red accent; plates are a deep red ground with white
+  lines, so a plate behind a red column reads as a second printing of the same ink.
 - Text over image: no text sits over an image anywhere. The service plates sit behind a column whose
-  text stays on the charcoal field, and the plate is only ever a backdrop at 22% striping.
+  text stays on the red field, and the plate is only ever a backdrop at 22% striping.
+- The one drawn illustration that is not art on disk is the career route, an SVG path stroked in
+  rule-2 that the chapter draws as the reader arrives.
 
 ## Accessibility
 
@@ -271,11 +325,13 @@ joins.
 - Targets: 44px on buttons and menu items, and the small caps links take vertical padding so they clear
   24px with the rule moved down to match.
 - Landmarks and headings: one h1 per route (the hero name on home, the sheet title elsewhere), section
-  headings in order, a skip link to the folio, `aria-labelledby` on every chapter.
+  headings in order, a skip link to the content, `aria-labelledby` on every chapter.
 - Reduced motion: see the motion section. Live regions: the form status is `role="status"` with
   `aria-live="polite"`.
-- Images: the portrait has a real alt, covers and plates are decorative and take an empty alt, drawn
-  SVG is `aria-hidden`.
+- Images: covers and plates are decorative and take an empty alt, drawn SVG is `aria-hidden`.
+- The listbox is a real listbox: `aria-haspopup`, `aria-expanded`, `role="listbox"` and
+  `role="option"` with `aria-selected`, labelled by the field label, operable from the keyboard, and
+  the value rides in a hidden input so the form works the same way it did with a native select.
 
 ## Tokens (source of truth)
 
@@ -301,13 +357,13 @@ joins.
   --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
   --r-0:0px; --r-1:2px;
 
-  --paper:#faf9f6; --paper-2:#f1ece4; --paper-3:#e6dfd4;
-  --char:#262220; --char-2:#2e2b28; --black:#1a1917;
-  --ink:#2f2b27; --ink-2:#4a4339; --muted:#675e51;
-  --rule:#cfc7bb; --rule-2:#a79d8f; --rule-dark:#5a524d;
-  --pen:#9e3f1c; --pen-light:#d98b52;
-  --paper-ink:#f3efe8; --paper-muted:#a99f92;
-  --ok:#2f6b44; --err:#9c2f28;
+  --paper:#ffffff; --paper-2:#fbf3f2; --paper-3:#f6e9e8;
+  --char:#9b1b1b; --char-2:#7f1515; --black:#5c0f0f;
+  --ink:#1a1212; --ink-2:#4a2c2c; --muted:#7d5a5a;
+  --rule:#e8d4d4; --rule-2:#cfb0b0; --rule-dark:#b54747;
+  --pen:#c8102e; --pen-light:#ffb3b3;
+  --paper-ink:#ffffff; --paper-muted:#e9d6d5; --red-ink-2:#f3d9d9;
+  --ok:#2f6b44; --err:#8a1c1c;
 
   --field:var(--paper); --fg:var(--ink); --fg-2:var(--ink-2); --fg-muted:var(--muted);
   --hairline:var(--rule); --hairline-2:var(--rule-2); --accent:var(--pen);
@@ -322,9 +378,10 @@ joins.
 }
 ```
 
-Adapter: plain CSS in `src/app/globals.css`. Tailwind v4 stays imported for utilities, but the Folio
-custom properties are the design system, and the font families resolve to the `next/font` variables set
-on `<html>`.
+Adapter: plain CSS in `src/app/globals.css`. Tailwind v4 stays imported for utilities, but these custom
+properties are the design system, and the font families resolve to the `next/font` variables set on
+`<html>`. Components never inline a hex: a drawn SVG takes `currentColor` or `var(--token)`, and the
+only hex a component carries is the three-value rail theme on a panel.
 
 ## Kill list
 
@@ -332,24 +389,39 @@ Dark mode toggle; a second accent; shadows and glassmorphism; rounded corners be
 ring; product screenshots, device mockups, logo walls and stock photography; icon-tile feature rows;
 counters that animate a number that was never measured; a cursor follower; framer-motion and three.js;
 Inter, Geist and system-ui as a primary face; em dashes and exclamation marks in copy; naming a mobile
-or desktop framework; the word React on its own.
+or desktop framework; the word React on its own; the words Folio and Edition as visible copy; a native
+select; every block entering from the bottom.
 
 ## Slop audit
 
-- Date: 2026-09-14. Result: pass, 6 tells fixed during the port.
+- Date: 2026-09-14, revision 1. Result: pass, 6 tells fixed during the port and 3 in the revision.
 - Fixed: the dummy persona and its city, agency and hobbies (replaced with the owner's real content, no
   placeholder survives); a headline that promised what the page did not show ("Where numbers find their
   proof"); a "Some repos are private, ask for access" line that hedged instead of naming the two closed
   systems; a fabricated eval-runs table; a sub-agent count the ledger retires (the stages are named
   instead); a skills line that listed React on its own.
+- Revision 1 fixed: a magazine mannerism the owner did not ask for (the words Folio and Edition on the
+  rail, the cover, the contents and three sheet heads, all removed); a portrait with a caption that
+  performed candour instead of showing work (gone, the chapter now carries the one sentence the site
+  exists to prove); nine chapters that all entered from the bottom, which read as one template rather
+  than a book (ten named entrance variants, one per chapter).
 - Craft layer: hover states all have focus twins, the form validates on blur and keeps what was typed,
   the boil freezes and the track unstacks under reduced motion, the index rows are buttons that open a
-  real region rather than links that go nowhere.
+  real region rather than links that go nowhere, the listbox is operable from the keyboard, and the
+  slideshow yields to the pointer instead of fighting it.
 - Accessibility gate: passed on contrast, focus, keyboard, targets, headings, reduced motion and colour
   independence. The figures are in the palette table.
 
 ## Changelog
 
+- 2026-09-14 revision 1 "RED AND WHITE" - the palette moves from paper and rust to red on white, with
+  the rail carrying the inverse of its chapter. The words Folio and Edition leave the site. Chapter I
+  drops the portrait for a statement in Fraunces with the pen under the verb. Chapter III swaps the
+  empty placeholder box for a slideshow of the covers that yields to hover. Chapter V becomes a drawn
+  career map with five stops. Chapter VI shows all six packages as cards, so the web, mobile and
+  desktop prices are in the story. The native select becomes a drawn listbox. The track snaps to the
+  nearest chapter when scrolling stops, and ten named entrance variants replace the single rise from
+  the bottom.
 - 2026-09-14 v5 "FOLIO" - the printed folio: Fraunces, Schibsted Grotesk, Spline Sans Mono and Caveat;
   three paper stocks and one warm ink; a pinned horizontal story of seven chapters with a loader, a
   contents dialog, route dissolves and the drawn control kit. Replaces v4. The pen only marks what was

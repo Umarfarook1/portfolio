@@ -8,9 +8,9 @@ export function Colophon() {
       className="panel"
       data-section="home-footer"
       data-field="black"
-      data-header-bg="#f1ece4"
-      data-header-text="#2f2b27"
-      data-header-border="#cfc7bb"
+      data-header-bg="#ffffff"
+      data-header-text="#5c0f0f"
+      data-header-border="#e8d4d4"
       aria-label="Contact"
     >
       <div className="footer__inner">
@@ -59,7 +59,12 @@ export function Colophon() {
         </div>
 
         <div className="footer__mid">
-          <h2 className="footer__heading opacity-0" data-char-line-heading aria-hidden="true">
+          <h2
+            className="footer__heading opacity-0"
+            data-char-line-heading
+            data-reveal="top"
+            aria-hidden="true"
+          >
             <span data-name-line-text>Next</span>
             <span data-name-line-text>Chapter</span>
           </h2>

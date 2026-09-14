@@ -122,7 +122,7 @@ export function initMenu(
     const itemBlocks = menuItems().map((it) => list("[data-reveal-line]", it));
     const closeBtn = dialog.querySelector<HTMLElement>("[data-menu-close]");
     const socials = list("[data-social-link][data-reveal-line]", dialog);
-    /* whatever else carries a reveal line, the edition line at the top and the
+    /* whatever else carries a reveal line, the head line at the top and the
        location line at the foot, rides in with the Close button: G listed only
        the items, the button and the socials, and left those two hidden */
     const claimed = new Set<HTMLElement>(socials);

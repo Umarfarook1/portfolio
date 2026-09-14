@@ -76,27 +76,3 @@ export function afterFonts(fn: () => void): Cleanup {
     alive = false;
   };
 }
-
-/** Every image inside the scope, so the pinned track can be measured after the
- *  last one has laid out rather than before. */
-export function afterImages(scope: ParentNode, fn: () => void): Cleanup {
-  let alive = true;
-  const imgs = list<HTMLImageElement>("img", scope).filter((i) => !i.complete);
-  if (!imgs.length) return () => { alive = false; };
-  let left = imgs.length;
-  const done = () => {
-    left -= 1;
-    if (left <= 0 && alive) fn();
-  };
-  imgs.forEach((i) => {
-    i.addEventListener("load", done, { once: true });
-    i.addEventListener("error", done, { once: true });
-  });
-  return () => {
-    alive = false;
-    imgs.forEach((i) => {
-      i.removeEventListener("load", done);
-      i.removeEventListener("error", done);
-    });
-  };
-}

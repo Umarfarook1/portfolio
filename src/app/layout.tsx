@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Caveat, Fraunces, Schibsted_Grotesk, Spline_Sans_Mono } from "next/font/google";
 import "./globals.css";
 import { FolioShell } from "@/components/shell/FolioShell";
@@ -76,6 +76,11 @@ const PRELUDE = [
   'd.style.setProperty("--vh",window.innerHeight+"px");})();',
 ].join("");
 
+/* The browser chrome takes the colour of the ground the cover opens on. */
+export const viewport: Viewport = {
+  themeColor: "#9b1b1b",
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
@@ -88,7 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <script dangerouslySetInnerHTML={{ __html: PRELUDE }} />
         <a className="skip-link" href="#main">
-          Skip to the folio
+          Skip to the content
         </a>
         <FolioShell>{children}</FolioShell>
       </body>

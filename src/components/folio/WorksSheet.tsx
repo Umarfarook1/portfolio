@@ -20,16 +20,16 @@ export function WorksSheet() {
       <section
         className="sheet"
         data-field="paper-3"
-        data-header-bg="#2f2b27"
-        data-header-text="#f3efe8"
-        data-header-border="#5a524d"
+        data-header-bg="#9b1b1b"
+        data-header-text="#ffffff"
+        data-header-border="#b54747"
       >
         <div className="sheet__head">
           <h1 className="sheet__title" data-reveal-line>
             All work ({projects.length})
           </h1>
           <p className="caps" style={{ color: "var(--fg-muted)" }}>
-            Folio {"·"} Edition, index
+            Index
           </p>
         </div>
 
@@ -38,6 +38,7 @@ export function WorksSheet() {
             <button
               type="button"
               className="workrow"
+              data-reveal="left"
               data-open-detail={p.slug}
               data-detail-title={p.title}
               data-detail-overview={overviewOf(p)}

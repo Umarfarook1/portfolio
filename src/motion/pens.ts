@@ -300,6 +300,21 @@ function penCircleMark(el: HTMLElement, opts: ChromeOptions) {
   );
 }
 
+function penMarker(el: HTMLElement, opts: ChromeOptions) {
+  return attachChrome(
+    el,
+    [
+      {
+        className: "drawably-outline",
+        gen: (w, h, o) => roughCircle(w / 2, h / 2, Math.min(w, h) / 2 - INSET, o),
+      },
+    ],
+    Object.assign({ width: 1.8 }, opts),
+    false,
+    false
+  );
+}
+
 /** A local arrow: the anchors and the host move together inside the horizontal
  *  track, so document coordinates would drift. */
 export function penArrow(
@@ -394,13 +409,16 @@ export function mountPens(scope: ParentNode): void {
     penToggle(el, {});
   });
   each("[data-pen-input]", (el) => {
-    penField(el, [], el.getAttribute("data-tone") === "danger" ? { stroke: "#9c2f28" } : {});
+    penField(el, [], el.getAttribute("data-tone") === "danger" ? { stroke: "var(--err)" } : {});
   });
   each("[data-pen-textarea]", (el) => {
     penField(el, [], {});
   });
   each("[data-pen-select]", (el) => {
-    penSelect(el, {});
+    /* a custom dropdown draws its own chevron in the markup, so the pen only
+       draws the box round it; a native select still gets G's drawn chevron */
+    if (el.hasAttribute("data-select")) penField(el, [], {});
+    else penSelect(el, {});
   });
   each("[data-pen-card]", (el) => {
     penCard(el, {});
@@ -413,6 +431,11 @@ export function mountPens(scope: ParentNode): void {
   });
   each("[data-pen-circle]", (el) => {
     penCircleMark(el, {});
+  });
+  /* a career map stop: a small drawn ring on the route. The last stop also
+     carries data-pen-circle, and its loop is drawn by the line above. */
+  each("[data-map-marker]:not([data-pen-circle])", (el) => {
+    penMarker(el, {});
   });
 }
 
@@ -457,6 +480,18 @@ export function mountDeferredPens(scope: ParentNode): void {
     }
   }
   redrawPens();
+}
+
+/** A drawn card outline on one element, mounted once. The dropdown list asks
+ *  for this so its markup can stay exactly as the contract spells it. */
+export function mountPenCard(el: HTMLElement): void {
+  if (mounted.has(el)) return;
+  mounted.add(el);
+  try {
+    penCard(el, {});
+  } catch {
+    /* unmeasurable, stays plain */
+  }
 }
 
 export function initPenRedraw(): Cleanup {

@@ -9,9 +9,9 @@ export function Evidence() {
       className="panel"
       id="evidence"
       data-field="paper-2"
-      data-header-bg="#2f2b27"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
       aria-labelledby="ch2-title"
     >
       <div className="panel__inner">
@@ -27,7 +27,7 @@ export function Evidence() {
         <div className="evidence__grid">
           {metrics.map((m) => (
             <article className="metric" key={`${m.value}-${m.source}`}>
-              <p className="metric__value">
+              <p className="metric__value" data-reveal="count">
                 {m.pen ? (
                   <span className="pen-circle num" data-pen-circle>
                     {m.value}
@@ -37,8 +37,12 @@ export function Evidence() {
                 )}
                 {m.unit ? <span className="unit">{m.unit}</span> : null}
               </p>
-              <p className="metric__source">{m.caption}</p>
-              <p className="metric__project">{m.source}</p>
+              <p className="metric__source" data-reveal-line data-reveal="fade">
+                {m.caption}
+              </p>
+              <p className="metric__project" data-reveal-line data-reveal="fade">
+                {m.source}
+              </p>
             </article>
           ))}
         </div>
@@ -47,7 +51,7 @@ export function Evidence() {
           <div className="evidence__note">
             <PenNote variant="a">{evidenceMarginNote}</PenNote>
           </div>
-          <p className="small chapter-foot__note" data-reveal-line>
+          <p className="small chapter-foot__note" data-reveal-line data-reveal="left">
             {evidenceNote}
           </p>
         </div>

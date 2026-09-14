@@ -12,6 +12,7 @@ import SplitType from "split-type";
 import { gsap, ScrollTrigger, list, reduced, type Cleanup } from "./env";
 import { horizontalContainer } from "./registry";
 import { mountPenMarks } from "./pens";
+import { playVariant, revealName, type VariantResult } from "./variants";
 
 export const LINE = {
   yPercent: 102,
@@ -96,6 +97,14 @@ function splitBlocks(blocks: HTMLElement[], collector?: SplitType[]): Group[] {
   });
 }
 
+/** The lines of a set of blocks, split and masked, flat. Variants that move
+ *  lines rather than the whole block share this with the line reveal. */
+export function splitLines(blocks: HTMLElement[], collector?: SplitType[]): HTMLElement[] {
+  const out: HTMLElement[] = [];
+  splitBlocks(blocks, collector).forEach((g) => g.lines.forEach((l) => out.push(l)));
+  return out;
+}
+
 export function lineReveal(blocks: HTMLElement[], opts?: LineOptions): gsap.core.Timeline {
   const o = lineOpts(opts);
   const tl = gsap.timeline();
@@ -177,9 +186,26 @@ export type ScrollRevealOptions = LineOptions & {
 
 export function initScrollLineReveals(scope: HTMLElement, opts?: ScrollRevealOptions): Cleanup {
   const o = opts || {};
-  const els = list("[data-reveal-line]", scope).filter((e) => !e.dataset.revealed);
-  if (scope.matches && scope.matches("[data-reveal-line]") && !scope.dataset.revealed) els.unshift(scope);
-  if (!els.length) return () => {};
+  /* two entry points: a text block carries data-reveal-line, a structural
+     block (a metric, a card, a row, a form) carries data-reveal on its own.
+     A block nested inside another entry point is left to its parent. */
+  const SEL = "[data-reveal-line], [data-reveal]";
+  const all = list(SEL, scope).filter((e) => !e.dataset.revealed);
+  const els = all.filter((e) => {
+    const owner = e.parentElement ? e.parentElement.closest(SEL) : null;
+    return !owner || !scope.contains(owner);
+  });
+  if (scope.matches && scope.matches(SEL) && !scope.dataset.revealed) els.unshift(scope);
+  /* anything nested inside another entry point rides in with its parent, so it
+     is handed its opacity straight back rather than waiting for a trigger that
+     will never fire on it */
+  const nested = all.filter((e) => els.indexOf(e) < 0);
+  nested.forEach((e) => {
+    e.style.opacity = "1";
+  });
+  if (!els.length) {
+    return () => nested.forEach((e) => e.style.removeProperty("opacity"));
+  }
   if (reduced()) {
     els.forEach((e) => {
       e.style.opacity = "1";
@@ -193,27 +219,41 @@ export function initScrollLineReveals(scope: HTMLElement, opts?: ScrollRevealOpt
     };
   }
   const collector: SplitType[] = [];
-  const tls: gsap.core.Timeline[] = [];
+  const played: VariantResult[] = [];
+  function fire(el: HTMLElement) {
+    if (el.dataset.revealed) return;
+    el.dataset.revealed = "1";
+    /* the block names its own entrance; with no name it is G's */
+    const r = playVariant(el, revealName(el), Object.assign({ splitCollector: collector }, o));
+    /* a pen mark inside this block is drawn once the block has landed */
+    r.timeline.eventCallback("onComplete", () => mountPenMarks(el));
+    played.push(r);
+  }
   function make(el: HTMLElement, cfg: ScrollTrigger.StaticVars, store: ScrollTrigger[]) {
-    let fired = false;
     store.push(
       ScrollTrigger.create(
-        Object.assign({}, cfg, {
-          trigger: el,
-          once: true,
-          onEnter: () => {
-            if (fired) return;
-            fired = true;
-            el.dataset.revealed = "1";
-            const tl = lineReveal([el], Object.assign({ splitCollector: collector }, o));
-            /* a pen mark inside this block is drawn once the block has landed */
-            tl.eventCallback("onComplete", () => mountPenMarks(el));
-            tls.push(tl);
-          },
-        })
+        Object.assign({}, cfg, { trigger: el, once: true, onEnter: () => fire(el) })
       )
     );
   }
+  /* The safety net. A trigger inside a scrubbed container can be stepped over
+     when the scroll jumps far in one update (a flick, a snap, a deep link), and
+     a block that holds its content back until it plays would then stay blank
+     for good. So whenever scrolling stops, anything on screen that is still
+     waiting is played at once. */
+  function sweep() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    els.forEach((el) => {
+      if (el.dataset.revealed) return;
+      const r = el.getBoundingClientRect();
+      if (!r.width && !r.height) return;
+      if (r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw) return;
+      fire(el);
+    });
+  }
+  ScrollTrigger.addEventListener("scrollEnd", sweep);
+  ScrollTrigger.addEventListener("refresh", sweep);
   const mm = gsap.matchMedia();
   mm.add("(min-width: 768px)", () => {
     const store: ScrollTrigger[] = [];
@@ -232,12 +272,18 @@ export function initScrollLineReveals(scope: HTMLElement, opts?: ScrollRevealOpt
     return () => store.forEach((s) => s.kill());
   });
   return () => {
+    ScrollTrigger.removeEventListener("scrollEnd", sweep);
+    ScrollTrigger.removeEventListener("refresh", sweep);
     mm.revert();
-    tls.forEach((t) => t.kill());
+    nested.forEach((e) => e.style.removeProperty("opacity"));
+    played.forEach((r) => {
+      r.timeline.kill();
+      r.undo();
+    });
     collector.forEach((c) => c.revert());
     els.forEach((e) => {
       delete e.dataset.revealed;
-      gsap.set(e, { clearProps: "opacity,transform,visibility" });
+      gsap.set(e, { clearProps: "opacity,transform,visibility,clipPath,filter" });
     });
   };
 }

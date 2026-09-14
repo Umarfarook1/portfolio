@@ -13,14 +13,15 @@ const THEME_SEL = "[data-header-bg][data-header-text]";
 
 export type RailTheme = { bg: string; text: string; border: string };
 
-export const MENU_THEME: RailTheme = { bg: "#2e2b28", text: "#f3efe8", border: "#5a524d" };
+/* the contents field, so the rail reads as one surface with it while open */
+export const MENU_THEME: RailTheme = { bg: "#7f1515", text: "#ffffff", border: "#b54747" };
 
 function readTheme(el: Element | null): RailTheme | null {
   if (!el || el.getAttribute("aria-hidden") === "true") return null;
   const bg = el.getAttribute("data-header-bg");
   const text = el.getAttribute("data-header-text");
   if (!bg || !text) return null;
-  return { bg, text, border: el.getAttribute("data-header-border") || "#5a524d" };
+  return { bg, text, border: el.getAttribute("data-header-border") || "#b54747" };
 }
 
 export function applyTheme(el: HTMLElement, t: RailTheme): void {

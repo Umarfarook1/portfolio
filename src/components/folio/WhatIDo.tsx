@@ -11,9 +11,9 @@ export function WhatIDo() {
       className="panel panel--wide"
       data-services-section
       data-field="dark"
-      data-header-bg="#f1ece4"
-      data-header-text="#2f2b27"
-      data-header-border="#cfc7bb"
+      data-header-bg="#ffffff"
+      data-header-text="#9b1b1b"
+      data-header-border="#e8d4d4"
       aria-labelledby="ch4-title"
     >
       <div className="panel__inner">
@@ -27,12 +27,18 @@ export function WhatIDo() {
         </div>
 
         <div className="services__cols">
-          <p className="services__lead" data-reveal-line>
+          <p className="services__lead" data-reveal-line data-reveal="left">
             {services.headline}
           </p>
 
           {disciplines.map((d) => (
-            <article className="service" data-service-item tabIndex={0} key={d.no}>
+            <article
+              className="service"
+              data-service-item
+              data-reveal="clip-top"
+              tabIndex={0}
+              key={d.no}
+            >
               <span className="service__bg" data-service-bg-reveal aria-hidden="true">
                 <span className="service__media" data-service-bg-media>
                   <Plate slug={d.slug} sizes="(max-width: 767px) 100vw, 26vw" />

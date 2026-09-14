@@ -15,9 +15,9 @@ export function ServicesSheet() {
     <section
       className="sheet"
       data-field="paper-2"
-      data-header-bg="#2f2b27"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
     >
       <div className="sheet__head">
         <h1 className="sheet__title" data-reveal-line>
@@ -52,7 +52,7 @@ export function ServicesSheet() {
           </p>
           <div className="studio__grid">
             {g.packages.map((p) => (
-              <article className="package" key={p.code}>
+              <article className="package" data-reveal="flip" key={p.code}>
                 <span className="package__rule" data-pen-rule aria-hidden="true"></span>
                 <h3 className="package__name">{p.name}</h3>
                 <p className="package__span">

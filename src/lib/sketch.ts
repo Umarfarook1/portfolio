@@ -222,7 +222,9 @@ export function paint(svg: SVGSVGElement, layers: Layer[], boxes: Box[], o: PenO
         p.setAttribute("d", d);
         p.setAttribute("class", ds.length > 1 ? "drawably-boil " + layer.className : layer.className);
         p.dataset.i = String(i);
-        if (layer.pathLength) p.setAttribute("pathLength", "1");
+        /* normalised so one dash unit is the whole stroke, whatever its real
+           length: the checkmark relies on it, and so does the draw-on */
+        p.setAttribute("pathLength", "1");
         if (box.x || box.y) p.setAttribute("transform", "translate(" + box.x + " " + box.y + ")");
         svg.appendChild(p);
       });

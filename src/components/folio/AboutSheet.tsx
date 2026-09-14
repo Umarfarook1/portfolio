@@ -17,24 +17,24 @@ export function AboutSheet() {
     <section
       className="sheet"
       data-field="paper"
-      data-header-bg="#2f2b27"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
     >
       <div className="sheet__head">
-        <h1 className="sheet__title" data-reveal-line>
+        <h1 className="sheet__title" data-reveal-line data-reveal="fade">
           About me
         </h1>
         <p className="caps" style={{ color: "var(--fg-muted)" }}>
-          Folio {"·"} Edition, the author
+          The author
         </p>
       </div>
 
       <div className="about__grid sheet__section">
-        <p className="lead" style={{ maxWidth: "44ch" }} data-reveal-line>
+        <p className="lead" style={{ maxWidth: "44ch" }} data-reveal-line data-reveal="fade">
           {site.intro}
         </p>
-        <p className="philosophy" data-reveal-line>
+        <p className="philosophy" data-reveal-line data-reveal="fade">
           {philosophy}
         </p>
       </div>
@@ -46,7 +46,7 @@ export function AboutSheet() {
             what I spend the day on
           </p>
         </div>
-        <p className="body" data-reveal-line>
+        <p className="body" data-reveal-line data-reveal="fade">
           {aboutParagraph}
         </p>
       </div>

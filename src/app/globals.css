@@ -55,24 +55,26 @@
   --r-1:2px;
 
   /* colour */
-  --paper:#faf9f6;
-  --paper-2:#f1ece4;
-  --paper-3:#e6dfd4;
-  --char:#262220;
-  --char-2:#2e2b28;
-  --black:#1a1917;
-  --ink:#2f2b27;
-  --ink-2:#4a4339;
-  --muted:#675e51;
-  --rule:#cfc7bb;
-  --rule-2:#a79d8f;
-  --rule-dark:#5a524d;
-  --pen:#9e3f1c;
-  --pen-light:#d98b52;
-  --paper-ink:#f3efe8;
-  --paper-muted:#a99f92;
+  --paper:#ffffff;      /* the page field, pure white */
+  --paper-2:#fbf3f2;    /* raised stock: evidence, studio */
+  --paper-3:#f6e9e8;    /* deep stock behind the collage */
+  --char:#9b1b1b;       /* the red chapters. White on it reads 7.7:1 */
+  --char-2:#7f1515;     /* the contents field */
+  --black:#5c0f0f;      /* the colophon field */
+  --near-black:var(--black);
+  --ink:#1a1212;        /* body text on white */
+  --ink-2:#4a2c2c;      /* secondary text */
+  --muted:#7d5a5a;      /* meta and sources, 5.6:1 on white */
+  --rule:#e8d4d4;       /* decorative hairline */
+  --rule-2:#cfb0b0;     /* table and instrument separators */
+  --rule-dark:#b54747;  /* hairlines on a red ground */
+  --pen:#c8102e;        /* THE PEN, one red, rationed. 5.9:1 on white */
+  --pen-light:#ffb3b3;  /* the pen lifted for the red chapters */
+  --paper-ink:#ffffff;  /* text on a red ground */
+  --paper-muted:#e9d6d5;/* the collage screen fills */
+  --red-ink-2:#f3d9d9;  /* secondary and meta text on a red ground */
   --ok:#2f6b44;
-  --err:#9c2f28;
+  --err:#8a1c1c;
 
   /* per surface working colours, overridden by [data-field] */
   --field:var(--paper);
@@ -99,15 +101,18 @@
   --d-theme:500ms;
 }
 
+/* On a saturated red ground two near white tints read as one, so the second
+   and third text levels share a tint and take their hierarchy from size and
+   weight instead. */
 [data-field="dark"]{
-  --field:var(--char); --fg:var(--paper-ink); --fg-2:#cfc6ba;
-  --fg-muted:var(--paper-muted); --hairline:var(--rule-dark);
-  --hairline-2:#6f665f; --accent:var(--pen-light);
+  --field:var(--char); --fg:var(--paper-ink); --fg-2:var(--red-ink-2);
+  --fg-muted:var(--red-ink-2); --hairline:var(--rule-dark);
+  --hairline-2:#c96a6a; --accent:var(--pen-light);
 }
 [data-field="black"]{
-  --field:var(--black); --fg:var(--paper-ink); --fg-2:#cfc6ba;
-  --fg-muted:var(--paper-muted); --hairline:#3a3734;
-  --hairline-2:#4e4a45; --accent:var(--pen-light);
+  --field:var(--black); --fg:var(--paper-ink); --fg-2:var(--red-ink-2);
+  --fg-muted:var(--red-ink-2); --hairline:#7a2020;
+  --hairline-2:#8f3030; --accent:var(--pen-light);
 }
 [data-field="paper-2"]{ --field:var(--paper-2); }
 [data-field="paper-3"]{ --field:var(--paper-3); }
@@ -291,7 +296,7 @@ table{border-collapse:collapse;}
   padding:var(--s-5) var(--s-6) var(--s-6) calc(var(--rail) + var(--s-6));
 }
 .menu__top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s-5);}
-.menu__edition{color:var(--paper-muted);}
+.menu__head{color:var(--red-ink-2);}
 .menu__close{
   appearance:none;background:none;border:0;padding:var(--s-2);cursor:pointer;
   font-family:var(--f-text);font-size:var(--t-1);font-weight:600;
@@ -412,8 +417,8 @@ main{display:block;}
 .hero{
   background:var(--char);
   --fg:var(--paper-ink);
-  --fg-2:#cfc6ba;
-  --fg-muted:var(--paper-muted);
+  --fg-2:var(--red-ink-2);
+  --fg-muted:var(--red-ink-2);
   --hairline:var(--rule-dark);
   --accent:var(--pen-light);
   color:var(--fg);
@@ -444,6 +449,9 @@ main{display:block;}
   grid-template-rows:auto minmax(0,1fr) auto;
   gap:var(--s-4);
 }
+/* .hero__head is the name to use; .hero__edition is G's original and is kept
+   until the cover markup moves over, so a grep for "edition" can go clean */
+.hero__head,
 .hero__edition{
   display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-5);
   color:var(--fg-muted);
@@ -804,12 +812,12 @@ main{display:block;}
 }
 .service__media{
   position:absolute;inset:-14% 0;
-  background:linear-gradient(180deg,#332e2a 0%,#413a34 46%,#2b2724 100%);
+  background:linear-gradient(180deg,#7f1515 0%,#a82424 46%,#6d1111 100%);
   will-change:transform;
 }
 .service__media::after{
   content:"";position:absolute;inset:0;
-  background-image:repeating-linear-gradient(90deg,rgba(217,139,82,.22) 0 1px,transparent 1px 26px);
+  background-image:repeating-linear-gradient(90deg,rgba(255,179,179,.22) 0 1px,transparent 1px 26px);
 }
 .service__no{
   font-family:var(--f-display);
@@ -1130,7 +1138,7 @@ main{display:block;}
 .ink-dot[aria-pressed="true"]::after{
   content:"";position:absolute;inset:-5px;border:1px solid var(--fg);
 }
-.ink-dot--mixed{background:conic-gradient(#9e3f1c,#2f6b44,#1a1917,#b45309,#5c5449,#9e3f1c);}
+.ink-dot--mixed{background:conic-gradient(#c8102e,#2f6b44,#5c0f0f,#9b1b1b,#7d5a5a,#c8102e);}
 .slider{display:grid;gap:var(--s-2);}
 .slider label{font-family:var(--f-mono);font-size:var(--t-1);color:var(--fg-muted);
   display:flex;justify-content:space-between;gap:var(--s-3);}
@@ -1331,7 +1339,6 @@ input[type="range"]::-moz-range-thumb{width:14px;height:14px;background:var(--pe
   }
   .rail__mid{flex-direction:row;gap:var(--s-5);justify-content:flex-end;}
   .rail__vert,.rail__foot{writing-mode:horizontal-tb;transform:none;font-size:10px;}
-  .rail__vert--edition{display:none;}
   .rail__progress-track{right:auto;left:0;top:auto;bottom:-1px;width:100%;height:1px;}
   .rail__progress{transform:scaleX(0);transform-origin:0 0;}
   .menu__field{padding:80px 20px 32px;}
@@ -1433,6 +1440,12 @@ input[type="range"]::-moz-range-thumb{width:14px;height:14px;background:var(--pe
    until it runs. Without motion nothing is hidden in the first place. */
 .has-motion .hero [data-reveal-line]{opacity:0;}
 
+/* A structural block names its entrance with data-reveal alone, so it is held
+   back the same way a text block is. A block nested inside another entry point
+   is handed back to its parent by the engine at init, so nothing can be left
+   hidden by a rule the script never reaches. */
+.has-motion [data-reveal]{opacity:0;}
+
 @media (prefers-reduced-motion:reduce){
   /* Reduced motion is a gentler equivalent, not nothing: the route change and
      the contents field cross-fade over 200ms instead of wiping. */
@@ -1456,6 +1469,187 @@ input[type="range"]::-moz-range-thumb{width:14px;height:14px;background:var(--pe
    transparency has nothing to undo. Higher contrast strengthens the
    hairlines, which are the only decorative-weight edges on the page. */
 @media (prefers-contrast:more){
-  :root{--rule:#8f8778;--rule-2:#6f6759;--rule-dark:#8c837a;}
+  :root{--rule:#c79a9a;--rule-2:#a86a6a;--rule-dark:#e0a0a0;}
   .metric{border-right-color:var(--hairline-2);}
+}
+
+/* ==========================================================================
+   25. REVISION 1
+   The red and white palette is in section 1; these are the rules the new
+   behaviours need. Class and attribute names are the contract in
+   src/components/shell/README-engine.md.
+   ========================================================================== */
+
+/* -- data-reveal="draw": the pen chrome strokes itself on ------------------ */
+/* every drawn path carries pathLength 1, so one dash unit is the whole stroke */
+.drawably-host[data-drawn="in"] .drawably-outline,
+.drawably-host[data-drawn="in"] .drawably-scribble{
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:drawably-draw-in .6s var(--e-out) forwards;
+}
+.drawably-host[data-drawn="in"] .drawably-blob{
+  opacity:0;
+  animation:drawably-ink-in .6s var(--e-out) forwards;
+}
+@keyframes drawably-draw-in{ to{stroke-dashoffset:0;} }
+@keyframes drawably-ink-in{ to{opacity:1;} }
+
+/* -- Chapter III: the slideshow frame -------------------------------------- */
+/* the covers stack in the frame and cross-fade; there is no placeholder box
+   behind them any more, so the frame carries the edge itself */
+.work__preview[data-work-slideshow]{
+  background:var(--paper-2);
+  outline:1px solid var(--hairline);
+  outline-offset:0;
+}
+.work__preview[data-work-slideshow] .work__image{
+  transform:none;
+  transform-origin:center center;
+}
+
+/* -- Chapter V: the career map -------------------------------------------- */
+.career{
+  position:relative;
+  width:100%;
+  min-height:clamp(260px,38vh,420px);
+  align-self:center;
+}
+[data-map-path]{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  overflow:visible;
+  pointer-events:none;
+}
+[data-map-route]{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.career__map{position:absolute;inset:0;width:100%;height:100%;color:var(--accent);z-index:0;}
+.career__route{stroke:var(--accent);}
+/* The card hangs from its marker rather than sitting centred on the point, so
+   the route runs through the ring and clear of the type. --ax is written by
+   the engine from data-x: a stop near either edge anchors to that edge instead
+   of centring, so the first and last cards stay inside the chapter. */
+.career__stop{
+  position:absolute;
+  left:var(--x,0%);
+  top:var(--y,0%);
+  z-index:1;
+  display:block;
+  max-width:22ch;
+  --lift:0px;
+  /* --ax is written by the engine, so it is read with a fallback rather than
+     declared here: a custom property declared and consumed in the same rule is
+     folded away by the CSS optimiser, and the runtime value never lands */
+  transform:translate(var(--ax,-50%),calc(-9px + var(--lift)));
+  transition:transform var(--d-hover) var(--e-out);
+}
+@media (hover:hover) and (pointer:fine){
+  .career__stop:hover,.career__stop:focus-within{--lift:-4px;}
+}
+.career__stop:hover [data-map-marker],
+.career__stop:focus-within [data-map-marker]{--drawably-width:2.8;}
+[data-map-marker]{
+  display:block;
+  width:18px;height:18px;
+  margin-bottom:var(--s-2);
+  --drawably-width:1.8;
+  transition:none;
+}
+.career__year{
+  display:block;
+  font-family:var(--f-mono);font-size:var(--t-1);
+  letter-spacing:var(--tr-caps-2);text-transform:uppercase;
+  color:var(--accent);
+}
+.career__title{
+  display:block;
+  font-family:var(--f-display);
+  font-variation-settings:"opsz" 72,"wght" 580,"SOFT" 0,"WONK" 0;
+  font-size:clamp(1.1rem,1.8vw,1.7rem);
+  line-height:1.1;letter-spacing:-0.02em;
+  margin-top:2px;
+}
+.career__line{
+  display:block;
+  font-size:var(--t-1);line-height:1.5;
+  color:var(--fg-muted);
+  margin-top:var(--s-2);
+}
+
+/* -- the custom dropdown --------------------------------------------------- */
+/* the pen chrome makes .select its own stacking context, so the list can only
+   rise as far as the wrapper does: the wrapper is what lifts while it is open */
+.select{position:relative;display:block;width:100%;z-index:1;}
+.select:has(.select__list:not([hidden])){z-index:40;}
+.select__toggle{
+  appearance:none;background:none;border:0;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);
+  width:100%;min-height:44px;
+  padding:11px 14px;
+  font:inherit;font-size:16px;color:var(--fg);
+  text-align:left;cursor:pointer;
+}
+.select__chevron{display:inline-flex;flex:none;color:var(--accent);}
+.select__chevron svg{width:12px;height:7px;}
+.select__list{
+  position:absolute;left:0;right:0;top:calc(100% + 6px);
+  z-index:30;
+  margin:0;padding:var(--s-2) 0;
+  background:var(--field);
+  /* the resting state is `hidden`, not a clip: a closed clip here would be
+     what clearProps falls back to, and the list would never open */
+  clip-path:inset(0% 0% 0% 0%);
+  max-height:min(48vh,320px);overflow-y:auto;overscroll-behavior:contain;
+}
+.select__list[hidden]{display:none;}
+.select__list li{
+  padding:9px 14px;
+  font-size:var(--t-2);line-height:1.4;
+  cursor:pointer;
+  color:var(--fg-2);
+}
+.select__list li[data-active="true"]{color:var(--fg);background:var(--paper-2);}
+.select__list li[aria-selected="true"]{color:var(--accent);font-weight:600;}
+.select__list li[aria-selected="true"]::after{content:" ✓";}
+
+/* -- the six studio cards, in two labelled rows --------------------------- */
+.studio__groups{display:grid;gap:clamp(18px,2.4vw,36px);align-content:center;min-height:0;}
+.studio__group-label{
+  display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-4);
+  border-bottom:1px solid var(--hairline);
+  padding-bottom:var(--s-2);
+  margin-bottom:var(--s-4);
+  color:var(--fg-muted);
+}
+.studio__group{min-width:0;}
+
+/* -- the mobile vertical read snaps to the nearest chapter ----------------- */
+@media (max-width:767px){
+  /* the route runs top to bottom and the stops read as a plain list */
+  .career{min-height:0;}
+  .career__map{display:none;}
+  .career__stop{
+    position:static;
+    max-width:100%;
+    margin-bottom:var(--s-5);
+    transform:none;
+  }
+  .career__stop:last-child{margin-bottom:0;}
+  html:has(.story){scroll-snap-type:y proximity;}
+  .panel{scroll-snap-align:start;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  /* no snapping, and nothing draws itself on */
+  html{scroll-snap-type:none;}
+  .drawably-host[data-drawn="in"] .drawably-outline,
+  .drawably-host[data-drawn="in"] .drawably-scribble{
+    animation:none;stroke-dashoffset:0;
+  }
+  .drawably-host[data-drawn="in"] .drawably-blob{animation:none;opacity:1;}
+  .career__stop{transition:none;}
 }

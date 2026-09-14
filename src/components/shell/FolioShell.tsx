@@ -31,10 +31,10 @@ import { resyncRail } from "@/motion/registry";
 /** The colour the dissolve covers with on the way to each route: the ground
  *  the arriving page opens on, so the cover and the arrival agree. */
 const ROUTE_COLOR: Record<string, string> = {
-  "/": "#262220",
-  "/about": "#faf9f6",
-  "/work": "#e6dfd4",
-  "/services": "#f1ece4",
+  "/": "#9b1b1b",
+  "/about": "#ffffff",
+  "/work": "#f6e9e8",
+  "/services": "#fbf3f2",
 };
 
 const NAV = [
@@ -133,7 +133,7 @@ export function FolioShell({ children }: { children: React.ReactNode }) {
         return;
       }
       coveringRef.current = true;
-      dissolveCover(ROUTE_COLOR[href] || "#262220", () => {
+      dissolveCover(ROUTE_COLOR[href] || "#9b1b1b", () => {
         if (fromMenu && menu) {
           menu.close(() => router.push(href + (target ? "#" + target : "")));
         } else {
@@ -193,9 +193,6 @@ export function FolioShell({ children }: { children: React.ReactNode }) {
           </svg>
         </button>
         <div className="rail__mid">
-          <span className="rail__vert rail__vert--edition" aria-hidden="true">
-            Folio &middot; Edition
-          </span>
           <span className="rail__vert rail__vert--brand">Umarfarook Gurramkonda</span>
         </div>
         <span className="rail__foot" aria-hidden="true">
@@ -209,8 +206,8 @@ export function FolioShell({ children }: { children: React.ReactNode }) {
       <dialog id="fullscreen-menu" aria-label="Contents" ref={dialogRef}>
         <div className="menu__field" data-menu-reveal>
           <div className="menu__top">
-            <p className="mono menu__edition" data-reveal-line>
-              Folio, Edition 2026. Seven chapters.
+            <p className="mono menu__head" data-reveal-line>
+              Contents, 2026. Seven chapters.
             </p>
             <button type="button" className="menu__close" data-menu-close data-reveal-line>
               Close
@@ -231,7 +228,7 @@ export function FolioShell({ children }: { children: React.ReactNode }) {
             </Link>
           </nav>
           <div className="menu__foot">
-            <p className="mono menu__edition" data-reveal-line>
+            <p className="mono menu__head" data-reveal-line>
               Bengaluru, India (UTC+5:30)
             </p>
             <div className="menu__socials">

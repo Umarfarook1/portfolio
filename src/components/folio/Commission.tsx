@@ -14,9 +14,9 @@ export function Commission() {
       className="panel"
       id="commission"
       data-field="paper"
-      data-header-bg="#2f2b27"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
       aria-labelledby="ch7-title"
     >
       <div className="panel__inner">
@@ -44,7 +44,13 @@ export function Commission() {
             </p>
           </div>
 
-          <form className="form" id="commission-form" data-mailto={site.email} noValidate>
+          <form
+            className="form"
+            id="commission-form"
+            data-mailto={site.email}
+            data-reveal="draw"
+            noValidate
+          >
             <div className="form__row">
               <div className="field">
                 <label htmlFor="f-name">Your name</label>
@@ -72,15 +78,55 @@ export function Commission() {
             </div>
 
             <div className="field">
-              <label htmlFor="f-need">What do you need</label>
-              <span className="pen-select" data-pen-select>
-                <select id="f-need" name="need" defaultValue="Audit">
-                  <option>Audit</option>
-                  <option>Sprint</option>
-                  <option>Feature build</option>
-                  <option>Software build</option>
-                </select>
-              </span>
+              <label id="need-label" htmlFor="need-toggle">
+                What do you need
+              </label>
+              <div className="select" data-select data-pen-select>
+                <button
+                  type="button"
+                  className="select__toggle"
+                  data-select-toggle
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  id="need-toggle"
+                >
+                  <span data-select-label>Audit</span>
+                  <span className="select__chevron" aria-hidden="true">
+                    <svg viewBox="0 0 16 10" width="14" height="9" focusable="false">
+                      <path
+                        d="M1 1l7 7 7-7"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <ul
+                  className="select__list"
+                  role="listbox"
+                  data-select-list
+                  aria-labelledby="need-label"
+                  tabIndex={-1}
+                  hidden
+                >
+                  <li role="option" data-value="audit" aria-selected="true">
+                    Audit
+                  </li>
+                  <li role="option" data-value="sprint" aria-selected="false">
+                    Sprint
+                  </li>
+                  <li role="option" data-value="feature" aria-selected="false">
+                    Feature build
+                  </li>
+                  <li role="option" data-value="software" aria-selected="false">
+                    Software build
+                  </li>
+                </ul>
+                <input type="hidden" name="need" defaultValue="audit" data-select-value />
+              </div>
             </div>
 
             <div className="field">

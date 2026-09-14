@@ -17,6 +17,7 @@
 import SplitType from "split-type";
 import { gsap, list, reduced, type Cleanup } from "./env";
 import { CHAR, WORD, lineReveal, lineHide, mobileScale } from "./reveal";
+import { playVariant, revealName } from "./variants";
 import { hasLoaderPlayed, markLoaderPlayed } from "./registry";
 import { barsClosed, barsIntro } from "./rail";
 
@@ -136,7 +137,7 @@ export function initClock(scope: ParentNode): Cleanup {
 /** The hero lines belong to the loader, not to the generic scroll pass, so
  *  they are claimed before that pass runs rather than inside runLoader. */
 export function claimHeroLines(hero: HTMLElement): void {
-  list("[data-reveal-line]", hero).forEach((e) => {
+  list("[data-reveal-line], [data-reveal]", hero).forEach((e) => {
     e.dataset.revealed = "1";
   });
 }
@@ -318,17 +319,34 @@ export function runLoader(hero: HTMLElement, h: LoaderHandles): Cleanup {
   const lastWordAt =
     C + M + LOAD.nameAfterFlood * scale + WORD.stagger * scale * Math.max(0, words.length - 1);
   const taglineAt = "stripGo+=" + (lastWordAt + LOAD.taglineAfterLastNameWord * scale);
+  /* the lead and the meta row name their own entrance the way any other block
+     does; with no name they are G's line reveal, as they were */
   if (tagline) {
+    const name = revealName(tagline);
     tl.add(
-      lineReveal([tagline], { scale, staggerEach: 0.2, splitCollector: splits, revertOnComplete: false }),
+      name === "bottom"
+        ? lineReveal([tagline], { scale, staggerEach: 0.2, splitCollector: splits, revertOnComplete: false })
+        : playVariant(tagline, name, { scale, splitCollector: splits, revertOnComplete: false }).timeline,
       taglineAt
     );
   }
   if (meta.length) {
-    tl.add(
-      lineReveal(meta, { scale, parallelBlocks: true, splitCollector: splits, revertOnComplete: false }),
-      "stripGo+=" + (lastWordAt + LOAD.taglineAfterLastNameWord * scale + LOAD.metaAfterTagline * scale)
-    );
+    const metaAt =
+      "stripGo+=" + (lastWordAt + LOAD.taglineAfterLastNameWord * scale + LOAD.metaAfterTagline * scale);
+    const plain = meta.filter((e) => revealName(e) === "bottom");
+    const named = meta.filter((e) => revealName(e) !== "bottom");
+    if (plain.length) {
+      tl.add(
+        lineReveal(plain, { scale, parallelBlocks: true, splitCollector: splits, revertOnComplete: false }),
+        metaAt
+      );
+    }
+    named.forEach((e) => {
+      tl.add(
+        playVariant(e, revealName(e), { scale, splitCollector: splits, revertOnComplete: false }).timeline,
+        metaAt
+      );
+    });
   }
 
   tl.eventCallback("onComplete", () => {

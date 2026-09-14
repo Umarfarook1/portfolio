@@ -8,9 +8,9 @@ export function WorkPause() {
       className="panel pause"
       data-field="paper-3"
       data-more-work-section
-      data-header-bg="#2f2b27"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
       aria-label="The work"
     >
       <div className="pause__inner">

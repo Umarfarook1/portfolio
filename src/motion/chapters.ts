@@ -23,6 +23,7 @@ import {
   mobileScale,
 } from "./reveal";
 import { horizontalContainer } from "./registry";
+import { playVariant, revealName, type VariantResult } from "./variants";
 import SplitType from "split-type";
 
 /* ---------------------------------------------------------------------- */
@@ -40,13 +41,16 @@ export function initAboutChapter(scope: HTMLElement): Cleanup {
   const shell = sec.querySelector<HTMLElement>("[data-about-reveal-group-image-shell]");
   const overlay = shell ? shell.querySelector<HTMLElement>("[data-reveal-image-overlay]") : null;
   const wrapper = shell ? shell.querySelector<HTMLElement>("[data-reveal-image]") : null;
-  if (!trigger || !blocks.length || !overlay || !wrapper) return () => {};
+  /* the chapter has no portrait in revision 1: the grouped text reveal runs
+     whether or not there is an image beside it */
+  const hasImage = Boolean(overlay && wrapper);
+  if (!trigger || !blocks.length) return () => {};
 
   /* this chapter drives its own group, so the generic pass must skip it */
   blocks.forEach((b) => {
     b.dataset.revealed = "1";
   });
-  const figure = wrapper.closest<HTMLElement>("[data-reveal-image-shell]");
+  const figure = wrapper ? wrapper.closest<HTMLElement>("[data-reveal-image-shell]") : null;
   if (figure) figure.dataset.revealed = "1";
 
   if (reduced()) {
@@ -54,16 +58,17 @@ export function initAboutChapter(scope: HTMLElement): Cleanup {
       b.style.opacity = "1";
       b.dataset.revealed = "1";
     });
-    imageRevealDone(overlay, wrapper);
+    if (hasImage) imageRevealDone(overlay!, wrapper!);
     return () => {
       blocks.forEach((b) => delete b.dataset.revealed);
       if (figure) delete figure.dataset.revealed;
     };
   }
 
-  imageRevealPrime(overlay, wrapper, {});
+  if (hasImage) imageRevealPrime(overlay!, wrapper!, {});
   const collector: SplitType[] = [];
   const tls: gsap.core.Timeline[] = [];
+  const variants: VariantResult[] = [];
   let played = false;
   function play() {
     if (played) return;
@@ -73,8 +78,11 @@ export function initAboutChapter(scope: HTMLElement): Cleanup {
     const step = 0.12;
     blocks.forEach((b, i) => {
       b.dataset.revealed = "1";
-      tl.add(lineReveal([b], { splitCollector: collector }), i * step);
+      const r = playVariant(b, revealName(b), { splitCollector: collector });
+      variants.push(r);
+      tl.add(r.timeline, i * step);
     });
+    if (!hasImage) return;
     wrapper!.classList.remove("opacity-0");
     gsap.set(wrapper!, { opacity: 1 });
     tl.add(imageRevealPlay(overlay!, wrapper!, {}), blocks.length * step);
@@ -97,6 +105,7 @@ export function initAboutChapter(scope: HTMLElement): Cleanup {
   return () => {
     mm.revert();
     tls.forEach((t) => t.kill());
+    variants.forEach((r) => r.undo());
     collector.forEach((c) => c.revert());
     blocks.forEach((b) => delete b.dataset.revealed);
     if (figure) delete figure.dataset.revealed;
@@ -118,9 +127,21 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
   const hairs = list("[data-work-line]", sec);
   const images = list("[data-work-image]", sec);
   const placeholder = sec.querySelector<HTMLElement>("[data-work-placeholder]");
+  const frame = sec.querySelector<HTMLElement>("[data-work-slideshow]");
   const HIDDEN = 0;
   const DUR = 0.45;
   const EASE = "power3.out";
+  /* revision 1: with no placeholder box the frame is never empty, so it cycles
+     the covers while nothing is hovered */
+  const SHOW_EVERY = 2800;
+  const SHOW_FADE = 0.7;
+  const SHOW_RESUME = 1500;
+  const cycling = Boolean(frame) && images.length > 1;
+  let shown = 0;
+  let timer = 0;
+  let resumeTimer = 0;
+  let running = false;
+  let onScreen = false;
   let active: string | null = null;
   let z = 0;
   let run = 0;
@@ -132,6 +153,76 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
   }
   gsap.set(images, { autoAlpha: 0, scale: HIDDEN, zIndex: 0 });
   gsap.set(hoverLines, { scaleX: 0 });
+
+  function paintCover(i: number, dur: number) {
+    shown = i;
+    images.forEach((img, k) => {
+      gsap.killTweensOf(img);
+      if (k === i) {
+        gsap.set(img, { zIndex: 2 });
+        if (dur <= 0) {
+          gsap.set(img, { autoAlpha: 1, scale: 1, clearProps: "willChange" });
+          return;
+        }
+        gsap.fromTo(
+          img,
+          { autoAlpha: 0, scale: 1.03, willChange: "transform,opacity" },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            duration: dur,
+            ease: "power2.out",
+            overwrite: "auto",
+            clearProps: "willChange",
+          }
+        );
+        return;
+      }
+      if (dur <= 0) {
+        gsap.set(img, { autoAlpha: 0, scale: 1, zIndex: 0 });
+        return;
+      }
+      gsap.to(img, {
+        autoAlpha: 0,
+        duration: dur,
+        ease: "power2.out",
+        overwrite: "auto",
+        onComplete: () => gsap.set(img, { scale: 1, zIndex: 0, clearProps: "willChange" }),
+      });
+    });
+  }
+  function stopCycle() {
+    running = false;
+    if (timer) {
+      window.clearTimeout(timer);
+      timer = 0;
+    }
+    if (resumeTimer) {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = 0;
+    }
+  }
+  function step() {
+    timer = window.setTimeout(() => {
+      if (!running) return;
+      paintCover((shown + 1) % images.length, SHOW_FADE);
+      step();
+    }, SHOW_EVERY);
+  }
+  function startCycle() {
+    if (!cycling || reduced() || running || !onScreen) return;
+    running = true;
+    step();
+  }
+  /* a row was left: the cycle picks up from the cover that row was showing */
+  function resumeCycle() {
+    if (!cycling || reduced()) return;
+    if (resumeTimer) window.clearTimeout(resumeTimer);
+    resumeTimer = window.setTimeout(() => {
+      resumeTimer = 0;
+      startCycle();
+    }, SHOW_RESUME);
+  }
 
   function clearPreview(instant: boolean) {
     run += 1;
@@ -161,6 +252,13 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
     if (!isDesktop()) return;
     const img = images.filter((i) => i.getAttribute("data-work-image") === key)[0];
     if (!img) return;
+    /* the cycle carries on from whatever the pointer last showed */
+    const index = images.indexOf(img);
+    if (index >= 0) shown = index;
+    if (reduced()) {
+      paintCover(index >= 0 ? index : 0, 0);
+      return;
+    }
     if (active === key && Number(gsap.getProperty(img, "scale")) >= 0.999) return;
     if (placeholder) placeholder.style.setProperty("opacity", "0");
     z += 1;
@@ -210,15 +308,25 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
     if (hoverLines.length) gsap.to(hoverLines, { scaleX: 0, duration: 1, ease: EASE, overwrite: "auto" });
   }
   function enter(key: string) {
+    stopCycle();
     showPreview(key);
     dim(key);
   }
   function leave() {
-    clearPreview(false);
     undim();
+    if (cycling) {
+      resumeCycle();
+      return;
+    }
+    clearPreview(false);
   }
 
-  clearPreview(true);
+  if (cycling) {
+    gsap.set(images, { scale: 1 });
+    paintCover(0, 0);
+  } else {
+    clearPreview(true);
+  }
   undim();
 
   let px = 0;
@@ -337,7 +445,12 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
       Object.assign({ trigger: listEl, once: true }, cfg, {
         onEnter: () => {
           const tl = gsap.timeline({ onComplete: schedule });
-          tl.add(lineReveal([listEl], { duration: 1, staggerEach: 0.12 }));
+          const name = revealName(listEl);
+          tl.add(
+            name === "bottom"
+              ? lineReveal([listEl], { duration: 1, staggerEach: 0.12 })
+              : playVariant(listEl, name, {}).timeline
+          );
           if (hairs.length) {
             tl.to(hairs, { scaleX: 1, duration: 1, ease: EASE, stagger: 0.12, overwrite: "auto" }, 0);
           }
@@ -360,13 +473,25 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
         start: "left 100%",
         end: "right 0%",
         onUpdate: schedule,
-        onEnter: schedule,
-        onEnterBack: schedule,
+        onEnter: () => {
+          onScreen = true;
+          startCycle();
+          schedule();
+        },
+        onEnterBack: () => {
+          onScreen = true;
+          startCycle();
+          schedule();
+        },
         onLeave: () => {
+          onScreen = false;
+          stopCycle();
           current = null;
           leave();
         },
         onLeaveBack: () => {
+          onScreen = false;
+          stopCycle();
           current = null;
           leave();
         },
@@ -378,13 +503,25 @@ export function initWorkChapter(scope: HTMLElement): Cleanup {
     });
     mm.add("(max-width: 767px)", () => {
       const a = makeEnter({ start: "top 85%" });
+      const b = ScrollTrigger.create({
+        trigger: sec!,
+        start: "top bottom",
+        end: "bottom top",
+        onToggle: (self) => {
+          onScreen = self.isActive;
+          if (onScreen) startCycle();
+          else stopCycle();
+        },
+      });
       return () => {
         if (a) a.kill();
+        b.kill();
       };
     });
   }
 
   return () => {
+    stopCycle();
     if (mm) mm.revert();
     offs.forEach((f) => f());
     gsap.killTweensOf(images.concat(hoverLines, hairs));
@@ -623,6 +760,9 @@ export function initFooter(scope: HTMLElement): Cleanup {
     };
   }
   const scale = mobileScale();
+  /* the heading names the direction its words arrive from */
+  const fromTop = revealName(heading) === "top";
+  const wordY = fromTop ? -WORD.yPercent : WORD.yPercent;
   const splits: SplitType[] = [];
   const words: HTMLElement[] = [];
   list("[data-name-line-text]", heading).forEach((t) => {
@@ -650,7 +790,7 @@ export function initFooter(scope: HTMLElement): Cleanup {
       tl.set(words, { willChange: "transform", force3D: true }, 0);
       tl.fromTo(
         words,
-        { yPercent: WORD.yPercent, opacity: 1, transformOrigin: WORD.transformOrigin },
+        { yPercent: wordY, opacity: 1, transformOrigin: WORD.transformOrigin },
         {
           yPercent: 0,
           opacity: 1,

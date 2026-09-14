@@ -15,7 +15,7 @@ export const site = {
   resume: "/Umarfarook_Gurramkonda_ML_Engineer.pdf",
 
   // Cover
-  edition: "Umarfarook Gurramkonda, Folio",
+  edition: "Umarfarook Gurramkonda",
   chapterCount: "Seven chapters, one harness",
   location: "Bengaluru, India (UTC+5:30)",
   availability: "available now, 15-day notice, remote or contract",

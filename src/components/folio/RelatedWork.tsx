@@ -11,9 +11,9 @@ export function RelatedWork() {
       className="panel"
       data-section="home-work"
       data-field="paper"
-      data-header-bg="#2f2b27"
-      data-header-text="#f3efe8"
-      data-header-border="#5a524d"
+      data-header-bg="#9b1b1b"
+      data-header-text="#ffffff"
+      data-header-border="#b54747"
       aria-labelledby="ch3-title"
     >
       <div className="panel__inner">
@@ -27,12 +27,7 @@ export function RelatedWork() {
         </div>
 
         <div className="work__grid">
-          <div className="work__preview" data-work-preview aria-hidden="true">
-            <span className="work__placeholder" data-work-placeholder>
-              <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-                <line x1="0" y1="0" x2="400" y2="300" stroke="#a79d8f" strokeWidth="1" />
-              </svg>
-            </span>
+          <div className="work__preview" data-work-preview data-work-slideshow aria-hidden="true">
             {related.map((p, i) => (
               <span className="work__image" data-work-image={String(i)} key={p.slug}>
                 <Cover
@@ -50,7 +45,7 @@ export function RelatedWork() {
             {related.map((p, i) => (
               <div className="work__row" data-work-item-index={String(i)} key={p.slug}>
                 <Link className="work__link" href="/work" data-route-link="works">
-                  <span className="work__text" data-work-item-text-wrap>
+                  <span className="work__text" data-work-item-text-wrap data-reveal="right">
                     <span data-line>{p.title}</span>
                   </span>
                   <span className="work__meta">
@@ -68,7 +63,7 @@ export function RelatedWork() {
         </div>
 
         <div className="chapter-foot">
-          <p className="small chapter-foot__note" data-reveal-line>
+          <p className="small chapter-foot__note" data-reveal-line data-reveal="fade">
             {"✻"} {closedSourceNote}
           </p>
           <Link
